@@ -23,6 +23,7 @@ import (
 	"net/http"
 
 	"github.com/asgardeo/thunder/internal/flow"
+	"github.com/asgardeo/thunder/internal/group"
 	"github.com/asgardeo/thunder/internal/idp"
 	"github.com/asgardeo/thunder/internal/notification"
 	"github.com/asgardeo/thunder/internal/ou"
@@ -45,7 +46,8 @@ func registerServices(mux *http.ServeMux) {
 	_ = idp.Initialize(mux)
 	_ = notification.Initialize(mux, jwtService)
 	_ = userschema.Initialize(mux)
-	_ = ou.Initialize(mux)
+	ouService := ou.Initialize(mux)
+	_ = group.Initialize(mux, ouService)
 
 	// TODO: Legacy way of initializing services. These need to be refactored in the future aligning to the
 	// dependency injection pattern used above.
@@ -67,9 +69,6 @@ func registerServices(mux *http.ServeMux) {
 
 	// Register the User service.
 	services.NewUserService(mux)
-
-	// Register the Group service.
-	services.NewGroupService(mux)
 
 	// Register the Application service.
 	services.NewApplicationService(mux)
