@@ -18,11 +18,6 @@
 
 package user
 
-import (
-	"github.com/asgardeo/thunder/internal/ou"
-	"github.com/asgardeo/thunder/internal/userschema"
-)
-
 // TODO: This provider need to be removed once all usages are migrated to dependency injection.
 
 var userServiceProvider UserServiceInterface
@@ -30,12 +25,6 @@ var userServiceProvider UserServiceInterface
 // GetUserService returns the user service instance.
 // This is a provider function to support dependency injection for backward compatibility.
 func GetUserService() UserServiceInterface {
-	if userServiceProvider == nil {
-		userServiceProvider = newUserService(
-			ou.GetOrganizationUnitService(),
-			userschema.GetUserSchemaService(),
-		)
-	}
 	return userServiceProvider
 }
 

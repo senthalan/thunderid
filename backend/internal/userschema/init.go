@@ -28,7 +28,6 @@ import (
 // Initialize initializes the user schema service and registers its routes.
 func Initialize(mux *http.ServeMux) UserSchemaServiceInterface {
 	userSchemaService := newUserSchemaService()
-	SetUserSchemaService(userSchemaService) // Set the provider for backward compatibility
 	userSchemaHandler := newUserSchemaHandler(userSchemaService)
 	registerRoutes(mux, userSchemaHandler)
 	return userSchemaService
