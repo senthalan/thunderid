@@ -30,6 +30,7 @@ import (
 	"github.com/asgardeo/thunder/internal/system/jwt"
 	"github.com/asgardeo/thunder/internal/system/log"
 	"github.com/asgardeo/thunder/internal/system/services"
+	"github.com/asgardeo/thunder/internal/user"
 	"github.com/asgardeo/thunder/internal/userschema"
 )
 
@@ -45,9 +46,10 @@ func registerServices(mux *http.ServeMux) {
 
 	_ = idp.Initialize(mux)
 	_ = notification.Initialize(mux, jwtService)
-	_ = userschema.Initialize(mux)
+	userSchemaService := userschema.Initialize(mux)
 	ouService := ou.Initialize(mux)
 	_ = group.Initialize(mux, ouService)
+	_ = user.Initialize(mux, ouService, userSchemaService)
 
 	// TODO: Legacy way of initializing services. These need to be refactored in the future aligning to the
 	// dependency injection pattern used above.
@@ -66,9 +68,6 @@ func registerServices(mux *http.ServeMux) {
 
 	// Register the introspection service.
 	services.NewIntrospectionAPIService(mux)
-
-	// Register the User service.
-	services.NewUserService(mux)
 
 	// Register the Application service.
 	services.NewApplicationService(mux)
