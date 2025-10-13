@@ -12,7 +12,27 @@ This repository is a lightweight user and identity management product written in
 
 ### General
 - Reuse common utilities from the `internal/system` packages.
-- Define interfaces for services where applicable to allow dependency injection.
+- Define interfaces for services to enable dependency injection and testability.
+
+### Package Structure and Organization
+- Follow a modular package structure where each domain/feature lives in its own package under `internal/`.
+- Each domain package typically contains related components organized by responsibility (not all files are required):
+  - `service.go`: Service interface and implementation (business logic layer)
+  - `handler.go`: HTTP handlers (presentation layer) - only if the package exposes HTTP endpoints
+  - `store.go`: Data access layer (persistence) - only if the package needs database operations
+  - `model.go`: Domain models and DTOs - only if the package has domain-specific models
+  - `constants.go`: Package-specific constants - create additional constant files (e.g., `errorconstants.go`, `storeconstants.go`) if needed for better organization
+  - `init.go`: Package initialization and route registration - only for packages with HTTP endpoints
+- Adjust the file structure based on actual requirements. For example:
+  - No HTTP layer? Skip `handler.go` and `init.go`
+  - File-based or cache-backed storage? Add additional storage implementation files
+  - Complex domain? Use subdirectories for further organize related functionality (e.g., `internal/oauth/oauth2/`, `internal/oauth/jwks/`).
+
+### Package Exports
+- Only export the service interface (e.g., `XServiceInterface`) and models that are used in the service interface from a package.
+- Keep all internal implementations (service structs, store interfaces, store implementations, handlers) unexported (lowercase).
+- This ensures proper encapsulation and prevents external packages from depending on internal implementation details.
+- Example: Export `UserServiceInterface` and `User` model, but keep `userService`, `userStore`, and `userHandler` unexported.
 
 ### Logging
 - Use the `log` package in `internal/system` for logging.
@@ -24,6 +44,13 @@ This repository is a lightweight user and identity management product written in
 ### Database
 - Use `DBClient` in `internal/system/database` for database operations.
 - Use `DBQuery` in `internal/system/database` to define queries with a unique ID. This allows for DB-specific queries where needed.
+
+### Store Layer (Data Access)
+- Define store interfaces (e.g., `xStoreInterface`) and implementations (e.g., `xStore` struct) in `store.go`.
+- Store layer handles all database interactions and should be used by the service layer.
+- Use private constructors (e.g., `newXStore()`) to create store instances.
+- Store initialization should use `DBProvider` to obtain database client. Individual store methods should use the created client.
+- Keep store methods focused on data access operations without business logic.
 
 ### HTTP
 - Use `HTTPClient` in `internal/system/http` for sending external requests.
@@ -46,12 +73,39 @@ This repository is a lightweight user and identity management product written in
 ### Defining APIs
 - Return JSON responses from APIs where applicable.
 - Return JSON errors as per the server `ErrorResponse` definition. For 500 internal server errors, a generic message may be returned.
-- Define each API service in a new file in `internal/system/services`, extending `ServiceInterface`. Define CORS policies where applicable.
-- Register the API service in `internal/system/managers/servicemanager.go`.
+- Define API handlers in a `handler.go` file within the domain package.
+- For packages with HTTP endpoints, use an `init.go` file to register routes with the mux and initialize dependencies.
+- Define CORS policies using `middleware.WithCORS` where applicable.
 
-### Service Provider
-- Use a provider to return service objects/structs for other services. Define the provider when creating a new instance for other services and use that provider variable to obtain the service instance.
-- This allows injecting services during unit tests. Keep provider logic minimal, as it won't be tested.
+### Service Layer and Dependency Injection
+- Define service interfaces (e.g., `XServiceInterface`) and implementations (e.g., `xService` struct) in `service.go`.
+- Use private constructor functions (e.g., `newXService()`) to create service instances.
+- Constructor functions should accept all dependencies as parameters when the service needs external dependencies.
+  - Example without dependencies: `func newIDPService() IDPServiceInterface`
+  - Example with dependencies: `func newGroupService(ouService OrganizationUnitServiceInterface) GroupServiceInterface`
+- Services should depend on interfaces, not concrete implementations, to enable testing with mocks.
+- Keep constructors private (unexported) - external packages should only interact through the `Initialize()` function.
+
+### Service Initialization and Dependency Management
+- Service initialization should happen **once** during application startup in the `init.go` file of each package.
+- The `Initialize(mux, deps)` function in `init.go` should:
+  1. Create service instances using constructor functions
+  2. Pass initialized service instances as dependencies to other services that need them
+  3. Create handlers and inject the service instance into them
+  4. Register routes with the mux
+  5. Return the service interface for use by dependent packages
+- Keep all initialized service instances and pass them to dependent services during their initialization.
+- Example initialization flow:
+  ```go
+  // In internal/group/init.go
+  func Initialize(mux *http.ServeMux, ouService ou.OrganizationUnitServiceInterface) GroupServiceInterface {
+      groupService := newGroupService(ouService) // Inject dependency via private constructor
+      groupHandler := newGroupHandler(groupService)
+      registerRoutes(mux, groupHandler)
+      return groupService
+  }
+  ```
+- The main service manager should orchestrate all initializations in the correct order, passing dependencies as needed.
 
 ### Testing
 - Ensure unit tests are written to achieve at least 80% coverage.
