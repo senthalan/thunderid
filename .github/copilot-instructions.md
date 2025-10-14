@@ -16,12 +16,16 @@ This repository is a lightweight user and identity management product written in
 
 ### Package Structure and Organization
 - Follow a modular package structure where each domain/feature lives in its own package under `internal/`.
+- Follow a flat directory structure within a package. Avoid nested packages unless absolutely necessary for complex domains.
 - Each domain package typically contains related components organized by responsibility (not all files are required):
   - `service.go`: Service interface and implementation (business logic layer)
   - `handler.go`: HTTP handlers (presentation layer) - only if the package exposes HTTP endpoints
   - `store.go`: Data access layer (persistence) - only if the package needs database operations
   - `model.go`: Domain models and DTOs - only if the package has domain-specific models
   - `constants.go`: Package-specific constants - create additional constant files (e.g., `errorconstants.go`, `storeconstants.go`) if needed for better organization
+    - `errorconstants.go`: Define service and API errors in this file
+    - `storeconstants.go`: Define database queries in this file
+    - `utils.go`: Define package-specific utility functions in this file
   - `init.go`: Package initialization and route registration - only for packages with HTTP endpoints
 - Adjust the file structure based on actual requirements. For example:
   - No HTTP layer? Skip `handler.go` and `init.go`
@@ -31,8 +35,9 @@ This repository is a lightweight user and identity management product written in
 ### Package Exports
 - Only export the service interface (e.g., `XServiceInterface`) and models that are used in the service interface from a package.
 - Keep all internal implementations (service structs, store interfaces, store implementations, handlers) unexported (lowercase).
+- Keep internal constants such as database queries, error codes, and other implementation details unexported (private).
 - This ensures proper encapsulation and prevents external packages from depending on internal implementation details.
-- Example: Export `UserServiceInterface` and `User` model, but keep `userService`, `userStore`, and `userHandler` unexported.
+- Example: Export `UserServiceInterface` and `User` model, but keep `userService`, `userStore`, `userHandler`, and internal query constants unexported.
 
 ### Logging
 - Use the `log` package in `internal/system` for logging.
@@ -43,7 +48,9 @@ This repository is a lightweight user and identity management product written in
 
 ### Database
 - Use `DBClient` in `internal/system/database` for database operations.
-- Use `DBQuery` in `internal/system/database` to define queries with a unique ID. This allows for DB-specific queries where needed.
+- Use `DBQuery` from `internal/system/database/model` to define queries with a unique ID. This allows for DB-specific queries where needed.
+  - Define each query with a unique identifier for traceability
+  - Support database-specific query variations when necessary (e.g., SQLite vs PostgreSQL)
 
 ### Store Layer (Data Access)
 - Define store interfaces (e.g., `xStoreInterface`) and implementations (e.g., `xStore` struct) in `store.go`.
@@ -75,7 +82,7 @@ This repository is a lightweight user and identity management product written in
 - Return JSON errors as per the server `ErrorResponse` definition. For 500 internal server errors, a generic message may be returned.
 - Define API handlers in a `handler.go` file within the domain package.
 - For packages with HTTP endpoints, use an `init.go` file to register routes with the mux and initialize dependencies.
-- Define CORS policies using `middleware.WithCORS` where applicable.
+- Define CORS policies using `middleware.WithCORS` from `internal/system/middleware` where applicable.
 
 ### Service Layer and Dependency Injection
 - Define service interfaces (e.g., `XServiceInterface`) and implementations (e.g., `xService` struct) in `service.go`.
