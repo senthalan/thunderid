@@ -335,7 +335,10 @@ else
     fi
 
     # Sort scripts by filename (numeric prefix determines order)
-    IFS=$'\n' SORTED_SCRIPTS=($(printf '%s\n' "${SCRIPTS[@]}" | sort))
+    # Use basename for sorting so custom scripts with numeric prefixes work correctly
+    IFS=$'\n' SORTED_SCRIPTS=($(printf '%s\n' "${SCRIPTS[@]}" | while read -r script; do
+        echo "$(basename "$script")|$script"
+    done | sort | cut -d'|' -f2))
     unset IFS
 
     if [ ${#SORTED_SCRIPTS[@]} -eq 0 ]; then
@@ -386,7 +389,7 @@ else
             # Execute script
             START_TIME=$(date +%s)
 
-            if bash "$script"; then
+            if "$script"; then
                 END_TIME=$(date +%s)
                 DURATION=$((END_TIME - START_TIME))
                 log_success "$script_name completed (${DURATION}s)"
