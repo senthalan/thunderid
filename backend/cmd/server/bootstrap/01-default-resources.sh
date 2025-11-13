@@ -279,7 +279,7 @@ RESPONSE=$(thunder_api_call POST "/applications" "{
     \"type\": \"oauth2\",
     \"config\": {
       \"client_id\": \"DEVELOP\",
-      \"redirect_uris\": "[\"${THUNDER_API_BASE}/develop\"]",
+      \"redirect_uris\": [\"${THUNDER_API_BASE}/develop\"],
       \"grant_types\": [\"authorization_code\"],
       \"response_types\": [\"code\"],
       \"pkce_required\": false,

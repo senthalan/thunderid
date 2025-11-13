@@ -82,7 +82,7 @@ spec:
               cpu: {{ .Values.setup.resources.limits.cpu }}
           securityContext:
             allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: false
+            readOnlyRootFilesystem: {{ .Values.deployment.securityContext.readOnlyRootFilesystem }}
             runAsNonRoot: true
             {{- if .Values.deployment.securityContext.enableRunAsUser }}
             runAsUser: {{ .Values.deployment.securityContext.runAsUser }}

@@ -335,7 +335,7 @@ else
     fi
 
     # Sort scripts by filename (numeric prefix determines order)
-    IFS=$'\n' SORTED_SCRIPTS=($(sort <<<"${SCRIPTS[*]}"))
+    IFS=$'\n' SORTED_SCRIPTS=($(printf '%s\n' "${SCRIPTS[@]}" | sort))
     unset IFS
 
     if [ ${#SORTED_SCRIPTS[@]} -eq 0 ]; then

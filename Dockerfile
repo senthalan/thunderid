@@ -102,8 +102,8 @@ RUN cd /tmp/dist && \
 
 # Set ownership and permissions
 RUN chown -R thunder:thunder /opt/thunder && \
-    chmod +x thunder start.sh setup.sh scripts/init_script.sh \
-             bootstrap/*.sh bootstrap/custom/*.sh 2>/dev/null || true
+    chmod +x thunder start.sh setup.sh scripts/init_script.sh && \
+    (find bootstrap -name "*.sh" -type f -exec chmod +x {} \; 2>/dev/null || true)
 
 # Expose the default port
 EXPOSE 8090

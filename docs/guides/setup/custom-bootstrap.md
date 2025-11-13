@@ -222,7 +222,6 @@ These variables are available in both Bash and PowerShell bootstrap scripts:
 | Variable | Description | Default | Access |
 |----------|-------------|---------|--------|
 | `THUNDER_API_BASE` | Thunder API base URL | `https://localhost:8090` | Bash: `$THUNDER_API_BASE`<br>PS: `$env:THUNDER_API_BASE` |
-| `BOOTSTRAP_ENABLED` | Enable/disable bootstrap | `true` | Bash: `$BOOTSTRAP_ENABLED`<br>PS: `$env:BOOTSTRAP_ENABLED` |
 | `BOOTSTRAP_FAIL_FAST` | Stop on first error | `true` | Bash: `$BOOTSTRAP_FAIL_FAST`<br>PS: `$env:BOOTSTRAP_FAIL_FAST` |
 | `BOOTSTRAP_SKIP_PATTERN` | Regex pattern to skip scripts | (empty) | Bash: `$BOOTSTRAP_SKIP_PATTERN`<br>PS: `$env:BOOTSTRAP_SKIP_PATTERN` |
 | `BOOTSTRAP_ONLY_PATTERN` | Only run matching scripts | (empty) | Bash: `$BOOTSTRAP_ONLY_PATTERN`<br>PS: `$env:BOOTSTRAP_ONLY_PATTERN` |
@@ -513,13 +512,6 @@ BOOTSTRAP_ONLY_PATTERN="^30-" ./setup.sh
 BOOTSTRAP_FAIL_FAST=false ./setup.sh
 ```
 
-### Disable All Bootstrap
-
-```bash
-# Skip custom bootstrap scripts entirely
-BOOTSTRAP_ENABLED=false ./setup.sh
-```
-
 ## Troubleshooting
 
 ### Script Not Executing
@@ -565,9 +557,3 @@ BOOTSTRAP_ENABLED=false ./setup.sh
    ```powershell
    Invoke-WebRequest -Uri https://localhost:8090/users -SkipCertificateCheck
    ```
-
-## See Also
-
-- [Bootstrap README](../../../backend/cmd/server/bootstrap/README.md) - Complete reference
-- [API Reference](../../api-reference/bootstrap-helpers.md) - Helper functions
-- [Example Scripts](../../../backend/cmd/server/bootstrap/examples/) - Templates and examples
