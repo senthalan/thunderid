@@ -22,6 +22,10 @@
 
 set -e
 
+# Source common functions from the same directory as this script
+SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]:-$0}")"
+source "${SCRIPT_DIR}/common.sh"
+
 log_info "Creating default Thunder resources..."
 echo ""
 

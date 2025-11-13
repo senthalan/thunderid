@@ -19,6 +19,10 @@ cat > bootstrap/custom/30-my-custom-setup.sh << 'EOF'
 #!/bin/bash
 set -e
 
+# Source common functions (provides log_* and thunder_api_call)
+SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]:-$0}")"
+source "${SCRIPT_DIR}/../common.sh"
+
 log_info "Creating custom user..."
 
 RESPONSE=$(thunder_api_call POST "/users" '{
@@ -116,6 +120,27 @@ Use descriptive names with numeric prefixes. Both Bash (`.sh`) and PowerShell (`
 **Note**: On Windows with `setup.ps1`, both `.sh` (requires bash) and `.ps1` scripts will be discovered. On Linux/macOS with `setup.sh`, only `.sh` scripts will execute.
 
 ## Available Helper Functions
+
+### Sourcing Common Functions (Bash Only)
+
+**Bash scripts** must source the common functions file to access logging and API helper functions:
+
+```bash
+#!/bin/bash
+set -e
+
+# Source common functions from the bootstrap directory
+SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]:-$0}")"
+source "${SCRIPT_DIR}/../common.sh"
+
+# Now you can use log_* and thunder_api_call functions
+log_info "Starting custom setup..."
+```
+
+**How it works:**
+- `SCRIPT_DIR` gets the directory where your script is located
+- `source "${SCRIPT_DIR}/../common.sh"` loads the shared functions from the parent directory
+- This works whether your script is in `bootstrap/` or `bootstrap/custom/`
 
 ### Logging Functions
 
@@ -234,6 +259,10 @@ These variables are available in both Bash and PowerShell bootstrap scripts:
 #!/bin/bash
 set -e
 
+# Source common functions
+SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]:-$0}")"
+source "${SCRIPT_DIR}/../common.sh"
+
 log_info "Creating employee user schema..."
 
 RESPONSE=$(thunder_api_call POST "/user-schemas" '{
@@ -257,6 +286,10 @@ log_success "Employee schema created"
 ```bash
 #!/bin/bash
 set -e
+
+# Source common functions
+SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]:-$0}")"
+source "${SCRIPT_DIR}/../common.sh"
 
 log_info "Importing users..."
 
@@ -285,6 +318,10 @@ done
 ```bash
 #!/bin/bash
 set -e
+
+# Source common functions
+SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]:-$0}")"
+source "${SCRIPT_DIR}/../common.sh"
 
 log_info "Creating mobile application..."
 
@@ -377,6 +414,8 @@ data:
   30-custom-users.sh: |
     #!/bin/bash
     set -e
+    SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]:-$0}")"
+    source "${SCRIPT_DIR}/../common.sh"
     log_info "Creating custom users..."
     # Your script here
 ```
@@ -417,6 +456,8 @@ bootstrap:
     30-custom-users.sh: |
       #!/bin/bash
       set -e
+      SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]:-$0}")"
+      source "${SCRIPT_DIR}/../common.sh"
       log_info "Creating custom users..."
       thunder_api_call POST "/users" '{"type":"person",...}'
 ```

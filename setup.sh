@@ -299,10 +299,8 @@ fi
 # Run Bootstrap Scripts
 # ============================================================================
 
-# Export functions and variables for use in bootstrap scripts
+# Export varibles to be used in scripts
 export THUNDER_API_BASE="${BASE_URL}"
-export -f log_info log_success log_warning log_error log_debug
-export -f thunder_api_call
 
 # Check if bootstrap directory exists
 if [ ! -d "$BOOTSTRAP_DIR" ]; then
@@ -320,10 +318,13 @@ else
     # Collect all scripts from both built-in and custom directories
     SCRIPTS=()
 
-    # Find scripts in main bootstrap directory
+    # Find scripts in main bootstrap directory (exclude common.sh)
     if [ -d "$BOOTSTRAP_DIR" ]; then
         while IFS= read -r -d '' script; do
-            SCRIPTS+=("$script")
+            # Skip common.sh as it's a library, not a script to execute
+            if [[ "$(basename "$script")" != "common.sh" ]]; then
+                SCRIPTS+=("$script")
+            fi
         done < <(find -L "$BOOTSTRAP_DIR" -maxdepth 1 -type f \( -name "*.sh" -o -name "*.bash" \) -print0 2>/dev/null)
     fi
 
@@ -359,14 +360,14 @@ else
             # Skip if matches skip pattern
             if [ -n "$BOOTSTRAP_SKIP_PATTERN" ] && [[ "$script_name" =~ $BOOTSTRAP_SKIP_PATTERN ]]; then
                 log_info "⊘ Skipping $script_name (matches skip pattern)"
-                ((SKIPPED_COUNT++))
+                SKIPPED_COUNT=$((SKIPPED_COUNT + 1))
                 continue
             fi
 
             # Skip if doesn't match only pattern
             if [ -n "$BOOTSTRAP_ONLY_PATTERN" ] && ! [[ "$script_name" =~ $BOOTSTRAP_ONLY_PATTERN ]]; then
                 log_info "⊘ Skipping $script_name (doesn't match only pattern)"
-                ((SKIPPED_COUNT++))
+                SKIPPED_COUNT=$((SKIPPED_COUNT + 1))
                 continue
             fi
 
@@ -375,7 +376,7 @@ else
                 log_warning "$script_name is not executable, setting permissions..."
                 chmod +x "$script" || {
                     log_error "Failed to make $script_name executable"
-                    ((FAILED_COUNT++))
+                    FAILED_COUNT=$((FAILED_COUNT + 1))
                     if [ "$BOOTSTRAP_FAIL_FAST" = "true" ]; then
                         exit 1
                     fi
@@ -384,23 +385,28 @@ else
             fi
 
             log_info "▶ Executing: $script_name"
-            ((SCRIPT_COUNT++))
+            SCRIPT_COUNT=$((SCRIPT_COUNT + 1))
 
             # Execute script
             START_TIME=$(date +%s)
 
-            if "$script"; then
-                END_TIME=$(date +%s)
-                DURATION=$((END_TIME - START_TIME))
-                log_success "$script_name completed (${DURATION}s)"
-                ((SUCCESS_COUNT++))
-            else
-                EXIT_CODE=$?
-                END_TIME=$(date +%s)
-                DURATION=$((END_TIME - START_TIME))
+            set +e  # Temporarily disable exit on error to catch errors
+            (
+                set -e  # Re-enable in subshell to catch script errors
+                source "$script"
+            )
+            EXIT_CODE=$?
+            set -e  # Re-enable exit on error
 
+            END_TIME=$(date +%s)
+            DURATION=$((END_TIME - START_TIME))
+
+            if [ $EXIT_CODE -eq 0 ]; then
+                log_success "$script_name completed (${DURATION}s)"
+                SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
+            else
                 log_error "$script_name failed with exit code $EXIT_CODE (${DURATION}s)"
-                ((FAILED_COUNT++))
+                FAILED_COUNT=$((FAILED_COUNT + 1))
 
                 # Check if we should fail fast
                 if [ "$BOOTSTRAP_FAIL_FAST" = "true" ]; then
