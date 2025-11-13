@@ -1,0 +1,117 @@
+# Copyright (c) 2025, WSO2 LLC. (https://www.wso2.com).
+#
+# WSO2 LLC. licenses this file to you under the Apache License,
+# Version 2.0 (the "License"); you may not use this file except
+# in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied. See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+{{- if .Values.setup.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "thunder.fullname" . }}-setup
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "thunder.labels" . | nindent 4 }}
+    app.kubernetes.io/component: setup
+  annotations:
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": before-hook-creation
+spec:
+  backoffLimit: {{ .Values.setup.backoffLimit }}
+  ttlSecondsAfterFinished: {{ .Values.setup.ttlSecondsAfterFinished }}
+  template:
+    metadata:
+      labels:
+        {{- include "thunder.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: setup
+      annotations:
+        checksum.deployment.yaml: {{ include (print $.Template.BasePath "/config-map.yaml") . | sha256sum }}
+    spec:
+      serviceAccountName: {{ include "thunder.serviceAccountName" . }}
+      restartPolicy: OnFailure
+      securityContext:
+        {{- if .Values.deployment.securityContext.enableRunAsUser }}
+        runAsUser: {{ .Values.deployment.securityContext.runAsUser }}
+        {{- end }}
+        {{- if .Values.deployment.securityContext.seccompProfile.enabled }}
+        seccompProfile:
+          type: {{ .Values.deployment.securityContext.seccompProfile.type }}
+        {{- end }}
+      {{- if .Values.deployment.image.imagePullSecret }}
+      imagePullSecrets:
+        - name: {{ .Values.deployment.image.imagePullSecret }}
+      {{- end }}
+      containers:
+        - name: setup
+          {{- if .Values.deployment.image.digest }}
+          image: {{ .Values.deployment.image.registry }}/{{ .Values.deployment.image.repository }}@{{ .Values.deployment.image.digest }}
+          {{- else }}
+          image: {{ .Values.deployment.image.registry }}/{{ .Values.deployment.image.repository }}:{{ default "latest" .Values.deployment.image.tag }}
+          {{- end }}
+          imagePullPolicy: {{ .Values.deployment.image.pullPolicy }}
+          command: ["./setup.sh"]
+          {{- if .Values.setup.args }}
+          args:
+            {{- toYaml .Values.setup.args | nindent 12 }}
+          {{- end }}
+          env:
+            {{- if .Values.setup.debug }}
+            - name: DEBUG
+              value: "true"
+            {{- end }}
+            {{- if .Values.setup.env }}
+            {{- toYaml .Values.setup.env | nindent 12 }}
+            {{- end }}
+          resources:
+            requests:
+              memory: {{ .Values.setup.resources.requests.memory }}
+              cpu: {{ .Values.setup.resources.requests.cpu }}
+            limits:
+              memory: {{ .Values.setup.resources.limits.memory }}
+              cpu: {{ .Values.setup.resources.limits.cpu }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: true
+            {{- if .Values.deployment.securityContext.enableRunAsUser }}
+            runAsUser: {{ .Values.deployment.securityContext.runAsUser }}
+            {{- end }}
+            capabilities:
+              drop:
+                - all
+          volumeMounts:
+            - name: deployment-yaml-volume
+              mountPath: /opt/thunder/repository/conf/deployment.yaml
+              subPath: deployment.yaml
+            {{- if .Values.bootstrap.enabled }}
+            - name: bootstrap-scripts
+              mountPath: /opt/thunder/bootstrap/custom
+            {{- end }}
+            {{- if .Values.setup.extraVolumeMounts }}
+            {{- toYaml .Values.setup.extraVolumeMounts | nindent 12 }}
+            {{- end }}
+      volumes:
+        - name: deployment-yaml-volume
+          configMap:
+            name: {{ include "thunder.fullname" . }}-config-map
+        {{- if .Values.bootstrap.enabled }}
+        - name: bootstrap-scripts
+          configMap:
+            name: {{ if .Values.bootstrap.existingConfigMap }}{{ .Values.bootstrap.existingConfigMap }}{{ else }}{{ include "thunder.fullname" . }}-bootstrap{{ end }}
+            defaultMode: 0755
+        {{- end }}
+        {{- if .Values.setup.extraVolumes }}
+        {{- toYaml .Values.setup.extraVolumes | nindent 8 }}
+        {{- end }}
+{{- end }}

@@ -21,7 +21,6 @@
 BACKEND_PORT=${BACKEND_PORT:-8090}
 DEBUG_PORT=${DEBUG_PORT:-2345}
 DEBUG_MODE=${DEBUG_MODE:-false}
-SETUP_MODE=${SETUP_MODE:-false}
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -38,10 +37,6 @@ while [[ $# -gt 0 ]]; do
             BACKEND_PORT="$2"
             shift 2
             ;;
-        --setup)
-            SETUP_MODE=true
-            shift
-            ;;
         --help)
             echo "Thunder Server Startup Script"
             echo ""
@@ -51,20 +46,19 @@ while [[ $# -gt 0 ]]; do
             echo "  --debug              Enable debug mode with remote debugging"
             echo "  --port PORT          Set application port (default: 8090)"
             echo "  --debug-port PORT    Set debug port (default: 2345)"
-            echo "  --setup              Run initial data setup (automatically disables security temporarily)"
             echo "  --help               Show this help message"
             echo ""
-            echo "Setup Mode:"
-            echo "  When --setup is used, the server will:"
-            echo "  1. Start with security disabled"
-            echo "  2. Run the initial data setup script"
-            echo "  3. Keep running with security disabled"
-            echo "  4. You must restart manually to enable security"
+            echo "First-Time Setup:"
+            echo "  For initial setup, use the setup script:"
+            echo "    ./setup.sh"
+            echo ""
+            echo "  Then start the server normally:"
+            echo "    ./start.sh"
             echo ""
             echo "Examples:"
             echo "  $0                   Start server normally"
-            echo "  $0 --setup           Start server and run initial setup"
-            echo "  $0 --debug --setup   Start in debug mode and run initial setup"
+            echo "  $0 --debug           Start in debug mode"
+            echo "  $0 --port 9090       Start on custom port"
             exit 0
             ;;
         *)
@@ -116,25 +110,11 @@ if [ "$DEBUG_MODE" = "true" ]; then
     echo "   Host: 127.0.0.1, Port: $DEBUG_PORT"
     echo ""
 
-    # Enable security skip mode if setup mode is enabled
-    if [ "$SETUP_MODE" = "true" ]; then
-        echo "⚠️  Setup mode enabled - Starting with security disabled temporarily"
-        echo ""
-        export THUNDER_SKIP_SECURITY=true
-    fi
-
     # Run debugger
     dlv exec --listen=:$DEBUG_PORT --headless=true --api-version=2 --accept-multiclient --continue ./thunder &
     THUNDER_PID=$!
 else
     echo "⚡ Starting Thunder Server ..."
-
-    # Enable security skip mode if setup mode is enabled
-    if [ "$SETUP_MODE" = "true" ]; then
-        echo "⚠️  Setup mode enabled - Starting with security disabled temporarily"
-        echo ""
-        export THUNDER_SKIP_SECURITY=true
-    fi
 
     BACKEND_PORT=$BACKEND_PORT ./thunder &
     THUNDER_PID=$!
@@ -150,34 +130,6 @@ cleanup() {
 
 # Cleanup on Ctrl+C
 trap cleanup SIGINT
-
-# Run initial setup if requested
-if [ "$SETUP_MODE" = "true" ]; then
-    echo "⚙️  Running initial data setup..."
-    echo ""
-
-    # Run the setup script - it will handle server readiness checking
-    ./scripts/setup_initial_data.sh --port "$BACKEND_PORT"
-
-    if [ $? -eq 0 ]; then
-        echo ""
-        echo "✅ Initial data setup completed successfully"
-        echo ""
-        echo "⚠️  Server is still running with SECURITY DISABLED"
-        echo ""
-        echo "💡 To enable security:"
-        echo "   1. Stop the server (Ctrl+C)"
-        echo "   2. Restart without --setup flag: ./start.sh"
-        echo ""
-    else
-        echo ""
-        echo "❌ Initial data setup failed"
-        echo "💡 Check the logs above for more details"
-        echo "💡 You can run the setup manually using: ./scripts/setup_initial_data.sh --port $BACKEND_PORT"
-        echo ""
-        echo "⚠️  Server is still running with security disabled"
-    fi
-fi
 
 # Status
 echo ""

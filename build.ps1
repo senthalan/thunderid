@@ -396,6 +396,10 @@ function Prepare-Backend-For-Packaging {
     $security_dir = Join-Path $package_folder $SECURITY_DIR
     New-Item -Path $security_dir -ItemType Directory -Force | Out-Null
 
+    # Copy bootstrap directory
+    Write-Host "Copying bootstrap scripts..."
+    Copy-Item -Path (Join-Path $BACKEND_DIR "bootstrap") -Destination $package_folder -Recurse -Force
+
     Write-Host "=== Ensuring server certificates exist in the distribution ==="
     Ensure-Certificates -cert_dir $security_dir
     Write-Host "================================================================"
@@ -444,14 +448,16 @@ function Package {
     Prepare-Frontend-For-Packaging
     Prepare-Backend-For-Packaging
 
-    # Copy the appropriate startup script based on the target OS
+    # Copy the appropriate startup and setup scripts based on the target OS
     if ($GO_OS -eq "windows") {
-        Write-Host "Including Windows start script (start.ps1)..."
+        Write-Host "Including Windows scripts (start.ps1, setup.ps1)..."
         Copy-Item -Path "start.ps1" -Destination $package_folder -Force
+        Copy-Item -Path "setup.ps1" -Destination $package_folder -Force
     }
     else {
-        Write-Host "Including Unix start script (start.sh)..."
+        Write-Host "Including Unix scripts (start.sh, setup.sh)..."
         Copy-Item -Path "start.sh" -Destination $package_folder -Force
+        Copy-Item -Path "setup.sh" -Destination $package_folder -Force
     }
 
     Write-Host "Creating zip file..."

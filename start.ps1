@@ -20,7 +20,6 @@
 $BACKEND_PORT = if ($env:BACKEND_PORT) { [int]$env:BACKEND_PORT } else { 8090 }
 $DEBUG_PORT = if ($env:DEBUG_PORT) { [int]$env:DEBUG_PORT } else { 2345 }
 $DEBUG_MODE = $false
-$SETUP_MODE = $false
 
 # Parse command line arguments
 $i = 0
@@ -55,11 +54,6 @@ while ($i -lt $args.Count) {
             }
             break
         }
-        '--setup' {
-            $SETUP_MODE = $true
-            $i++
-            break
-        }
         '--help' {
             Write-Host "Thunder Server Startup Script"
             Write-Host ""
@@ -69,20 +63,19 @@ while ($i -lt $args.Count) {
             Write-Host "  --debug              Enable debug mode with remote debugging"
             Write-Host "  --port PORT          Set application port (default: 8090)"
             Write-Host "  --debug-port PORT    Set debug port (default: 2345)"
-            Write-Host "  --setup              Run initial data setup (automatically disables security temporarily)"
             Write-Host "  --help               Show this help message"
             Write-Host ""
-            Write-Host "Setup Mode:"
-            Write-Host "  When --setup is used, the server will:"
-            Write-Host "  1. Start with security disabled"
-            Write-Host "  2. Run the initial data setup script"
-            Write-Host "  3. Keep running with security disabled"
-            Write-Host "  4. You must restart manually to enable security"
+            Write-Host "First-Time Setup:"
+            Write-Host "  For initial setup, use the setup script:"
+            Write-Host "    .\setup.ps1"
+            Write-Host ""
+            Write-Host "  Then start the server normally:"
+            Write-Host "    .\start.ps1"
             Write-Host ""
             Write-Host "Examples:"
             Write-Host "  .\start.ps1                   Start server normally"
-            Write-Host "  .\start.ps1 --setup           Start server and run initial setup"
-            Write-Host "  .\start.ps1 --debug --setup   Start in debug mode and run initial setup"
+            Write-Host "  .\start.ps1 --debug           Start in debug mode"
+            Write-Host "  .\start.ps1 --port 9090       Start on custom port"
             exit 0
         }
         default {
@@ -176,13 +169,6 @@ try {
         Write-Host "   Host: 127.0.0.1, Port: $DEBUG_PORT" -ForegroundColor Gray
         Write-Host ""
 
-        # Enable security skip mode if setup mode is enabled
-        if ($SETUP_MODE) {
-            Write-Host "⚠️  Setup mode enabled - Starting with security disabled temporarily"
-            Write-Host ""
-            $env:THUNDER_SKIP_SECURITY = "true"
-        }
-
         # Start Delve in headless mode
         $dlvArgs =  @(
             'exec'
@@ -198,59 +184,9 @@ try {
     else {
         Write-Host "⚡ Starting Thunder Server ..."
 
-        # Enable security skip mode if setup mode is enabled
-        if ($SETUP_MODE) {
-            Write-Host "⚠️  Setup mode enabled - Starting with security disabled temporarily"
-            Write-Host ""
-            $env:THUNDER_SKIP_SECURITY = "true"
-        }
-
         # Export BACKEND_PORT for the child process
         $env:BACKEND_PORT = $BACKEND_PORT
         $proc = Start-Process -FilePath $thunderPath -WorkingDirectory $scriptDir -NoNewWindow -PassThru
-    }
-
-    # Run initial setup if requested
-    if ($SETUP_MODE) {
-        Write-Host "⚙️  Running initial data setup..."
-        Write-Host ""
-
-        # Run the setup script - it will handle server readiness checking
-        $setupScript = Join-Path $scriptDir "scripts\setup_initial_data.ps1"
-        if (Test-Path $setupScript) {
-            try {
-                & $setupScript -Port $BACKEND_PORT
-
-                if ($LASTEXITCODE -eq 0) {
-                    Write-Host ""
-                    Write-Host "✅ Initial data setup completed successfully" -ForegroundColor Green
-                    Write-Host ""
-                    Write-Host "⚠️  Server is still running with SECURITY DISABLED" -ForegroundColor Yellow
-                    Write-Host ""
-                    Write-Host "💡 To enable security:" -ForegroundColor Cyan
-                    Write-Host "   1. Stop the server (Ctrl+C)" -ForegroundColor Cyan
-                    Write-Host "   2. Restart without --setup flag: .\start.ps1" -ForegroundColor Cyan
-                    Write-Host ""
-                }
-                else {
-                    Write-Host ""
-                    Write-Host "❌ Initial data setup failed" -ForegroundColor Red
-                    Write-Host "💡 Check the logs above for more details" -ForegroundColor Yellow
-                    Write-Host "💡 You can run the setup manually using: .\scripts\setup_initial_data.ps1 -Port $BACKEND_PORT" -ForegroundColor Yellow
-                    Write-Host ""
-                    Write-Host "⚠️  Server is still running with security disabled" -ForegroundColor Yellow
-                }
-            }
-            catch {
-                Write-Host ""
-                Write-Host "❌ Failed to run setup script: $_" -ForegroundColor Red
-                Write-Host "💡 You can run the setup manually using: .\scripts\setup_initial_data.ps1 -Port $BACKEND_PORT" -ForegroundColor Yellow
-            }
-        }
-        else {
-            Write-Host "❌ Setup script not found at: $setupScript" -ForegroundColor Red
-            Write-Host "💡 Make sure you're running this script from the correct directory" -ForegroundColor Yellow
-        }
     }
 
     Write-Host ""

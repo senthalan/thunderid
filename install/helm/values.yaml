@@ -190,3 +190,62 @@ configuration:
   cors:
     allowedOrigins:
       - "https://localhost:3000"
+
+# Setup Job configuration
+# Runs setup.sh as a one-time initialization job during Helm install
+setup:
+  # Enable setup job (runs on first install only via Helm hook)
+  enabled: true
+  # Number of retries if setup fails
+  backoffLimit: 3
+  # Time to keep job after completion (seconds, 0 = indefinite)
+  ttlSecondsAfterFinished: 86400  # 24 hours
+  # Enable debug mode for setup
+  debug: false
+  # Additional command-line arguments for setup.sh
+  args: []
+    # Example:
+    # - "--debug"
+  # Additional environment variables for setup job
+  env: []
+    # Example:
+    # - name: BOOTSTRAP_FAIL_FAST
+    #   value: "true"
+    # - name: BOOTSTRAP_SKIP_PATTERN
+    #   value: "test"
+  # Resource limits for setup job
+  resources:
+    limits:
+      cpu: 500m
+      memory: 256Mi
+    requests:
+      cpu: 250m
+      memory: 128Mi
+  # Additional volume mounts for setup job
+  extraVolumeMounts: []
+    # Example:
+    # - name: secrets
+    #   mountPath: /run/secrets
+    #   readOnly: true
+  # Additional volumes for setup job
+  extraVolumes: []
+    # Example:
+    # - name: secrets
+    #   secret:
+    #     secretName: thunder-secrets
+
+# Bootstrap configuration
+bootstrap:
+  # Enable custom bootstrap scripts
+  enabled: false
+  # Custom bootstrap scripts provided inline
+  # Scripts will be mounted to /opt/thunder/bootstrap/custom/
+  scripts: {}
+    # Example:
+    # 30-custom-users.sh: |
+    #   #!/bin/bash
+    #   set -e
+    #   log_info "Creating custom users..."
+    #   # Your script here
+  # Or reference an existing ConfigMap
+  existingConfigMap: ""

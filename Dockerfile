@@ -102,7 +102,8 @@ RUN cd /tmp/dist && \
 
 # Set ownership and permissions
 RUN chown -R thunder:thunder /opt/thunder && \
-    chmod +x thunder start.sh scripts/init_script.sh
+    chmod +x thunder start.sh setup.sh scripts/init_script.sh \
+             bootstrap/*.sh bootstrap/custom/*.sh 2>/dev/null || true
 
 # Expose the default port
 EXPOSE 8090

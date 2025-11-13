@@ -291,6 +291,12 @@ function prepare_backend_for_packaging() {
     cp -r "$SERVER_DB_SCRIPTS_DIR" "$DIST_DIR/$PRODUCT_FOLDER/"
     mkdir -p "$DIST_DIR/$PRODUCT_FOLDER/$SECURITY_DIR"
 
+    # Copy bootstrap directory
+    echo "Copying bootstrap scripts..."
+    cp -r "$BACKEND_DIR/bootstrap" "$DIST_DIR/$PRODUCT_FOLDER/"
+    # Ensure execute permissions on bootstrap scripts
+    chmod +x "$DIST_DIR/$PRODUCT_FOLDER/bootstrap/"*.sh 2>/dev/null || true
+
     echo "=== Ensuring server certificates exist in the distribution ==="
     ensure_certificates "$DIST_DIR/$PRODUCT_FOLDER/$SECURITY_DIR"
     echo "================================================================"
@@ -335,13 +341,15 @@ function package() {
     prepare_frontend_for_packaging
     prepare_backend_for_packaging
 
-    # Copy the appropriate startup script based on the target OS
+    # Copy the appropriate startup and setup scripts based on the target OS
     if [ "$GO_OS" = "windows" ]; then
-            echo "Including Windows start script (start.ps1)..."
-            cp -r "start.ps1" "$DIST_DIR/$PRODUCT_FOLDER"
+        echo "Including Windows scripts (start.ps1, setup.ps1)..."
+        cp -r "start.ps1" "$DIST_DIR/$PRODUCT_FOLDER"
+        cp -r "setup.ps1" "$DIST_DIR/$PRODUCT_FOLDER"
     else
-        echo "Including Unix start script (start.sh)..."
+        echo "Including Unix scripts (start.sh, setup.sh)..."
         cp -r "start.sh" "$DIST_DIR/$PRODUCT_FOLDER"
+        cp -r "setup.sh" "$DIST_DIR/$PRODUCT_FOLDER"
     fi
 
     echo "Creating zip file..."
