@@ -324,14 +324,14 @@ else
     if [ -d "$BOOTSTRAP_DIR" ]; then
         while IFS= read -r -d '' script; do
             SCRIPTS+=("$script")
-        done < <(find "$BOOTSTRAP_DIR" -maxdepth 1 -type f \( -name "*.sh" -o -name "*.bash" \) -print0 2>/dev/null)
+        done < <(find -L "$BOOTSTRAP_DIR" -maxdepth 1 -type f \( -name "*.sh" -o -name "*.bash" \) -print0 2>/dev/null)
     fi
 
     # Find scripts in custom directory
     if [ -d "$BOOTSTRAP_DIR/custom" ]; then
         while IFS= read -r -d '' script; do
             SCRIPTS+=("$script")
-        done < <(find "$BOOTSTRAP_DIR/custom" -maxdepth 1 -type f \( -name "*.sh" -o -name "*.bash" \) -print0 2>/dev/null)
+        done < <(find -L "$BOOTSTRAP_DIR/custom" -maxdepth 1 -type f \( -name "*.sh" -o -name "*.bash" \) -print0 2>/dev/null)
     fi
 
     # Sort scripts by filename (numeric prefix determines order)
