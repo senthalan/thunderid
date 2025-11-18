@@ -4,24 +4,24 @@ This guide explains how to extend Thunder's setup process with custom bootstrap 
 
 ## Overview
 
-Thunder provides an extensible bootstrap system that allows you to add custom initialization logic during setup. Bootstrap scripts run after Thunder's default resources are created (admin user, default organization, DEVELOP app) and before the server starts for normal operation.
+Thunder provides an extensible bootstrap system that allows you to add custom initialization logic during setup. The bootstrap scripts are placed in the `bootstrap/` directory and are executed in alphanumeric order based on their filename prefix.
 
 ## Quick Start
 
 ### 1. Create a Custom Script
 
-Create a new file in the `bootstrap/custom/` directory. You can use either **Bash** (`.sh`) or **PowerShell** (`.ps1`) scripts.
+Create a new file in the `bootstrap/` directory. You can use either **Bash** (`.sh`) or **PowerShell** (`.ps1`) scripts.
 
 #### Bash Script Example
 
 ```bash
-cat > bootstrap/custom/30-my-custom-setup.sh << 'EOF'
+cat > bootstrap/30-my-custom-setup.sh << 'EOF'
 #!/bin/bash
 set -e
 
 # Source common functions (provides log_* and thunder_api_call)
 SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]:-$0}")"
-source "${SCRIPT_DIR}/../common.sh"
+source "${SCRIPT_DIR}/common.sh"
 
 log_info "Creating custom user..."
 
@@ -48,13 +48,13 @@ else
 fi
 EOF
 
-chmod +x bootstrap/custom/30-my-custom-setup.sh
+chmod +x bootstrap/30-my-custom-setup.sh
 ```
 
 #### PowerShell Script Example
 
 ```powershell
-# bootstrap/custom/30-my-custom-setup.ps1
+# bootstrap/30-my-custom-setup.ps1
 $ErrorActionPreference = 'Stop'
 
 Log-Info "Creating custom user..."
@@ -94,16 +94,11 @@ else {
 .\setup.ps1
 ```
 
-The bootstrap system automatically discovers and executes your scripts in numeric order. Both `.sh` and `.ps1` scripts can coexist in the same directory.
+The bootstrap system automatically discovers and executes all scripts in the `bootstrap/` directory in alphanumeric order. Both `.sh` and `.ps1` scripts can coexist in the same directory.
 
 ## Execution Order
 
-Bootstrap scripts execute in alphanumeric order based on their filename prefix:
-
-| Range | Purpose | Who Uses It |
-|-------|---------|-------------|
-| `00-29` | Default resources (admin, OU, schemas) | **Thunder (Reserved)** |
-| `30-99` | **Custom resources (RECOMMENDED)** | **Users** |
+All bootstrap scripts execute in alphanumeric order based on their filename prefix. 
 
 ### Recommended Naming
 
@@ -117,7 +112,7 @@ Use descriptive names with numeric prefixes. Both Bash (`.sh`) and PowerShell (`
 - ❌ `script1.sh`
 - ❌ `test.sh`
 
-**Note**: On Windows with `setup.ps1`, both `.sh` (requires bash) and `.ps1` scripts will be discovered. On Linux/macOS with `setup.sh`, only `.sh` scripts will execute.
+**Note**: All scripts must be placed directly in the `bootstrap/` directory. On Windows with `setup.ps1`, both `.sh` (requires bash) and `.ps1` scripts will be discovered. On Linux/macOS with `setup.sh`, only `.sh` scripts will execute.
 
 ## Available Helper Functions
 
@@ -131,7 +126,7 @@ set -e
 
 # Source common functions from the bootstrap directory
 SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]:-$0}")"
-source "${SCRIPT_DIR}/../common.sh"
+source "${SCRIPT_DIR}/common.sh"
 
 # Now you can use log_* and thunder_api_call functions
 log_info "Starting custom setup..."
@@ -139,8 +134,8 @@ log_info "Starting custom setup..."
 
 **How it works:**
 - `SCRIPT_DIR` gets the directory where your script is located
-- `source "${SCRIPT_DIR}/../common.sh"` loads the shared functions from the parent directory
-- This works whether your script is in `bootstrap/` or `bootstrap/custom/`
+- `source "${SCRIPT_DIR}/common.sh"` loads the shared functions from the same directory
+- All scripts are placed in the `bootstrap/` directory alongside `common.sh`
 
 ### Logging Functions
 
@@ -352,7 +347,7 @@ log_success "Mobile app created"
 
 ### Volume Mount (Development)
 
-Mount your custom scripts directory when running the container. **Note:** Scripts must be executable on the host before mounting.
+Mount your custom scripts directly into the bootstrap directory when running the container. **Note:** Scripts must be executable on the host before mounting.
 
 **Make scripts executable:**
 ```bash
@@ -363,7 +358,7 @@ chmod +x custom-scripts/*.sh
 ```bash
 # Run setup with custom scripts
 docker run -it --rm \
-  -v "$(pwd)/custom-scripts:/opt/thunder/bootstrap/custom:ro" \
+  -v "$(pwd)/custom-scripts:/opt/thunder/bootstrap:ro" \
   ghcr.io/asgardeo/thunder:latest ./setup.sh
 
 # Then start Thunder server
@@ -382,7 +377,7 @@ services:
     image: ghcr.io/asgardeo/thunder:latest
     command: ./setup.sh
     volumes:
-      - ./custom-scripts:/opt/thunder/bootstrap/custom:ro
+      - ./custom-scripts:/opt/thunder/bootstrap:ro
     restart: "no"
 
   thunder:
@@ -402,12 +397,12 @@ Build a custom image with your scripts embedded:
 FROM ghcr.io/asgardeo/thunder:latest
 
 # Copy custom bootstrap scripts
-COPY custom-scripts/ /opt/thunder/bootstrap/custom/
+COPY custom-scripts/ /opt/thunder/bootstrap/
 
 # Set permissions
 USER root
-RUN chmod +x /opt/thunder/bootstrap/custom/*.sh && \
-    chown -R thunder:thunder /opt/thunder/bootstrap/custom
+RUN chmod +x /opt/thunder/bootstrap/*.sh && \
+    chown -R thunder:thunder /opt/thunder/bootstrap
 USER thunder
 ```
 
@@ -435,7 +430,7 @@ data:
     #!/bin/bash
     set -e
     SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]:-$0}")"
-    source "${SCRIPT_DIR}/../common.sh"
+    source "${SCRIPT_DIR}/common.sh"
     log_info "Creating custom users..."
     # Your script here
 ```
@@ -456,7 +451,7 @@ spec:
         command: ["./setup.sh"]
         volumeMounts:
         - name: custom-bootstrap
-          mountPath: /opt/thunder/bootstrap/custom
+          mountPath: /opt/thunder/bootstrap
       volumes:
       - name: custom-bootstrap
         configMap:
@@ -591,7 +586,7 @@ BOOTSTRAP_FAIL_FAST=false ./setup.sh
    - Bash: `.sh` or `.bash`
    - PowerShell: `.ps1`
 
-3. **Check location** - Must be in `bootstrap/` or `bootstrap/custom/`
+3. **Check location** - Must be in `bootstrap/` directory
 
 4. **On Windows with `.sh` scripts** - Requires bash (Git Bash, WSL, etc.)
 
