@@ -70,7 +70,10 @@ func registerServices(
 	}
 	groupService := group.Initialize(mux, ouService, userService)
 
-	_ = resource.Initialize(mux, ouService)
+	_, err = resource.Initialize(mux, ouService)
+	if err != nil {
+		logger.Fatal("Failed to initialize Resource Service", log.Error(err))
+	}
 	roleService := role.Initialize(mux, userService, groupService, ouService)
 	authZService := authz.Initialize(roleService)
 

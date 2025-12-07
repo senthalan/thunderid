@@ -215,6 +215,11 @@ type UserConfig struct {
 	IndexedAttributes []string `yaml:"indexed_attributes" json:"indexed_attributes"`
 }
 
+// ResourceConfig holds the resource management configuration details.
+type ResourceConfig struct {
+	DefaultDelimiter string `yaml:"default_delimiter" json:"default_delimiter"`
+}
+
 // Config holds the complete configuration details of the server.
 type Config struct {
 	Server             ServerConfig        `yaml:"server" json:"server"`
@@ -229,6 +234,7 @@ type Config struct {
 	CORS               CORSConfig          `yaml:"cors" json:"cors"`
 	User               UserConfig          `yaml:"user" json:"user"`
 	ImmutableResources ImmutableResources  `yaml:"immutable_resources" json:"immutable_resources"`
+	Resource           ResourceConfig      `yaml:"resource" json:"resource"`
 	Observability      ObservabilityConfig `yaml:"observability" json:"observability"`
 }
 

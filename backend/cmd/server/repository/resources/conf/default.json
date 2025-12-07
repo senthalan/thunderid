@@ -95,6 +95,9 @@
   "immutable_resources": {
     "enabled": false
   },
+  "resource": {
+    "default_delimiter": ":"
+  },
   "observability": {
     "enabled": false,
     "output": {
