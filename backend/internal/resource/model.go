@@ -126,6 +126,16 @@ type UpdateActionRequest struct {
 	Description string `json:"description,omitempty"`
 }
 
+// PermissionListResponse represents the HTTP response for permissions list.
+type PermissionListResponse struct {
+	Delimiter    string         `json:"delimiter"`
+	TotalResults int            `json:"totalResults"`
+	StartIndex   int            `json:"startIndex"`
+	Count        int            `json:"count"`
+	Permissions  []string       `json:"permissions"`
+	Links        []LinkResponse `json:"links"`
+}
+
 // Service layer structs
 
 // ResourceServer represents a resource server in the service layer.
@@ -187,5 +197,15 @@ type ActionList struct {
 	StartIndex   int
 	Count        int
 	Actions      []Action
+	Links        []Link
+}
+
+// PermissionList represents the result of getting all permissions for a resource server.
+type PermissionList struct {
+	Delimiter    string
+	TotalResults int
+	StartIndex   int
+	Count        int
+	Permissions  []string
 	Links        []Link
 }

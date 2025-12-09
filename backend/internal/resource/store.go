@@ -61,6 +61,30 @@ type resourceStoreInterface interface {
 	DeleteAction(id string, resServerInternalID int, resInternalID *int) error
 	IsActionExist(id string, resServerInternalID int, resInternalID *int) (bool, error)
 	CheckActionHandleExists(resServerInternalID int, resInternalID *int, handle string) (bool, error)
+
+	// Permission operations
+	GetAllResourcesForPermissions(resServerInternalID int) ([]ResourceWithParent, error)
+	GetResourceServerActions(resServerInternalID int) ([]Action, error)
+	GetAllResourceActions(resServerInternalID int) ([]ActionWithResource, error)
+}
+
+// ResourceWithParent represents a resource with parent information for permission building.
+type ResourceWithParent struct {
+	InternalID       int
+	ID               string
+	Handle           string
+	Permission       string
+	ParentInternalID *int
+	ParentUUID       *string
+}
+
+// ActionWithResource represents an action with its resource association.
+type ActionWithResource struct {
+	ID                 string
+	Handle             string
+	Permission         string
+	ResourceInternalID int
+	ResourceUUID       string
 }
 
 // resourceStore is the default implementation of resourceStoreInterface.
@@ -878,6 +902,179 @@ func buildActionFromResultRow(row map[string]interface{}) (Action, error) {
 	}
 
 	// PROPERTIES column exists in DB but not mapped to model (store as empty JSON)
+
+	return action, nil
+}
+
+// GetAllResourcesForPermissions retrieves all resources for a resource server for permission building.
+func (s *resourceStore) GetAllResourcesForPermissions(resServerInternalID int) ([]ResourceWithParent, error) {
+	var resources []ResourceWithParent
+	err := s.withDBClient(func(dbClient provider.DBClientInterface) error {
+		results, err := dbClient.Query(
+			queryGetAllResourcesForPermissions,
+			resServerInternalID,
+			s.deploymentID,
+		)
+		if err != nil {
+			return fmt.Errorf("failed to get resources for permissions: %w", err)
+		}
+
+		resources = make([]ResourceWithParent, 0, len(results))
+		for _, row := range results {
+			res, err := buildResourceWithParentFromRow(row)
+			if err != nil {
+				return fmt.Errorf("failed to build resource: %w", err)
+			}
+			resources = append(resources, res)
+		}
+		return nil
+	})
+	return resources, err
+}
+
+// GetResourceServerActions retrieves all actions at resource server level.
+func (s *resourceStore) GetResourceServerActions(resServerInternalID int) ([]Action, error) {
+	var actions []Action
+	err := s.withDBClient(func(dbClient provider.DBClientInterface) error {
+		results, err := dbClient.Query(
+			queryGetResourceServerActions,
+			resServerInternalID,
+			s.deploymentID,
+		)
+		if err != nil {
+			return fmt.Errorf("failed to get resource server actions: %w", err)
+		}
+
+		actions = make([]Action, 0, len(results))
+		for _, row := range results {
+			action, err := buildActionFromResultRow(row)
+			if err != nil {
+				return fmt.Errorf("failed to build action: %w", err)
+			}
+			actions = append(actions, action)
+		}
+		return nil
+	})
+	return actions, err
+}
+
+// GetAllResourceActions retrieves all actions at resource level for a resource server.
+func (s *resourceStore) GetAllResourceActions(resServerInternalID int) ([]ActionWithResource, error) {
+	var actions []ActionWithResource
+	err := s.withDBClient(func(dbClient provider.DBClientInterface) error {
+		results, err := dbClient.Query(
+			queryGetAllResourceActions,
+			resServerInternalID,
+			s.deploymentID,
+		)
+		if err != nil {
+			return fmt.Errorf("failed to get resource actions: %w", err)
+		}
+
+		actions = make([]ActionWithResource, 0, len(results))
+		for _, row := range results {
+			action, err := buildActionWithResourceFromRow(row)
+			if err != nil {
+				return fmt.Errorf("failed to build action: %w", err)
+			}
+			actions = append(actions, action)
+		}
+		return nil
+	})
+	return actions, err
+}
+
+// buildResourceWithParentFromRow builds a ResourceWithParent from a database result row.
+func buildResourceWithParentFromRow(row map[string]interface{}) (ResourceWithParent, error) {
+	res := ResourceWithParent{}
+
+	internalID, err := resolveInternalID(row)
+	if err != nil {
+		return res, err
+	}
+	res.InternalID = internalID
+
+	if id, ok := row["resource_id"].(string); ok {
+		res.ID = id
+	} else {
+		return res, fmt.Errorf("resource_id field is missing or invalid")
+	}
+
+	if handle, ok := row["handle"].(string); ok {
+		res.Handle = handle
+	} else {
+		return res, fmt.Errorf("handle field is missing or invalid")
+	}
+
+	if permission, ok := row["permission"].(string); ok {
+		res.Permission = permission
+	} else {
+		return res, fmt.Errorf("permission field is missing or invalid")
+	}
+
+	// Parent fields (nullable)
+	if parentID, ok := row["parent_resource_id"]; ok && parentID != nil {
+		switch v := parentID.(type) {
+		case int:
+			res.ParentInternalID = &v
+		case int64:
+			intVal := int(v)
+			res.ParentInternalID = &intVal
+		case float64:
+			intVal := int(v)
+			res.ParentInternalID = &intVal
+		}
+	}
+
+	if parentUUID, ok := row["parent_resource_uuid"].(string); ok && parentUUID != "" {
+		res.ParentUUID = &parentUUID
+	}
+
+	return res, nil
+}
+
+// buildActionWithResourceFromRow builds an ActionWithResource from a database result row.
+func buildActionWithResourceFromRow(row map[string]interface{}) (ActionWithResource, error) {
+	action := ActionWithResource{}
+
+	if id, ok := row["action_id"].(string); ok {
+		action.ID = id
+	} else {
+		return action, fmt.Errorf("action_id field is missing or invalid")
+	}
+
+	if handle, ok := row["handle"].(string); ok {
+		action.Handle = handle
+	} else {
+		return action, fmt.Errorf("handle field is missing or invalid")
+	}
+
+	if permission, ok := row["permission"].(string); ok {
+		action.Permission = permission
+	} else {
+		return action, fmt.Errorf("permission field is missing or invalid")
+	}
+
+	if resID, ok := row["resource_id"]; ok && resID != nil {
+		switch v := resID.(type) {
+		case int:
+			action.ResourceInternalID = v
+		case int64:
+			action.ResourceInternalID = int(v)
+		case float64:
+			action.ResourceInternalID = int(v)
+		default:
+			return action, fmt.Errorf("invalid resource_id type")
+		}
+	} else {
+		return action, fmt.Errorf("resource_id field is missing or invalid")
+	}
+
+	if resUUID, ok := row["resource_uuid"].(string); ok {
+		action.ResourceUUID = resUUID
+	} else {
+		return action, fmt.Errorf("resource_uuid field is missing or invalid")
+	}
 
 	return action, nil
 }

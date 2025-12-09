@@ -68,6 +68,11 @@ type ResourceServiceInterface interface {
 		resourceServerID string, resourceID *string, id string, action Action,
 	) (*Action, *serviceerror.ServiceError)
 	DeleteAction(resourceServerID string, resourceID *string, id string) *serviceerror.ServiceError
+
+	// Permission operations
+	GetResourceServerPermissions(
+		resourceServerID string, limit, offset int,
+	) (*PermissionList, *serviceerror.ServiceError)
 }
 
 // resourceService is the default implementation of ResourceServiceInterface.
@@ -1049,4 +1054,185 @@ func derivePermission(
 		return parentResource.Permission + resourceServer.Delimiter + handle
 	}
 	return handle // Top-level resource - permission is just the handle
+}
+
+// GetResourceServerPermissions retrieves all permissions for a resource server in hierarchical order.
+func (rs *resourceService) GetResourceServerPermissions(
+	resourceServerID string,
+	limit, offset int,
+) (*PermissionList, *serviceerror.ServiceError) {
+	// Validate pagination
+	if err := validatePaginationParams(limit, offset); err != nil {
+		return nil, err
+	}
+
+	// Get and validate resource server
+	resServerInternalID, resourceServer, svcErr := rs.validateAndGetResourceServerInternalID(resourceServerID)
+	if svcErr != nil {
+		return nil, svcErr
+	}
+
+	// Fetch all data from store
+	resources, err := rs.resourceStore.GetAllResourcesForPermissions(resServerInternalID)
+	if err != nil {
+		rs.logger.Error("Failed to get resources for permissions", log.Error(err))
+		return nil, &serviceerror.InternalServerError
+	}
+
+	rsActions, err := rs.resourceStore.GetResourceServerActions(resServerInternalID)
+	if err != nil {
+		rs.logger.Error("Failed to get resource server actions", log.Error(err))
+		return nil, &serviceerror.InternalServerError
+	}
+
+	resourceActions, err := rs.resourceStore.GetAllResourceActions(resServerInternalID)
+	if err != nil {
+		rs.logger.Error("Failed to get resource actions", log.Error(err))
+		return nil, &serviceerror.InternalServerError
+	}
+
+	// Build complete permissions list
+	allPermissions := rs.buildPermissionsList(resourceServer, resources, rsActions, resourceActions)
+	totalCount := len(allPermissions)
+
+	// Apply pagination
+	startIdx := offset
+	endIdx := offset + limit
+
+	if startIdx >= totalCount {
+		// Offset beyond data - return empty result
+		return &PermissionList{
+			Delimiter:    resourceServer.Delimiter,
+			TotalResults: totalCount,
+			StartIndex:   offset + 1,
+			Count:        0,
+			Permissions:  []string{},
+			Links: buildPaginationLinks(
+				fmt.Sprintf("/resource-servers/%s/permissions", resourceServerID),
+				limit, offset, totalCount,
+			),
+		}, nil
+	}
+
+	if endIdx > totalCount {
+		endIdx = totalCount
+	}
+
+	paginatedPermissions := allPermissions[startIdx:endIdx]
+
+	return &PermissionList{
+		Delimiter:    resourceServer.Delimiter,
+		TotalResults: totalCount,
+		StartIndex:   offset + 1,
+		Count:        len(paginatedPermissions),
+		Permissions:  paginatedPermissions,
+		Links: buildPaginationLinks(
+			fmt.Sprintf("/resource-servers/%s/permissions", resourceServerID),
+			limit, offset, totalCount,
+		),
+	}, nil
+}
+
+// resourceNode represents a node in the resource hierarchy tree.
+type resourceNode struct {
+	internalID int
+	uuid       string
+	permission string
+	children   []*resourceNode
+	actions    []string
+}
+
+// permissionBuilder helps build the complete permissions list.
+type permissionBuilder struct {
+	resourceServer ResourceServer
+	resources      map[int]*resourceNode
+	rootResources  []*resourceNode
+	rsActions      []string
+}
+
+// buildPermissionsList constructs the complete list of permissions in hierarchical order.
+func (rs *resourceService) buildPermissionsList(
+	resourceServer ResourceServer,
+	resources []ResourceWithParent,
+	rsActions []Action,
+	resourceActions []ActionWithResource,
+) []string {
+	// Initialize builder
+	builder := &permissionBuilder{
+		resourceServer: resourceServer,
+		resources:      make(map[int]*resourceNode),
+		rootResources:  make([]*resourceNode, 0),
+		rsActions:      make([]string, 0, len(rsActions)),
+	}
+
+	// Create nodes for all resources
+	for _, res := range resources {
+		node := &resourceNode{
+			internalID: res.InternalID,
+			uuid:       res.ID,
+			permission: res.Permission,
+			children:   make([]*resourceNode, 0),
+			actions:    make([]string, 0),
+		}
+		builder.resources[res.InternalID] = node
+
+		if res.ParentInternalID == nil {
+			builder.rootResources = append(builder.rootResources, node)
+		}
+	}
+
+	// Build parent-child relationships
+	for _, res := range resources {
+		if res.ParentInternalID != nil {
+			node := builder.resources[res.InternalID]
+			parent := builder.resources[*res.ParentInternalID]
+			if parent != nil {
+				parent.children = append(parent.children, node)
+			}
+		}
+	}
+
+	// Attach actions to resources
+	for _, action := range resourceActions {
+		if node, exists := builder.resources[action.ResourceInternalID]; exists {
+			node.actions = append(node.actions, action.Permission)
+		}
+	}
+
+	// Collect RS-level actions
+	for _, action := range rsActions {
+		builder.rsActions = append(builder.rsActions, action.Permission)
+	}
+
+	// Perform depth-first traversal
+	permissions := make([]string, 0)
+
+	// First: Each resource tree with its actions
+	for _, root := range builder.rootResources {
+		permissions = rs.depthFirstTraversal(root, permissions)
+	}
+
+	// Then: Resource server level actions
+	permissions = append(permissions, builder.rsActions...)
+
+	return permissions
+}
+
+// depthFirstTraversal recursively traverses the resource tree.
+func (rs *resourceService) depthFirstTraversal(
+	node *resourceNode,
+	permissions []string,
+) []string {
+	// Add resource permission
+	permissions = append(permissions, node.permission)
+
+	// Add actions for this resource
+	permissions = append(permissions, node.actions...)
+
+	// Recursively traverse children
+	for _, child := range node.children {
+		permissions = rs.depthFirstTraversal(child, permissions)
+	}
+
+	return permissions
 }

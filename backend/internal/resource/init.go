@@ -75,6 +75,20 @@ func registerRoutes(mux *http.ServeMux, handler *resourceHandler) {
 			w.WriteHeader(http.StatusNoContent)
 		}, resourceServerDetailOpts))
 
+	// Permission routes
+	permissionOpts := middleware.CORSOptions{
+		AllowedMethods:   "GET",
+		AllowedHeaders:   "Content-Type, Authorization",
+		AllowCredentials: true,
+	}
+
+	mux.HandleFunc(middleware.WithCORS("GET /resource-servers/{id}/permissions",
+		handler.HandleResourceServerPermissionsRequest, permissionOpts))
+	mux.HandleFunc(middleware.WithCORS("OPTIONS /resource-servers/{id}/permissions",
+		func(w http.ResponseWriter, r *http.Request) {
+			w.WriteHeader(http.StatusNoContent)
+		}, permissionOpts))
+
 	// Resource routes
 	resourceOpts := middleware.CORSOptions{
 		AllowedMethods:   "GET, POST",

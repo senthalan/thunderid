@@ -326,3 +326,53 @@ var (
 		          AND a.DEPLOYMENT_ID = $4`,
 	}
 )
+
+// Permission Queries
+var (
+	// queryGetAllResourcesForPermissions retrieves all resources for building permissions list.
+	queryGetAllResourcesForPermissions = dbmodel.DBQuery{
+		ID: "RSQ-RES_MGT-32",
+		Query: `SELECT
+			    r.ID,
+			    r.RESOURCE_ID,
+			    r.HANDLE,
+			    r.PERMISSION,
+			    r.PARENT_RESOURCE_ID,
+			    pr.RESOURCE_ID as PARENT_RESOURCE_UUID
+			FROM RESOURCE r
+			LEFT JOIN RESOURCE pr ON r.PARENT_RESOURCE_ID = pr.ID
+			WHERE r.RESOURCE_SERVER_ID = $1 AND r.DEPLOYMENT_ID = $2
+			ORDER BY r.PARENT_RESOURCE_ID NULLS FIRST, r.CREATED_AT ASC`,
+	}
+
+	// queryGetResourceServerActions retrieves actions at resource server level.
+	queryGetResourceServerActions = dbmodel.DBQuery{
+		ID: "RSQ-RES_MGT-33",
+		Query: `SELECT
+			    a.ACTION_ID,
+			    a.HANDLE,
+			    a.PERMISSION
+			FROM ACTION a
+			WHERE a.RESOURCE_SERVER_ID = $1
+			  AND a.RESOURCE_ID IS NULL
+			  AND a.DEPLOYMENT_ID = $2
+			ORDER BY a.CREATED_AT ASC`,
+	}
+
+	// queryGetAllResourceActions retrieves actions at resource level.
+	queryGetAllResourceActions = dbmodel.DBQuery{
+		ID: "RSQ-RES_MGT-34",
+		Query: `SELECT
+			    a.ACTION_ID,
+			    a.HANDLE,
+			    a.PERMISSION,
+			    a.RESOURCE_ID,
+			    r.RESOURCE_ID as RESOURCE_UUID
+			FROM ACTION a
+			INNER JOIN RESOURCE r ON a.RESOURCE_ID = r.ID
+			WHERE a.RESOURCE_SERVER_ID = $1
+			  AND a.RESOURCE_ID IS NOT NULL
+			  AND a.DEPLOYMENT_ID = $2
+			ORDER BY a.CREATED_AT ASC`,
+	}
+)

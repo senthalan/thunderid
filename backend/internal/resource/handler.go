@@ -464,6 +464,26 @@ func (h *resourceHandler) HandleActionDeleteAtResourceRequest(w http.ResponseWri
 	w.WriteHeader(http.StatusNoContent)
 }
 
+// HandleResourceServerPermissionsRequest handles getting all permissions for a resource server.
+func (h *resourceHandler) HandleResourceServerPermissionsRequest(w http.ResponseWriter, r *http.Request) {
+	id := r.PathValue("id")
+
+	limit, offset, svcErr := parsePaginationParams(r.URL.Query())
+	if svcErr != nil {
+		handleError(w, svcErr)
+		return
+	}
+
+	result, svcErr := h.resourceService.GetResourceServerPermissions(id, limit, offset)
+	if svcErr != nil {
+		handleError(w, svcErr)
+		return
+	}
+
+	response := toPermissionListResponse(result)
+	sysutils.WriteSuccessResponse(w, http.StatusOK, response)
+}
+
 // Helper functions
 
 // parsePaginationParams parses 'limit' and 'offset' query parameters.
@@ -674,6 +694,23 @@ func toActionListResponse(list *ActionList) *ActionListResponse {
 		StartIndex:   list.StartIndex,
 		Count:        list.Count,
 		Actions:      actions,
+		Links:        links,
+	}
+}
+
+// toPermissionListResponse transforms a PermissionList to PermissionListResponse.
+func toPermissionListResponse(list *PermissionList) *PermissionListResponse {
+	links := make([]LinkResponse, len(list.Links))
+	for i, link := range list.Links {
+		links[i] = LinkResponse(link)
+	}
+
+	return &PermissionListResponse{
+		Delimiter:    list.Delimiter,
+		TotalResults: list.TotalResults,
+		StartIndex:   list.StartIndex,
+		Count:        list.Count,
+		Permissions:  list.Permissions,
 		Links:        links,
 	}
 }

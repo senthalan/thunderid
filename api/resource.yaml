@@ -1661,6 +1661,132 @@ paths:
                 message: "Internal server error"
                 description: "An unexpected error occurred while processing the request"
 
+  /resource-servers/{id}/permissions:
+    get:
+      tags:
+        - permissions
+      summary: Get all derived permissions for a resource server
+      description: |
+        Retrieves all permissions derived from resources and actions within a resource server.
+        Permissions are returned in hierarchical depth-first order:
+        1. Resource server level actions (e.g., "manage", "view")
+        2. For each resource in depth-first order:
+           - The resource permission (e.g., "users")
+           - All actions for that resource (e.g., "users:create", "users:delete")
+           - Child resources and their actions (recursively)
+
+        The resource server itself is NOT included as a permission.
+        Results are paginated with configurable limit and offset parameters.
+      operationId: getResourceServerPermissions
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: Resource server ID (UUID)
+          schema:
+            type: string
+            format: uuid
+        - $ref: '#/components/parameters/limitQueryParam'
+        - $ref: '#/components/parameters/offsetQueryParam'
+      responses:
+        "200":
+          description: Successfully retrieved permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionListResponse'
+              examples:
+                with_hierarchy:
+                  summary: Resource server with hierarchical resources
+                  value:
+                    delimiter: ":"
+                    totalResults: 7
+                    startIndex: 1
+                    count: 7
+                    permissions:
+                      - "manage"
+                      - "view"
+                      - "users"
+                      - "users:create"
+                      - "users:delete"
+                      - "users:profile"
+                      - "users:profile:edit"
+                    links:
+                      - href: "/resource-servers/123e4567-e89b-12d3-a456-426614174000/permissions?offset=0&limit=30"
+                        rel: "first"
+                empty_state:
+                  summary: Resource server with no resources or actions
+                  value:
+                    delimiter: ":"
+                    totalResults: 0
+                    startIndex: 1
+                    count: 0
+                    permissions: []
+                    links:
+                      - href: "/resource-servers/123e4567-e89b-12d3-a456-426614174000/permissions?offset=0&limit=30"
+                        rel: "first"
+                paginated:
+                  summary: Paginated response (page 2 of 3)
+                  value:
+                    delimiter: ":"
+                    totalResults: 15
+                    startIndex: 6
+                    count: 5
+                    permissions:
+                      - "users:update"
+                      - "users:profile"
+                      - "users:profile:edit"
+                      - "groups"
+                      - "groups:create"
+                    links:
+                      - href: "/resource-servers/123e4567-e89b-12d3-a456-426614174000/permissions?offset=0&limit=5"
+                        rel: "first"
+                      - href: "/resource-servers/123e4567-e89b-12d3-a456-426614174000/permissions?offset=0&limit=5"
+                        rel: "prev"
+                      - href: "/resource-servers/123e4567-e89b-12d3-a456-426614174000/permissions?offset=10&limit=5"
+                        rel: "next"
+                      - href: "/resource-servers/123e4567-e89b-12d3-a456-426614174000/permissions?offset=10&limit=5"
+                        rel: "last"
+        "400":
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                invalid_limit:
+                  summary: Invalid limit parameter
+                  value:
+                    code: "RES-1011"
+                    message: "Invalid limit parameter"
+                    description: "The limit parameter must be a positive integer"
+                invalid_offset:
+                  summary: Invalid offset parameter
+                  value:
+                    code: "RES-1012"
+                    message: "Invalid offset parameter"
+                    description: "The offset parameter must be a non-negative integer"
+        "404":
+          description: Resource server not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: "RES-1003"
+                message: "Resource server not found"
+                description: "The resource server with the specified id does not exist"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: "SSE-5000"
+                message: "Internal server error"
+                description: "An unexpected error occurred while processing the request"
+
 components:
   securitySchemes:
     OAuth2:
@@ -1932,6 +2058,51 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+
+    PermissionListResponse:
+      type: object
+      required:
+        - delimiter
+        - totalResults
+        - startIndex
+        - count
+        - permissions
+        - links
+      properties:
+        delimiter:
+          type: string
+          description: The delimiter used to construct permission strings
+          example: ":"
+        totalResults:
+          type: integer
+          description: Total number of permissions across all pages
+          example: 7
+        startIndex:
+          type: integer
+          description: 1-based index of the first permission in this response
+          example: 1
+        count:
+          type: integer
+          description: Number of permissions in this response
+          example: 7
+        permissions:
+          type: array
+          items:
+            type: string
+          description: Array of permission strings in hierarchical depth-first order (RS actions first, then resources with their actions)
+          example:
+            - "manage"
+            - "view"
+            - "users"
+            - "users:create"
+            - "users:delete"
+            - "users:profile"
+            - "users:profile:edit"
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+          description: Pagination links (first, prev, next, last)
 
     Link:
       type: object

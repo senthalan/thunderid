@@ -867,6 +867,82 @@ func (_c *ResourceServiceInterfaceMock_GetResourceServerList_Call) RunAndReturn(
 	return _c
 }
 
+// GetResourceServerPermissions provides a mock function for the type ResourceServiceInterfaceMock
+func (_mock *ResourceServiceInterfaceMock) GetResourceServerPermissions(resourceServerID string, limit int, offset int) (*PermissionList, *serviceerror.ServiceError) {
+	ret := _mock.Called(resourceServerID, limit, offset)
+
+	if len(ret) == 0 {
+		panic("no return value specified for GetResourceServerPermissions")
+	}
+
+	var r0 *PermissionList
+	var r1 *serviceerror.ServiceError
+	if returnFunc, ok := ret.Get(0).(func(string, int, int) (*PermissionList, *serviceerror.ServiceError)); ok {
+		return returnFunc(resourceServerID, limit, offset)
+	}
+	if returnFunc, ok := ret.Get(0).(func(string, int, int) *PermissionList); ok {
+		r0 = returnFunc(resourceServerID, limit, offset)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*PermissionList)
+		}
+	}
+	if returnFunc, ok := ret.Get(1).(func(string, int, int) *serviceerror.ServiceError); ok {
+		r1 = returnFunc(resourceServerID, limit, offset)
+	} else {
+		if ret.Get(1) != nil {
+			r1 = ret.Get(1).(*serviceerror.ServiceError)
+		}
+	}
+	return r0, r1
+}
+
+// ResourceServiceInterfaceMock_GetResourceServerPermissions_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetResourceServerPermissions'
+type ResourceServiceInterfaceMock_GetResourceServerPermissions_Call struct {
+	*mock.Call
+}
+
+// GetResourceServerPermissions is a helper method to define mock.On call
+//   - resourceServerID string
+//   - limit int
+//   - offset int
+func (_e *ResourceServiceInterfaceMock_Expecter) GetResourceServerPermissions(resourceServerID interface{}, limit interface{}, offset interface{}) *ResourceServiceInterfaceMock_GetResourceServerPermissions_Call {
+	return &ResourceServiceInterfaceMock_GetResourceServerPermissions_Call{Call: _e.mock.On("GetResourceServerPermissions", resourceServerID, limit, offset)}
+}
+
+func (_c *ResourceServiceInterfaceMock_GetResourceServerPermissions_Call) Run(run func(resourceServerID string, limit int, offset int)) *ResourceServiceInterfaceMock_GetResourceServerPermissions_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 string
+		if args[0] != nil {
+			arg0 = args[0].(string)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *ResourceServiceInterfaceMock_GetResourceServerPermissions_Call) Return(permissionList *PermissionList, serviceError *serviceerror.ServiceError) *ResourceServiceInterfaceMock_GetResourceServerPermissions_Call {
+	_c.Call.Return(permissionList, serviceError)
+	return _c
+}
+
+func (_c *ResourceServiceInterfaceMock_GetResourceServerPermissions_Call) RunAndReturn(run func(resourceServerID string, limit int, offset int) (*PermissionList, *serviceerror.ServiceError)) *ResourceServiceInterfaceMock_GetResourceServerPermissions_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // UpdateAction provides a mock function for the type ResourceServiceInterfaceMock
 func (_mock *ResourceServiceInterfaceMock) UpdateAction(resourceServerID string, resourceID *string, id string, action Action) (*Action, *serviceerror.ServiceError) {
 	ret := _mock.Called(resourceServerID, resourceID, id, action)
