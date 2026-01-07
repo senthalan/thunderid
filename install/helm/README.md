@@ -153,12 +153,12 @@ The following table lists the configurable parameters of the Thunder chart and t
 | `deployment.resources.requests.cpu`     | CPU resource requests                                                                   | `1`                            |
 | `deployment.resources.requests.memory`  | Memory resource requests                                                                | `256Mi`                        |
 | `deployment.securityContext.readOnlyRootFilesystem` | Enable read-only root filesystem (must be false for SQLite)                     | `true`                         |
-| `deployment.securityContext.enableRunAsUser` | Enable running as non-root user                                                    | `true`                         |
-| `deployment.securityContext.runAsUser`  | User ID to run the container                                                            | `802`                          |
+| `deployment.securityContext.enableRunAsUser` | Enforce user ID via pod security context                                               | `true`                         |
+| `deployment.securityContext.runAsUser`  | User ID to run the container                                                            | `10001`                        |
 | `deployment.securityContext.enableRunAsGroup` | Enable setting group ID for the container process                                 | `true`                         |
-| `deployment.securityContext.runAsGroup` | Group ID to run the container                                                           | `802`                          |
+| `deployment.securityContext.runAsGroup` | Group ID to run the container                                                           | `10001`                        |
 | `deployment.securityContext.enableFsGroup` | Enable setting fsGroup for volume ownership                                          | `true`                         |
-| `deployment.securityContext.fsGroup`    | Group ID for mounted volumes (fixes SQLite permission issues on cloud platforms)        | `802`                          |
+| `deployment.securityContext.fsGroup`    | Group ID for mounted volumes (fixes SQLite permission issues on cloud platforms)        | `10001`                        |
 | `deployment.securityContext.seccompProfile.enabled` | Enable seccomp profile                                                      | `false`                        |
 | `deployment.securityContext.seccompProfile.type` | Seccomp profile type                                                           | `RuntimeDefault`               |
 
