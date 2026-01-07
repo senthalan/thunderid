@@ -23,11 +23,11 @@ deployment:
   securityContext:
     readOnlyRootFilesystem: true # This must be false if sqlite is used as the database
     enableRunAsUser: true
-    runAsUser: 802
+    runAsUser: 10001
     enableRunAsGroup: true
-    runAsGroup: 802
+    runAsGroup: 10001
     enableFsGroup: true
-    fsGroup: 802
+    fsGroup: 10001
     seccompProfile:
       enabled: false
       type: "RuntimeDefault"
