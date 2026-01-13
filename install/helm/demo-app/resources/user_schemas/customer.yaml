@@ -1,0 +1,21 @@
+id: 13bf0858-b394-43fa-906e-084e64e642c0
+name: Customer
+organization_unit_id: 2a3608a4-e9f7-4645-881f-75dfd1052533
+allow_self_registration: true
+schema: '{
+    "sub": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "username": {
+      "type": "string",
+      "required": false,
+      "unique": false
+    },
+    "email": {
+      "type": "string",
+      "required": false,
+      "unique": false
+    }
+  }'

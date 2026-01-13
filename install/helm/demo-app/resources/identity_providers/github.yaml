@@ -1,0 +1,14 @@
+id: 372a20db-a946-4b40-add0-0049d15a5f9c
+name: GitHub IDP
+description: GitHub Identity Provider
+type: GITHUB
+properties:
+  - name: client_id
+    value: {{ .GITHUB_CLIENT_ID }}
+    is_secret: false
+  - name: client_secret
+    value: {{ .GITHUB_CLIENT_SECRET }}
+    is_secret: true
+  - name: redirect_uri
+    value: {{ .GITHUB_REDIRECT_URI }}
+    is_secret: false

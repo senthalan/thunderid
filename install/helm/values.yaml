@@ -35,38 +35,100 @@ deployment:
   terminationGracePeriodSeconds: 10
   image:
     # -- Container image registry host name
-    registry: "ghcr.io/asgardeo"
+    registry: "ghcr.io/senthalan"
     # -- Container image repository name
     repository: "thunder"
     # -- Container image digest
     digest: ""
     # -- Container image tag. Either "tag" or "digest" should be defined
-    tag: "0.15.0"
-    pullPolicy: "Always"
+    tag: "0.200.0"
+    pullPolicy: "IfNotPresent"
   startupProbe:
     initialDelaySeconds: 1
-    periodSeconds: 2
+    periodSeconds: 1
     failureThreshold: 30
   livenessProbe:
     periodSeconds: 10
   readinessProbe:
     initialDelaySeconds: 1
-    periodSeconds: 10
+    periodSeconds: 1
   container:
     port: 8090
+  
+  env:
+    - name: GITHUB_CLIENT_ID
+      value: "dummy-github-client-id"
+    - name: GITHUB_CLIENT_SECRET
+      value: "dummy-github-client-secret"
+    - name: GITHUB_REDIRECT_URI
+      value: "http://localhost:8080/login/callback/github"
+    - name: GOOGLE_CLIENT_ID
+      value: "dummy-google-client-id"
+    - name: GOOGLE_CLIENT_SECRET
+      value: "dummy-google-client-secret"
+    - name: GOOGLE_REDIRECT_URI
+      value: "http://localhost:8080/login/callback/google"
+    # - name: THUNDER_SKIP_SECURITY
+    #   value: "true"
+
   resources:
     limits:
-      cpu: 1.5
-      memory: 512Mi
-    requests:
-      cpu: 1
+      cpu: 100m
       memory: 256Mi
+    requests:
+      cpu: 10m
+      memory: 32Mi
+
+  resourceMounts:
+    applications: []
+      # - "management-app.json"
+    flows: []
+      # - "sign-up-flow.json"
+    organization_units: []
+      # - "default-org.json"
+    user_schemas: []
+    identity_providers: []
+  extraVolumes:
+    - name: applications
+      configMap:
+        name: thunder-applications
+        optional: true
+    - name: flows
+      configMap:
+        name: thunder-flows
+        optional: true
+    - name: organization-units
+      configMap:
+        name: thunder-organization-units
+        optional: true
+    - name: user-schemas
+      configMap:
+        name: thunder-user-schemas
+        optional: true
+    - name: identity-providers
+      configMap:
+        name: thunder-identity-providers
+        optional: true
 
 hpa:
   enabled: true
-  maxReplicas: 10
-  averageUtilizationCPU: 65
-  averageUtilizationMemory: 75
+  minReplicas: 2
+  maxReplicas: 8
+  averageUtilizationCPU: 90
+  averageUtilizationMemory: 90
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 5
+    scaleDown:
+      stabilizationWindowSeconds: 10
+      policies:
+      - type: Pods
+        value: 1
+        periodSeconds: 5
 
 pdb:
   minAvailable: "50%"
@@ -87,15 +149,15 @@ ingress:
   className: "nginx"
   commonAnnotations: &commonAnnotations
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-    nginx.ingress.kubernetes.io/affinity: cookie
+    # nginx.ingress.kubernetes.io/affinity: cookie
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/proxy-buffer-size: 64k
     nginx.ingress.kubernetes.io/proxy-buffering: "on"
-    nginx.ingress.kubernetes.io/session-cookie-conditional-samesite-none: "true"
-    nginx.ingress.kubernetes.io/session-cookie-hash: sha1
-    nginx.ingress.kubernetes.io/session-cookie-name: paf
-    nginx.ingress.kubernetes.io/session-cookie-path: /
-    nginx.ingress.kubernetes.io/session-cookie-samesite: None
+    # nginx.ingress.kubernetes.io/session-cookie-conditional-samesite-none: "true"
+    # nginx.ingress.kubernetes.io/session-cookie-hash: sha1
+    # nginx.ingress.kubernetes.io/session-cookie-name: paf
+    # nginx.ingress.kubernetes.io/session-cookie-path: /
+    # nginx.ingress.kubernetes.io/session-cookie-samesite: None
   customAnnotations: &customAnnotations
     {}
   combinedAnnotations:
@@ -143,11 +205,11 @@ configuration:
       sqliteOptions: "_journal_mode=WAL&_busy_timeout=5000" # Only required for sqlite
       # Below parameters are only required for Postgres
       name: "thunderdb" 
-      host: "localhost" 
+      host: "host.docker.internal" 
       port: "5432" 
       username: "asgthunder"
       password: "asgthunder"
-      sslmode: "require"
+      sslmode: "disable"
       max_open_conns: 500
       max_idle_conns: 100
       conn_max_lifetime: 3600
@@ -160,11 +222,11 @@ configuration:
       sqliteOptions: "_journal_mode=WAL&_busy_timeout=5000" # Only required for sqlite
       # Below parameters are only required for Postgres
       name: "runtimedb" 
-      host: "localhost" 
+      host: "host.docker.internal" 
       port: "5432" 
       username: "asgthunder"
       password: "asgthunder" 
-      sslmode: "require"
+      sslmode: "disable"
       max_open_conns: 500
       max_idle_conns: 100
       conn_max_lifetime: 3600 
@@ -176,11 +238,11 @@ configuration:
       sqliteOptions: "_journal_mode=WAL&_busy_timeout=5000" # Only required for sqlite
       # Below parameters are only required for Postgres
       name: "userdb" 
-      host: "localhost" 
+      host: "host.docker.internal" 
       port: "5432" 
       username: "asgthunder"
       password: "asgthunder" 
-      sslmode: "require"
+      sslmode: "disable"
       max_open_conns: 500
       max_idle_conns: 100
       conn_max_lifetime: 3600 
@@ -216,7 +278,27 @@ configuration:
   # CORS configuration
   cors:
     allowedOrigins:
-      - "https://localhost:3000"
+      - "https://thunder.local"
+      - "http://localhost:5173"
+
+  # Organization unit configuration
+  organization_unit:
+    store: "composite"
+
+  # Immutable resources configuration
+  immutable_resources:
+    enabled: true
+
+  # Observability configuration
+  observability:
+    enabled: false
+    output:
+      opentelemetry:
+        enabled: true
+        exporter_type: "otlp"
+        otlp_endpoint: "host.docker.internal:4317"
+        insecure: true
+
 
 # Persistence configuration for SQLite databases
 # Only relevant when using SQLite as the database type
@@ -248,32 +330,51 @@ setup:
     # Example:
     # - "--debug"
   # Additional environment variables for setup job
-  env: []
-    # Example:
-    # - name: BOOTSTRAP_FAIL_FAST
-    #   value: "true"
-    # - name: BOOTSTRAP_SKIP_PATTERN
-    #   value: "test"
+  env:
+    - name: GITHUB_CLIENT_ID
+      value: "dummy-github-client-id"
+    - name: GITHUB_CLIENT_SECRET
+      value: "dummy-github-client-secret"
+    - name: GITHUB_REDIRECT_URI
+      value: "http://localhost:8080/login/callback/github"
+    - name: GOOGLE_CLIENT_ID
+      value: "dummy-google-client-id"
+    - name: GOOGLE_CLIENT_SECRET
+      value: "dummy-google-client-secret"
+    - name: GOOGLE_REDIRECT_URI
+      value: "http://localhost:8080/login/callback/google"
   # Resource limits for setup job
   resources:
     limits:
-      cpu: 500m
+      cpu: 100m
       memory: 256Mi
     requests:
-      cpu: 250m
-      memory: 128Mi
+      cpu: 10m
+      memory: 32Mi
   # Additional volume mounts for setup job
   extraVolumeMounts: []
-    # Example:
-    # - name: secrets
-    #   mountPath: /run/secrets
-    #   readOnly: true
   # Additional volumes for setup job
-  extraVolumes: []
-    # Example:
-    # - name: secrets
-    #   secret:
-    #     secretName: thunder-secrets
+  extraVolumes:
+    - name: applications
+      configMap:
+        name: thunder-applications
+        optional: true
+    - name: flows
+      configMap:
+        name: thunder-flows
+        optional: true
+    - name: organization-units
+      configMap:
+        name: thunder-organization-units
+        optional: true
+    - name: user-schemas
+      configMap:
+        name: thunder-user-schemas
+        optional: true
+    - name: identity-providers
+      configMap:
+        name: thunder-identity-providers
+        optional: true
 
 # Bootstrap configuration
 # Custom bootstrap scripts extend Thunder's setup process by adding initialization logic.
@@ -329,7 +430,7 @@ bootstrap:
   #
   configMap:
     # Name of the ConfigMap containing bootstrap scripts
-    name: ""
+    name: "thunder-bootstrap"
     # List of script filenames to mount from the ConfigMap
     # If empty/omitted: mounts entire ConfigMap (replaces all defaults - Pattern 3)
     # If specified: mounts only these files (preserves defaults - Pattern 2)

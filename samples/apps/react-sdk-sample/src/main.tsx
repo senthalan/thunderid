@@ -55,6 +55,13 @@ createRoot(document.getElementById("root")!).render(
         baseUrl={baseUrl}
         clientId={clientId}
         platform="AsgardeoV2"
+        tokenValidation={
+          {
+            idToken: {
+              validate: false
+            }
+          }
+        }
       >
         <App />
       </AsgardeoProvider>

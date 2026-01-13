@@ -1,0 +1,62 @@
+id: "90bf87e4-ddae-474e-b52c-fddb998138b1"
+name: "Develop"
+description: "Developer application for Thunder"
+url: "https://localhost:8090/develop"
+logo_url: "https://localhost:8090/develop/assets/images/trifacta.svg"
+auth_flow_graph_id: 4eeaa1da-c550-4504-990e-eaa1355924af
+registration_flow_graph_id: 4eeaa1da-c550-4504-990e-eaa1355924af
+is_registration_flow_enabled: false
+certificate:
+  type: "NONE"
+  value: ""
+inbound_auth_config:
+  - type: "oauth2"
+    config:
+      client_id: "DEVELOP"
+      redirect_uris:
+        - "https://localhost:5191/develop"
+        - "https://localhost:5190/gate/signin"
+        - "https://localhost:8090/develop"
+        - "https://localhost:8090/gate/signin"
+        - "https://localhost:3001"
+      grant_types:
+        - "authorization_code"
+      response_types:
+        - "code"
+      token_endpoint_auth_method: "none"
+      pkce_required: true
+      public_client: true
+      token:
+        issuer: "https://localhost:8090/oauth2/token"
+        access_token:
+          validity_period: 3600
+          user_attributes:
+            - "given_name"
+            - "family_name"
+            - "email"
+            - "groups"
+            - "name"
+        id_token:
+          validity_period: 3600
+          user_attributes:
+            - "given_name"
+            - "family_name"
+            - "email"
+            - "groups"
+            - "name"
+          scope_claims:
+            profile:
+              - "name"
+              - "given_name"
+              - "family_name"
+              - "picture"
+            email:
+              - "email"
+              - "email_verified"
+            phone:
+              - "phone_number"
+              - "phone_number_verified"
+            group:
+              - "groups"
+allowed_user_types:
+  - "Employee"

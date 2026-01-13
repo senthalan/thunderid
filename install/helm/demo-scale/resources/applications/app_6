@@ -1,0 +1,15 @@
+id: 97F4D12A-917A-4F91-9AE3-2DA3500DA1F8
+name: Test Sample App 6
+description: Initial testing App
+auth_flow_graph_id: f59598a9-dc5a-4eb4-865e-2d2c94773c39
+registration_flow_graph_id: f59598a9-dc5a-4eb4-865e-2d2c94773c39
+inbound_auth_config:
+  - type: oauth2
+    config:
+      client_id: client_id_6
+      client_secret: client_secret_6
+      grant_types:
+        - client_credentials
+      token_endpoint_auth_method: client_secret_basic
+      pkce_required: false
+      public_client: false

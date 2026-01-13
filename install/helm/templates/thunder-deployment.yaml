@@ -105,6 +105,10 @@ spec:
               scheme: {{ if .Values.configuration.server.httpOnly }}HTTP{{ else }}HTTPS{{ end }}
             initialDelaySeconds: {{ .Values.deployment.readinessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.deployment.readinessProbe.periodSeconds }}
+          env:
+            {{- if .Values.deployment.env }}
+            {{- toYaml .Values.deployment.env | nindent 12 }}
+            {{- end }}
           resources:
             requests:
               memory: {{ .Values.deployment.resources.requests.memory }}
@@ -139,6 +143,41 @@ spec:
             - name: develop-config-volume
               mountPath: /opt/thunder/apps/develop/config.js
               subPath: develop-config.js
+            {{- if .Values.deployment.resourceMounts.applications }}
+            {{- range .Values.deployment.resourceMounts.applications }}
+            - name: applications
+              mountPath: /opt/thunder/repository/resources/applications/{{ . }}
+              subPath: {{ . }}
+            {{- end }}
+            {{- end }}
+            {{- if .Values.deployment.resourceMounts.flows }}
+            {{- range .Values.deployment.resourceMounts.flows }}
+            - name: flows
+              mountPath: /opt/thunder/repository/resources/flows/{{ . }}
+              subPath: {{ . }}
+            {{- end }}
+            {{- end }}
+            {{- if .Values.deployment.resourceMounts.organization_units }}
+            {{- range .Values.deployment.resourceMounts.organization_units }}
+            - name: organization-units
+              mountPath: /opt/thunder/repository/resources/organization_units/{{ . }}
+              subPath: {{ . }}
+            {{- end }}
+            {{- end }}
+            {{- if .Values.deployment.resourceMounts.user_schemas }}
+            {{- range .Values.deployment.resourceMounts.user_schemas }}
+            - name: user-schemas
+              mountPath: /opt/thunder/repository/resources/user_schemas/{{ . }}
+              subPath: {{ . }}
+            {{- end }}
+            {{- end }}
+            {{- if .Values.deployment.resourceMounts.identity_providers }}
+            {{- range .Values.deployment.resourceMounts.identity_providers }}
+            - name: identity-providers
+              mountPath: /opt/thunder/repository/resources/identity_providers/{{ . }}
+              subPath: {{ . }}
+            {{- end }}
+            {{- end }}
       volumes:
         {{- if or .Values.persistence.enabled $usingSqlite }}
         - name: database-storage
@@ -154,3 +193,6 @@ spec:
         - name: develop-config-volume
           configMap:
             name: {{ include "thunder.fullname" . }}-config-map
+        {{- if .Values.deployment.extraVolumes }}
+        {{- toYaml .Values.deployment.extraVolumes | nindent 8 }}
+        {{- end }}

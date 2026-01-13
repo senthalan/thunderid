@@ -1,0 +1,49 @@
+name: WSO2 Cloud
+description: WSO2 Cloud application
+auth_flow_graph_id: b9a91d0f-f966-4fbc-b4c3-82c01fd9c078
+registration_flow_graph_id: 03fd244a-9671-4556-8fa6-eba39170b173
+is_registration_flow_enabled: true
+user_attributes:
+  - first_name
+  - last_name
+  - email
+  - groups
+allowed_user_types:
+  - Customer
+inbound_auth_config:
+  - type: oauth2
+    config:
+      client_id: WSO2_CLOUD
+      redirect_uris:
+        - http://localhost:5173
+      grant_types:
+        - authorization_code
+      response_types:
+        - code
+      pkce_required: true
+      token_endpoint_auth_method: none
+      public_client: true
+      token:
+        issuer: ${PUBLIC_URL}/oauth2/token
+        access_token:
+          validity_period: 3600
+          user_attributes:
+            - first_name
+            - last_name
+            - email
+            - groups
+        id_token:
+          validity_period: 3600
+          user_attributes:
+            - first_name
+            - last_name
+            - email
+            - groups
+          scope_claims:
+            profile:
+              - first_name
+              - last_name
+              - email
+              - groups
+            group:
+              - groups

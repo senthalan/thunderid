@@ -97,11 +97,23 @@ flow:
   max_version_history: {{ .Values.configuration.flow.maxVersionHistory }}
   auto_infer_registration: {{ .Values.configuration.flow.autoInferRegistration }}
 
-  authn:
-    default_flow: {{ .Values.configuration.flow.authn.defaultFlow | quote }}
-
 cors:
   allowed_origins:
   {{- range .Values.configuration.cors.allowedOrigins }}
     - {{ . | quote }}
   {{- end }}
+
+organization_unit:
+  store: {{ .Values.configuration.organization_unit.store | quote }}
+
+immutable_resources:
+  enabled: {{ .Values.configuration.immutable_resources.enabled }}
+
+observability:
+  enabled: {{ .Values.configuration.observability.enabled }}
+  output:
+    opentelemetry:
+      enabled: {{ .Values.configuration.observability.output.opentelemetry.enabled }}
+      exporter_type: {{ .Values.configuration.observability.output.opentelemetry.exporter_type | quote }}
+      otlp_endpoint: {{ .Values.configuration.observability.output.opentelemetry.otlp_endpoint | quote }}
+      insecure: {{ .Values.configuration.observability.output.opentelemetry.insecure }}
