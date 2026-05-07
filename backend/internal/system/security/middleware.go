@@ -22,8 +22,8 @@ import (
 	"errors"
 	"net/http"
 
-	serverconst "github.com/asgardeo/thunder/internal/system/constants"
-	"github.com/asgardeo/thunder/internal/system/utils"
+	serverconst "github.com/senthalan/thunder/backend/internal/system/constants"
+	"github.com/senthalan/thunder/backend/internal/system/utils"
 )
 
 // middleware returns an HTTP middleware function that applies security checks to requests.

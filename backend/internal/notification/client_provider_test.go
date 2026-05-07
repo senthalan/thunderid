@@ -23,10 +23,10 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/internal/notification/common"
-	"github.com/asgardeo/thunder/internal/system/cmodels"
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/notification/common"
+	"github.com/senthalan/thunder/backend/internal/system/cmodels"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
 )
 
 type ClientProviderTestSuite struct {

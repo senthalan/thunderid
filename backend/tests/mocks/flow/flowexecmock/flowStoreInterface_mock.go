@@ -7,7 +7,7 @@ package flowexecmock
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/flow/flowexec"
+	"github.com/senthalan/thunder/backend/internal/flow/flowexec"
 	mock "github.com/stretchr/testify/mock"
 )
 

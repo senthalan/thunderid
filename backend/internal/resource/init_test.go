@@ -27,8 +27,8 @@ import (
 	"github.com/stretchr/testify/suite"
 	_ "modernc.org/sqlite"
 
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/tests/mocks/oumock"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/tests/mocks/oumock"
 )
 
 // fakeTransactioner is a test double for transaction.Transactioner

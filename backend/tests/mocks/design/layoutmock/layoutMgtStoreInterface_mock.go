@@ -5,7 +5,7 @@
 package layoutmock
 
 import (
-	"github.com/asgardeo/thunder/internal/design/layout/mgt"
+	"github.com/senthalan/thunder/backend/internal/design/layout/mgt"
 	mock "github.com/stretchr/testify/mock"
 )
 

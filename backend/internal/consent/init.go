@@ -19,7 +19,7 @@
 package consent
 
 import (
-	httpservice "github.com/asgardeo/thunder/internal/system/http"
+	httpservice "github.com/senthalan/thunder/backend/internal/system/http"
 )
 
 // Initialize initializes the consent service and returns an instance of ConsentServiceInterface.

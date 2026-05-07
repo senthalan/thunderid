@@ -28,12 +28,12 @@ import (
 	"github.com/stretchr/testify/suite"
 	yaml "gopkg.in/yaml.v3"
 
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/cors"
-	"github.com/asgardeo/thunder/tests/mocks/flow/flowexecmock"
-	"github.com/asgardeo/thunder/tests/mocks/inboundclientmock"
-	"github.com/asgardeo/thunder/tests/mocks/jose/jwtmock"
-	"github.com/asgardeo/thunder/tests/mocks/resourcemock"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/cors"
+	"github.com/senthalan/thunder/backend/tests/mocks/flow/flowexecmock"
+	"github.com/senthalan/thunder/backend/tests/mocks/inboundclientmock"
+	"github.com/senthalan/thunder/backend/tests/mocks/jose/jwtmock"
+	"github.com/senthalan/thunder/backend/tests/mocks/resourcemock"
 )
 
 type InitTestSuite struct {

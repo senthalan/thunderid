@@ -25,15 +25,15 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/asgardeo/thunder/internal/entity"
-	"github.com/asgardeo/thunder/internal/entityprovider"
-	"github.com/asgardeo/thunder/internal/inboundclient"
-	oupkg "github.com/asgardeo/thunder/internal/ou"
-	serverconst "github.com/asgardeo/thunder/internal/system/constants"
-	declarativeresource "github.com/asgardeo/thunder/internal/system/declarative_resource"
-	i18nmgt "github.com/asgardeo/thunder/internal/system/i18n/mgt"
-	"github.com/asgardeo/thunder/internal/system/middleware"
-	appkg "github.com/asgardeo/thunder/pkg/application"
+	"github.com/senthalan/thunder/backend/internal/entity"
+	"github.com/senthalan/thunder/backend/internal/entityprovider"
+	"github.com/senthalan/thunder/backend/internal/inboundclient"
+	oupkg "github.com/senthalan/thunder/backend/internal/ou"
+	serverconst "github.com/senthalan/thunder/backend/internal/system/constants"
+	declarativeresource "github.com/senthalan/thunder/backend/internal/system/declarative_resource"
+	i18nmgt "github.com/senthalan/thunder/backend/internal/system/i18n/mgt"
+	"github.com/senthalan/thunder/backend/internal/system/middleware"
+	appkg "github.com/senthalan/thunder/backend/pkg/application"
 )
 
 // Initialize initializes the application service and registers its routes.

@@ -22,16 +22,16 @@ import (
 	"context"
 	"slices"
 
-	"github.com/asgardeo/thunder/internal/authz"
-	"github.com/asgardeo/thunder/internal/entityprovider"
-	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/model"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/resourceindicators"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/tokenservice"
-	"github.com/asgardeo/thunder/internal/ou"
-	"github.com/asgardeo/thunder/internal/resource"
-	"github.com/asgardeo/thunder/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/authz"
+	"github.com/senthalan/thunder/backend/internal/entityprovider"
+	inboundmodel "github.com/senthalan/thunder/backend/internal/inboundclient/model"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/model"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/resourceindicators"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/tokenservice"
+	"github.com/senthalan/thunder/backend/internal/ou"
+	"github.com/senthalan/thunder/backend/internal/resource"
+	"github.com/senthalan/thunder/backend/internal/system/log"
 )
 
 // clientCredentialsGrantHandler handles the client credentials grant type.

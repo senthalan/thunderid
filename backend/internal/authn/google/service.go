@@ -24,15 +24,15 @@ import (
 	"strings"
 	"time"
 
-	"github.com/asgardeo/thunder/internal/authn/common"
-	authnoauth "github.com/asgardeo/thunder/internal/authn/oauth"
-	authnoidc "github.com/asgardeo/thunder/internal/authn/oidc"
-	"github.com/asgardeo/thunder/internal/entityprovider"
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/internal/system/i18n/core"
-	"github.com/asgardeo/thunder/internal/system/jose/jwt"
-	"github.com/asgardeo/thunder/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/authn/common"
+	authnoauth "github.com/senthalan/thunder/backend/internal/authn/oauth"
+	authnoidc "github.com/senthalan/thunder/backend/internal/authn/oidc"
+	"github.com/senthalan/thunder/backend/internal/entityprovider"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/system/i18n/core"
+	"github.com/senthalan/thunder/backend/internal/system/jose/jwt"
+	"github.com/senthalan/thunder/backend/internal/system/log"
 )
 
 const (

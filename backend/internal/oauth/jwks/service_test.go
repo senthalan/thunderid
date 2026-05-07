@@ -30,10 +30,10 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/internal/system/i18n/core"
-	"github.com/asgardeo/thunder/tests/mocks/crypto/pki/pkimock"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/system/i18n/core"
+	"github.com/senthalan/thunder/backend/tests/mocks/crypto/pki/pkimock"
 )
 
 type JWKSServiceTestSuite struct {

@@ -5,7 +5,7 @@
 package messagemock
 
 import (
-	"github.com/asgardeo/thunder/internal/notification/common"
+	"github.com/senthalan/thunder/backend/internal/notification/common"
 	mock "github.com/stretchr/testify/mock"
 )
 

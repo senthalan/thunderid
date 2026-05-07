@@ -5,9 +5,9 @@
 package notification
 
 import (
-	"github.com/asgardeo/thunder/internal/notification/common"
-	"github.com/asgardeo/thunder/internal/notification/message"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/notification/common"
+	"github.com/senthalan/thunder/backend/internal/notification/message"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
 	mock "github.com/stretchr/testify/mock"
 )
 

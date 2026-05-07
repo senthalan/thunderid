@@ -24,7 +24,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/asgardeo/thunder/internal/system/observability/event"
+	"github.com/senthalan/thunder/backend/internal/system/observability/event"
 )
 
 func TestNewJSONFormatter(t *testing.T) {

@@ -19,8 +19,8 @@
 package passkey
 
 import (
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/internal/system/i18n/core"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/system/i18n/core"
 )
 
 // Client errors for passkey authentication service

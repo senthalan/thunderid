@@ -28,8 +28,8 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/internal/system/log"
-	"github.com/asgardeo/thunder/tests/mocks/httpmock"
+	"github.com/senthalan/thunder/backend/internal/system/log"
+	"github.com/senthalan/thunder/backend/tests/mocks/httpmock"
 )
 
 type GithubUtilsTestSuite struct {

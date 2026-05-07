@@ -20,7 +20,7 @@
 package subscriber
 
 import (
-	"github.com/asgardeo/thunder/internal/system/observability/event"
+	"github.com/senthalan/thunder/backend/internal/system/observability/event"
 )
 
 // SubscriberInterface is the interface that all event subscribers must implement.

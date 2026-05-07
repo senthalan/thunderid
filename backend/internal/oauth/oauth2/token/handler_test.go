@@ -31,10 +31,10 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 
-	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/clientauth"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/model"
+	inboundmodel "github.com/senthalan/thunder/backend/internal/inboundclient/model"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/clientauth"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/model"
 )
 
 type TokenHandlerTestSuite struct {

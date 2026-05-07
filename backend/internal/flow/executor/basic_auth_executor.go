@@ -24,14 +24,14 @@ import (
 	"encoding/json"
 	"errors"
 
-	authncm "github.com/asgardeo/thunder/internal/authn/common"
-	authnprovidercm "github.com/asgardeo/thunder/internal/authnprovider/common"
-	authnprovidermgr "github.com/asgardeo/thunder/internal/authnprovider/manager"
-	"github.com/asgardeo/thunder/internal/entityprovider"
-	"github.com/asgardeo/thunder/internal/flow/common"
-	"github.com/asgardeo/thunder/internal/flow/core"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/internal/system/log"
+	authncm "github.com/senthalan/thunder/backend/internal/authn/common"
+	authnprovidercm "github.com/senthalan/thunder/backend/internal/authnprovider/common"
+	authnprovidermgr "github.com/senthalan/thunder/backend/internal/authnprovider/manager"
+	"github.com/senthalan/thunder/backend/internal/entityprovider"
+	"github.com/senthalan/thunder/backend/internal/flow/common"
+	"github.com/senthalan/thunder/backend/internal/flow/core"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/system/log"
 )
 
 // basicAuthExecutor implements the ExecutorInterface for basic authentication.

@@ -5,9 +5,9 @@
 package assertmock
 
 import (
-	"github.com/asgardeo/thunder/internal/authn/assert"
-	"github.com/asgardeo/thunder/internal/authn/common"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/authn/assert"
+	"github.com/senthalan/thunder/backend/internal/authn/common"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
 	mock "github.com/stretchr/testify/mock"
 )
 

@@ -23,7 +23,7 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/internal/idp"
+	"github.com/senthalan/thunder/backend/internal/idp"
 )
 
 type AuthenticatorTestSuite struct {

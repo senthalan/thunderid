@@ -23,10 +23,10 @@ import (
 	"net/url"
 	"strconv"
 
-	serverconst "github.com/asgardeo/thunder/internal/system/constants"
-	"github.com/asgardeo/thunder/internal/system/error/apierror"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	sysutils "github.com/asgardeo/thunder/internal/system/utils"
+	serverconst "github.com/senthalan/thunder/backend/internal/system/constants"
+	"github.com/senthalan/thunder/backend/internal/system/error/apierror"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	sysutils "github.com/senthalan/thunder/backend/internal/system/utils"
 )
 
 // resourceHandler handles HTTP requests for resource management.

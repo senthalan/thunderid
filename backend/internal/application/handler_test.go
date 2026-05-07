@@ -29,13 +29,13 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/pkg/application/model"
-	"github.com/asgardeo/thunder/internal/cert"
-	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
-	oauth2const "github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
-	"github.com/asgardeo/thunder/internal/system/error/apierror"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/internal/system/log"
+	"github.com/senthalan/thunder/backend/pkg/application/model"
+	"github.com/senthalan/thunder/backend/internal/cert"
+	inboundmodel "github.com/senthalan/thunder/backend/internal/inboundclient/model"
+	oauth2const "github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
+	"github.com/senthalan/thunder/backend/internal/system/error/apierror"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/system/log"
 )
 
 type HandlerTestSuite struct {

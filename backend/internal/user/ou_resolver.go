@@ -21,11 +21,11 @@ package user
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/entity"
-	"github.com/asgardeo/thunder/internal/entitytype"
-	oupkg "github.com/asgardeo/thunder/internal/ou"
-	"github.com/asgardeo/thunder/internal/system/log"
-	"github.com/asgardeo/thunder/internal/system/utils"
+	"github.com/senthalan/thunder/backend/internal/entity"
+	"github.com/senthalan/thunder/backend/internal/entitytype"
+	oupkg "github.com/senthalan/thunder/backend/internal/ou"
+	"github.com/senthalan/thunder/backend/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/utils"
 )
 
 // ouUserResolverAdapter implements oupkg.OUUserResolver using the entity service.

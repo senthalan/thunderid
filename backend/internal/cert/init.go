@@ -19,7 +19,7 @@
 package cert
 
 import (
-	"github.com/asgardeo/thunder/internal/system/database/provider"
+	"github.com/senthalan/thunder/backend/internal/system/database/provider"
 )
 
 // Initialize initializes and returns the certificate service.

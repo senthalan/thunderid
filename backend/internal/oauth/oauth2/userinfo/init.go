@@ -21,16 +21,16 @@ package userinfo
 import (
 	"net/http"
 
-	"github.com/asgardeo/thunder/internal/attributecache"
-	"github.com/asgardeo/thunder/internal/inboundclient"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/tokenservice"
-	"github.com/asgardeo/thunder/internal/ou"
-	syshttp "github.com/asgardeo/thunder/internal/system/http"
-	"github.com/asgardeo/thunder/internal/system/jose/jwe"
-	"github.com/asgardeo/thunder/internal/system/jose/jwt"
-	"github.com/asgardeo/thunder/internal/system/middleware"
-	"github.com/asgardeo/thunder/internal/system/transaction"
+	"github.com/senthalan/thunder/backend/internal/attributecache"
+	"github.com/senthalan/thunder/backend/internal/inboundclient"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/tokenservice"
+	"github.com/senthalan/thunder/backend/internal/ou"
+	syshttp "github.com/senthalan/thunder/backend/internal/system/http"
+	"github.com/senthalan/thunder/backend/internal/system/jose/jwe"
+	"github.com/senthalan/thunder/backend/internal/system/jose/jwt"
+	"github.com/senthalan/thunder/backend/internal/system/middleware"
+	"github.com/senthalan/thunder/backend/internal/system/transaction"
 )
 
 // Initialize initializes the userinfo handler and registers its routes.

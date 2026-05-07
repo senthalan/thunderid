@@ -27,14 +27,14 @@ import (
 	"strings"
 	"time"
 
-	consentauthn "github.com/asgardeo/thunder/internal/authn/consent"
-	authnprovidercm "github.com/asgardeo/thunder/internal/authnprovider/common"
-	"github.com/asgardeo/thunder/internal/consent"
-	"github.com/asgardeo/thunder/internal/flow/common"
-	"github.com/asgardeo/thunder/internal/flow/core"
-	oauth2const "github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/internal/system/log"
+	consentauthn "github.com/senthalan/thunder/backend/internal/authn/consent"
+	authnprovidercm "github.com/senthalan/thunder/backend/internal/authnprovider/common"
+	"github.com/senthalan/thunder/backend/internal/consent"
+	"github.com/senthalan/thunder/backend/internal/flow/common"
+	"github.com/senthalan/thunder/backend/internal/flow/core"
+	oauth2const "github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/system/log"
 )
 
 const (

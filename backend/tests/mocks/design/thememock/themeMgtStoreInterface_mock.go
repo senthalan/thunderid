@@ -5,7 +5,7 @@
 package thememock
 
 import (
-	"github.com/asgardeo/thunder/internal/design/theme/mgt"
+	"github.com/senthalan/thunder/backend/internal/design/theme/mgt"
 	mock "github.com/stretchr/testify/mock"
 )
 

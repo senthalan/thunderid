@@ -21,8 +21,8 @@ package declarativeresource
 import (
 	"errors"
 
-	"github.com/asgardeo/thunder/internal/system/declarative_resource/entity"
-	"github.com/asgardeo/thunder/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/declarative_resource/entity"
+	"github.com/senthalan/thunder/backend/internal/system/log"
 )
 
 // GenericFileBasedStore provides a generic implementation for file-based stores.

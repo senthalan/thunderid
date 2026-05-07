@@ -25,8 +25,8 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	declarativeresource "github.com/asgardeo/thunder/internal/system/declarative_resource"
-	entitystore "github.com/asgardeo/thunder/internal/system/declarative_resource/entity"
+	declarativeresource "github.com/senthalan/thunder/backend/internal/system/declarative_resource"
+	entitystore "github.com/senthalan/thunder/backend/internal/system/declarative_resource/entity"
 )
 
 type FileBasedStoreTestSuite struct {

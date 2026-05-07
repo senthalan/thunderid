@@ -25,9 +25,9 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/asgardeo/thunder/internal/notification/common"
-	syshttp "github.com/asgardeo/thunder/internal/system/http"
-	"github.com/asgardeo/thunder/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/notification/common"
+	syshttp "github.com/senthalan/thunder/backend/internal/system/http"
+	"github.com/senthalan/thunder/backend/internal/system/log"
 )
 
 const (

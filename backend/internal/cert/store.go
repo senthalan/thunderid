@@ -23,9 +23,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/asgardeo/thunder/internal/system/config"
-	dbmodel "github.com/asgardeo/thunder/internal/system/database/model"
-	dbprovider "github.com/asgardeo/thunder/internal/system/database/provider"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	dbmodel "github.com/senthalan/thunder/backend/internal/system/database/model"
+	dbprovider "github.com/senthalan/thunder/backend/internal/system/database/provider"
 )
 
 // certificateStoreInterface defines the methods for certificate storage operations.

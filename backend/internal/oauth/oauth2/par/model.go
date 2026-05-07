@@ -19,7 +19,7 @@
 package par
 
 import (
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/model"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/model"
 )
 
 // pushedAuthorizationRequest holds the stored PAR data.

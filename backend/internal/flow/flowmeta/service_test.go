@@ -27,16 +27,16 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/internal/application"
-	appmodel "github.com/asgardeo/thunder/pkg/application/model"
-	"github.com/asgardeo/thunder/internal/design/common"
-	"github.com/asgardeo/thunder/internal/ou"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	i18nmgt "github.com/asgardeo/thunder/internal/system/i18n/mgt"
-	"github.com/asgardeo/thunder/tests/mocks/applicationmock"
-	"github.com/asgardeo/thunder/tests/mocks/design/resolvemock"
-	"github.com/asgardeo/thunder/tests/mocks/i18n/mgtmock"
-	"github.com/asgardeo/thunder/tests/mocks/oumock"
+	"github.com/senthalan/thunder/backend/internal/application"
+	appmodel "github.com/senthalan/thunder/backend/pkg/application/model"
+	"github.com/senthalan/thunder/backend/internal/design/common"
+	"github.com/senthalan/thunder/backend/internal/ou"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	i18nmgt "github.com/senthalan/thunder/backend/internal/system/i18n/mgt"
+	"github.com/senthalan/thunder/backend/tests/mocks/applicationmock"
+	"github.com/senthalan/thunder/backend/tests/mocks/design/resolvemock"
+	"github.com/senthalan/thunder/backend/tests/mocks/i18n/mgtmock"
+	"github.com/senthalan/thunder/backend/tests/mocks/oumock"
 )
 
 const (

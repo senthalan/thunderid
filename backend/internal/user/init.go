@@ -22,14 +22,14 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/asgardeo/thunder/internal/entity"
-	"github.com/asgardeo/thunder/internal/entitytype"
-	oupkg "github.com/asgardeo/thunder/internal/ou"
-	"github.com/asgardeo/thunder/internal/system/config"
-	serverconst "github.com/asgardeo/thunder/internal/system/constants"
-	declarativeresource "github.com/asgardeo/thunder/internal/system/declarative_resource"
-	"github.com/asgardeo/thunder/internal/system/middleware"
-	"github.com/asgardeo/thunder/internal/system/sysauthz"
+	"github.com/senthalan/thunder/backend/internal/entity"
+	"github.com/senthalan/thunder/backend/internal/entitytype"
+	oupkg "github.com/senthalan/thunder/backend/internal/ou"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	serverconst "github.com/senthalan/thunder/backend/internal/system/constants"
+	declarativeresource "github.com/senthalan/thunder/backend/internal/system/declarative_resource"
+	"github.com/senthalan/thunder/backend/internal/system/middleware"
+	"github.com/senthalan/thunder/backend/internal/system/sysauthz"
 )
 
 // Initialize initializes the user service and registers its routes.

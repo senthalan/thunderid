@@ -18,7 +18,7 @@
 
 package group
 
-import "github.com/asgardeo/thunder/internal/system/utils"
+import "github.com/senthalan/thunder/backend/internal/system/utils"
 
 // MemberType represents the type of member principal.
 type MemberType string

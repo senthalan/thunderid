@@ -26,10 +26,10 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/asgardeo/thunder/internal/notification/common"
-	serverconst "github.com/asgardeo/thunder/internal/system/constants"
-	syshttp "github.com/asgardeo/thunder/internal/system/http"
-	"github.com/asgardeo/thunder/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/notification/common"
+	serverconst "github.com/senthalan/thunder/backend/internal/system/constants"
+	syshttp "github.com/senthalan/thunder/backend/internal/system/http"
+	"github.com/senthalan/thunder/backend/internal/system/log"
 )
 
 const (

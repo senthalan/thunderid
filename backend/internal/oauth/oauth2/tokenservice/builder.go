@@ -21,11 +21,11 @@ package tokenservice
 import (
 	"fmt"
 
-	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
-	oauth2model "github.com/asgardeo/thunder/internal/oauth/oauth2/model"
-	oauth2utils "github.com/asgardeo/thunder/internal/oauth/oauth2/utils"
-	"github.com/asgardeo/thunder/internal/system/jose/jwt"
+	inboundmodel "github.com/senthalan/thunder/backend/internal/inboundclient/model"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
+	oauth2model "github.com/senthalan/thunder/backend/internal/oauth/oauth2/model"
+	oauth2utils "github.com/senthalan/thunder/backend/internal/oauth/oauth2/utils"
+	"github.com/senthalan/thunder/backend/internal/system/jose/jwt"
 )
 
 // TokenBuilderInterface defines the interface for building OAuth2 tokens.

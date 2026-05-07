@@ -24,9 +24,9 @@ import (
 	"slices"
 	"strings"
 
-	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/pkce"
+	inboundmodel "github.com/senthalan/thunder/backend/internal/inboundclient/model"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/pkce"
 )
 
 // ValidateAuthorizationRequestParams validates the common authorization request parameters

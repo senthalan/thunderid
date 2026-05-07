@@ -24,14 +24,14 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/asgardeo/thunder/internal/flow/core"
-	"github.com/asgardeo/thunder/internal/flow/executor"
+	"github.com/senthalan/thunder/backend/internal/flow/core"
+	"github.com/senthalan/thunder/backend/internal/flow/executor"
 
-	"github.com/asgardeo/thunder/internal/system/config"
-	serverconst "github.com/asgardeo/thunder/internal/system/constants"
-	declarativeresource "github.com/asgardeo/thunder/internal/system/declarative_resource"
-	"github.com/asgardeo/thunder/internal/system/middleware"
-	"github.com/asgardeo/thunder/internal/system/transaction"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	serverconst "github.com/senthalan/thunder/backend/internal/system/constants"
+	declarativeresource "github.com/senthalan/thunder/backend/internal/system/declarative_resource"
+	"github.com/senthalan/thunder/backend/internal/system/middleware"
+	"github.com/senthalan/thunder/backend/internal/system/transaction"
 )
 
 // Initialize initializes the flow management service and registers HTTP routes.

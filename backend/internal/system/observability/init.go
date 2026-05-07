@@ -19,8 +19,8 @@
 package observability
 
 import (
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/log"
 )
 
 // Initialize creates and initializes a new observability service instance.

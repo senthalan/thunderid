@@ -23,9 +23,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/asgardeo/thunder/internal/flow/common"
-	"github.com/asgardeo/thunder/internal/flow/executor"
-	"github.com/asgardeo/thunder/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/flow/common"
+	"github.com/senthalan/thunder/backend/internal/flow/executor"
+	"github.com/senthalan/thunder/backend/internal/system/log"
 )
 
 // flowInferenceServiceInterface defines the interface for flow inference services

@@ -24,16 +24,16 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/internal/entityprovider"
-	"github.com/asgardeo/thunder/internal/flow/common"
-	"github.com/asgardeo/thunder/internal/flow/core"
-	"github.com/asgardeo/thunder/internal/system/email"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/internal/system/template"
-	"github.com/asgardeo/thunder/tests/mocks/emailmock"
-	"github.com/asgardeo/thunder/tests/mocks/entityprovidermock"
-	"github.com/asgardeo/thunder/tests/mocks/flow/coremock"
-	"github.com/asgardeo/thunder/tests/mocks/templatemock"
+	"github.com/senthalan/thunder/backend/internal/entityprovider"
+	"github.com/senthalan/thunder/backend/internal/flow/common"
+	"github.com/senthalan/thunder/backend/internal/flow/core"
+	"github.com/senthalan/thunder/backend/internal/system/email"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/system/template"
+	"github.com/senthalan/thunder/backend/tests/mocks/emailmock"
+	"github.com/senthalan/thunder/backend/tests/mocks/entityprovidermock"
+	"github.com/senthalan/thunder/backend/tests/mocks/flow/coremock"
+	"github.com/senthalan/thunder/backend/tests/mocks/templatemock"
 )
 
 type EmailExecutorTestSuite struct {

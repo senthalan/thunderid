@@ -26,15 +26,15 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 
-	authncm "github.com/asgardeo/thunder/internal/authn/common"
-	authnprovidermgr "github.com/asgardeo/thunder/internal/authnprovider/manager"
-	"github.com/asgardeo/thunder/internal/entityprovider"
-	"github.com/asgardeo/thunder/internal/flow/common"
-	"github.com/asgardeo/thunder/internal/flow/core"
-	"github.com/asgardeo/thunder/tests/mocks/authn/otpmock"
-	"github.com/asgardeo/thunder/tests/mocks/authnprovider/managermock"
-	"github.com/asgardeo/thunder/tests/mocks/entityprovidermock"
-	"github.com/asgardeo/thunder/tests/mocks/flow/coremock"
+	authncm "github.com/senthalan/thunder/backend/internal/authn/common"
+	authnprovidermgr "github.com/senthalan/thunder/backend/internal/authnprovider/manager"
+	"github.com/senthalan/thunder/backend/internal/entityprovider"
+	"github.com/senthalan/thunder/backend/internal/flow/common"
+	"github.com/senthalan/thunder/backend/internal/flow/core"
+	"github.com/senthalan/thunder/backend/tests/mocks/authn/otpmock"
+	"github.com/senthalan/thunder/backend/tests/mocks/authnprovider/managermock"
+	"github.com/senthalan/thunder/backend/tests/mocks/entityprovidermock"
+	"github.com/senthalan/thunder/backend/tests/mocks/flow/coremock"
 )
 
 type SMSAuthExecutorTestSuite struct {

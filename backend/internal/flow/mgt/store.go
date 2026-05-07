@@ -24,11 +24,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/asgardeo/thunder/internal/flow/common"
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/database/provider"
-	"github.com/asgardeo/thunder/internal/system/log"
-	"github.com/asgardeo/thunder/internal/system/transaction"
+	"github.com/senthalan/thunder/backend/internal/flow/common"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/database/provider"
+	"github.com/senthalan/thunder/backend/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/transaction"
 )
 
 // Database column names

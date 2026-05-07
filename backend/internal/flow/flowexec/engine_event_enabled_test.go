@@ -23,13 +23,13 @@ import (
 
 	"github.com/stretchr/testify/mock"
 
-	authncm "github.com/asgardeo/thunder/internal/authn/common"
-	"github.com/asgardeo/thunder/internal/flow/common"
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	i18ncore "github.com/asgardeo/thunder/internal/system/i18n/core"
-	"github.com/asgardeo/thunder/tests/mocks/flow/coremock"
-	"github.com/asgardeo/thunder/tests/mocks/observability/observabilitymock"
+	authncm "github.com/senthalan/thunder/backend/internal/authn/common"
+	"github.com/senthalan/thunder/backend/internal/flow/common"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	i18ncore "github.com/senthalan/thunder/backend/internal/system/i18n/core"
+	"github.com/senthalan/thunder/backend/tests/mocks/flow/coremock"
+	"github.com/senthalan/thunder/backend/tests/mocks/observability/observabilitymock"
 )
 
 // setupMockObservability creates a mock observability service for testing

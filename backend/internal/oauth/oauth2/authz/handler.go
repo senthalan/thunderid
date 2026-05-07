@@ -24,11 +24,11 @@ import (
 	"net/http"
 	"net/url"
 
-	oauth2const "github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
-	oauth2utils "github.com/asgardeo/thunder/internal/oauth/oauth2/utils"
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/log"
-	"github.com/asgardeo/thunder/internal/system/utils"
+	oauth2const "github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
+	oauth2utils "github.com/senthalan/thunder/backend/internal/oauth/oauth2/utils"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/utils"
 )
 
 // AuthorizeHandlerInterface defines the interface for handling OAuth2 authorization requests.

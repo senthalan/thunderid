@@ -21,12 +21,12 @@ package authn
 import (
 	"net/http"
 
-	"github.com/asgardeo/thunder/internal/authn/common"
-	"github.com/asgardeo/thunder/internal/idp"
-	notifcommon "github.com/asgardeo/thunder/internal/notification/common"
-	"github.com/asgardeo/thunder/internal/system/error/apierror"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	sysutils "github.com/asgardeo/thunder/internal/system/utils"
+	"github.com/senthalan/thunder/backend/internal/authn/common"
+	"github.com/senthalan/thunder/backend/internal/idp"
+	notifcommon "github.com/senthalan/thunder/backend/internal/notification/common"
+	"github.com/senthalan/thunder/backend/internal/system/error/apierror"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	sysutils "github.com/senthalan/thunder/backend/internal/system/utils"
 )
 
 // authenticationHandler defines the handler for managing authentication API requests.

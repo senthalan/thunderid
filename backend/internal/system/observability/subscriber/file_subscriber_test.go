@@ -26,9 +26,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/observability/event"
-	"github.com/asgardeo/thunder/tests/mocks/observability/adaptermock"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/observability/event"
+	"github.com/senthalan/thunder/backend/tests/mocks/observability/adaptermock"
 )
 
 func TestNewFileSubscriber(t *testing.T) {

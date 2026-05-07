@@ -24,10 +24,10 @@ import (
 	"errors"
 	"fmt"
 
-	oauth2model "github.com/asgardeo/thunder/internal/oauth/oauth2/model"
-	oauth2utils "github.com/asgardeo/thunder/internal/oauth/oauth2/utils"
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/database/provider"
+	oauth2model "github.com/senthalan/thunder/backend/internal/oauth/oauth2/model"
+	oauth2utils "github.com/senthalan/thunder/backend/internal/oauth/oauth2/utils"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/database/provider"
 )
 
 const (

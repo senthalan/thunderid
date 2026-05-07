@@ -5,8 +5,8 @@
 package oauthmock
 
 import (
-	"github.com/asgardeo/thunder/internal/authn/oauth"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/authn/oauth"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
 	mock "github.com/stretchr/testify/mock"
 )
 

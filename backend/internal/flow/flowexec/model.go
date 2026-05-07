@@ -25,14 +25,14 @@ import (
 	"strings"
 	"time"
 
-	appmodel "github.com/asgardeo/thunder/pkg/application/model"
-	authncm "github.com/asgardeo/thunder/internal/authn/common"
-	authnprovidercm "github.com/asgardeo/thunder/internal/authnprovider/common"
-	managerpkg "github.com/asgardeo/thunder/internal/authnprovider/manager"
-	"github.com/asgardeo/thunder/internal/flow/common"
-	"github.com/asgardeo/thunder/internal/flow/core"
-	"github.com/asgardeo/thunder/internal/system/crypto"
-	"github.com/asgardeo/thunder/internal/system/crypto/runtime"
+	appmodel "github.com/senthalan/thunder/backend/pkg/application/model"
+	authncm "github.com/senthalan/thunder/backend/internal/authn/common"
+	authnprovidercm "github.com/senthalan/thunder/backend/internal/authnprovider/common"
+	managerpkg "github.com/senthalan/thunder/backend/internal/authnprovider/manager"
+	"github.com/senthalan/thunder/backend/internal/flow/common"
+	"github.com/senthalan/thunder/backend/internal/flow/core"
+	"github.com/senthalan/thunder/backend/internal/system/crypto"
+	"github.com/senthalan/thunder/backend/internal/system/crypto/runtime"
 )
 
 // EngineContext holds the overall context used by the flow engine during execution.

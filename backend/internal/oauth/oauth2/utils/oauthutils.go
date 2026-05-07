@@ -26,9 +26,9 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/model"
-	"github.com/asgardeo/thunder/internal/system/utils"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/model"
+	"github.com/senthalan/thunder/backend/internal/system/utils"
 )
 
 // GetURIWithQueryParams constructs a URI with the given query parameters.

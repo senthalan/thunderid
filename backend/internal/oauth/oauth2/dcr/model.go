@@ -22,8 +22,8 @@ import (
 	"encoding/json"
 	"strings"
 
-	oauth2const "github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
-	i18nmgt "github.com/asgardeo/thunder/internal/system/i18n/mgt"
+	oauth2const "github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
+	i18nmgt "github.com/senthalan/thunder/backend/internal/system/i18n/mgt"
 )
 
 // Default values for DCR

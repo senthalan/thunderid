@@ -27,7 +27,7 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 
-	serverconst "github.com/asgardeo/thunder/internal/system/constants"
+	serverconst "github.com/senthalan/thunder/backend/internal/system/constants"
 )
 
 type CompositeStoreTestSuite struct {

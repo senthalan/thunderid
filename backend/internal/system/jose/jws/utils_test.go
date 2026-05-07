@@ -33,7 +33,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/internal/system/crypto/sign"
+	"github.com/senthalan/thunder/backend/internal/system/crypto/sign"
 )
 
 type JWSUtilsTestSuite struct {

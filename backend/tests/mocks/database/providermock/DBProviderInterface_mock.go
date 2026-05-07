@@ -5,8 +5,8 @@
 package providermock
 
 import (
-	"github.com/asgardeo/thunder/internal/system/database/provider"
-	"github.com/asgardeo/thunder/internal/system/transaction"
+	"github.com/senthalan/thunder/backend/internal/system/database/provider"
+	"github.com/senthalan/thunder/backend/internal/system/transaction"
 	mock "github.com/stretchr/testify/mock"
 )
 

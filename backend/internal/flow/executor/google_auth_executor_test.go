@@ -23,14 +23,14 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	authnoidc "github.com/asgardeo/thunder/internal/authn/oidc"
-	"github.com/asgardeo/thunder/internal/flow/common"
-	"github.com/asgardeo/thunder/tests/mocks/authn/googlemock"
-	"github.com/asgardeo/thunder/tests/mocks/authn/oidcmock"
-	"github.com/asgardeo/thunder/tests/mocks/authnprovider/managermock"
-	"github.com/asgardeo/thunder/tests/mocks/entitytypemock"
-	"github.com/asgardeo/thunder/tests/mocks/flow/coremock"
-	"github.com/asgardeo/thunder/tests/mocks/idp/idpmock"
+	authnoidc "github.com/senthalan/thunder/backend/internal/authn/oidc"
+	"github.com/senthalan/thunder/backend/internal/flow/common"
+	"github.com/senthalan/thunder/backend/tests/mocks/authn/googlemock"
+	"github.com/senthalan/thunder/backend/tests/mocks/authn/oidcmock"
+	"github.com/senthalan/thunder/backend/tests/mocks/authnprovider/managermock"
+	"github.com/senthalan/thunder/backend/tests/mocks/entitytypemock"
+	"github.com/senthalan/thunder/backend/tests/mocks/flow/coremock"
+	"github.com/senthalan/thunder/backend/tests/mocks/idp/idpmock"
 )
 
 type GoogleAuthExecutorTestSuite struct {

@@ -7,9 +7,9 @@ package inboundclientmock
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/cert"
-	"github.com/asgardeo/thunder/internal/inboundclient"
-	"github.com/asgardeo/thunder/internal/inboundclient/model"
+	"github.com/senthalan/thunder/backend/internal/cert"
+	"github.com/senthalan/thunder/backend/internal/inboundclient"
+	"github.com/senthalan/thunder/backend/internal/inboundclient/model"
 	mock "github.com/stretchr/testify/mock"
 )
 

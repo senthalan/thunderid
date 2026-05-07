@@ -7,8 +7,8 @@ package jwemock
 import (
 	"crypto"
 
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/internal/system/jose/jwe"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/system/jose/jwe"
 	mock "github.com/stretchr/testify/mock"
 )
 

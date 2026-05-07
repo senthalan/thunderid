@@ -22,8 +22,8 @@ package export
 import (
 	"net/http"
 
-	declarativeresource "github.com/asgardeo/thunder/internal/system/declarative_resource"
-	"github.com/asgardeo/thunder/internal/system/middleware"
+	declarativeresource "github.com/senthalan/thunder/backend/internal/system/declarative_resource"
+	"github.com/senthalan/thunder/backend/internal/system/middleware"
 )
 
 // Initialize initializes the export service and registers its routes.

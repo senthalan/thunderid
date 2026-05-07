@@ -7,7 +7,7 @@ package flowmgt
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/flow/common"
+	"github.com/senthalan/thunder/backend/internal/flow/common"
 	mock "github.com/stretchr/testify/mock"
 )
 

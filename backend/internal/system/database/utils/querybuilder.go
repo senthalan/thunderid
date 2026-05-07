@@ -6,7 +6,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/asgardeo/thunder/internal/system/database/model"
+	"github.com/senthalan/thunder/backend/internal/system/database/model"
 )
 
 // BuildFilterQuery constructs a query to filter records based on the provided filters.

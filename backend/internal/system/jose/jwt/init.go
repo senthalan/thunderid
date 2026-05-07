@@ -22,8 +22,8 @@ package jwt
 import (
 	"time"
 
-	"github.com/asgardeo/thunder/internal/system/crypto/pki"
-	httpservice "github.com/asgardeo/thunder/internal/system/http"
+	"github.com/senthalan/thunder/backend/internal/system/crypto/pki"
+	httpservice "github.com/senthalan/thunder/backend/internal/system/http"
 )
 
 // Initialize initializes the JWT service.

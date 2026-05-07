@@ -21,9 +21,9 @@ package ou
 import (
 	"errors"
 
-	serverconst "github.com/asgardeo/thunder/internal/system/constants"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/internal/system/i18n/core"
+	serverconst "github.com/senthalan/thunder/backend/internal/system/constants"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/system/i18n/core"
 )
 
 // Client errors for organization unit management operations.

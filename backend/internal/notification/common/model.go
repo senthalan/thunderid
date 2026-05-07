@@ -19,7 +19,7 @@
 // Package common contains the common models and constants for notification package.
 package common
 
-import "github.com/asgardeo/thunder/internal/system/cmodels"
+import "github.com/senthalan/thunder/backend/internal/system/cmodels"
 
 // SMSData represents the data structure for a SMS message.
 type SMSData struct {

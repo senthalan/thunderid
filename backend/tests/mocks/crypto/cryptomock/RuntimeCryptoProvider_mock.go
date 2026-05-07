@@ -7,7 +7,7 @@ package cryptomock
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/system/crypto"
+	"github.com/senthalan/thunder/backend/internal/system/crypto"
 	mock "github.com/stretchr/testify/mock"
 )
 

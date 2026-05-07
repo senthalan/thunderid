@@ -7,8 +7,8 @@ package idpmock
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/idp"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/idp"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
 	mock "github.com/stretchr/testify/mock"
 )
 

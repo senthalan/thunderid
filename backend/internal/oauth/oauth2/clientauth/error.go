@@ -21,7 +21,7 @@ package clientauth
 import (
 	"net/http"
 
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
 )
 
 // authError represents an authentication error.

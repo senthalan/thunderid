@@ -5,7 +5,7 @@
 package servicemock
 
 import (
-	"github.com/asgardeo/thunder/internal/system/healthcheck/model"
+	"github.com/senthalan/thunder/backend/internal/system/healthcheck/model"
 	mock "github.com/stretchr/testify/mock"
 )
 

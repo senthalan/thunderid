@@ -25,8 +25,8 @@ import (
 
 	"github.com/stretchr/testify/mock"
 
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	enginemock "github.com/asgardeo/thunder/tests/mocks/authz/engine"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	enginemock "github.com/senthalan/thunder/backend/tests/mocks/authz/engine"
 
 	"github.com/stretchr/testify/suite"
 )

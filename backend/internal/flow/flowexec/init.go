@@ -21,14 +21,14 @@ package flowexec
 import (
 	"net/http"
 
-	"github.com/asgardeo/thunder/internal/flow/executor"
-	appkg "github.com/asgardeo/thunder/pkg/application"
-	flowmgt "github.com/asgardeo/thunder/internal/flow/mgt"
-	"github.com/asgardeo/thunder/internal/system/config"
-	dbprovider "github.com/asgardeo/thunder/internal/system/database/provider"
-	"github.com/asgardeo/thunder/internal/system/middleware"
-	"github.com/asgardeo/thunder/internal/system/observability"
-	"github.com/asgardeo/thunder/internal/system/transaction"
+	"github.com/senthalan/thunder/backend/internal/flow/executor"
+	appkg "github.com/senthalan/thunder/backend/pkg/application"
+	flowmgt "github.com/senthalan/thunder/backend/internal/flow/mgt"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	dbprovider "github.com/senthalan/thunder/backend/internal/system/database/provider"
+	"github.com/senthalan/thunder/backend/internal/system/middleware"
+	"github.com/senthalan/thunder/backend/internal/system/observability"
+	"github.com/senthalan/thunder/backend/internal/system/transaction"
 )
 
 // Initialize creates and configures the flow execution service components.

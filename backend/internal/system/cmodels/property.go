@@ -24,8 +24,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/asgardeo/thunder/internal/system/crypto"
-	"github.com/asgardeo/thunder/internal/system/crypto/config"
+	"github.com/senthalan/thunder/backend/internal/system/crypto"
+	"github.com/senthalan/thunder/backend/internal/system/crypto/config"
 )
 
 // Property represents a generic property with name, value, and isSecret fields.

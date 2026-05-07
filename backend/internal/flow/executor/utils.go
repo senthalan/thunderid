@@ -23,9 +23,9 @@ import (
 	"errors"
 	"fmt"
 
-	authncm "github.com/asgardeo/thunder/internal/authn/common"
-	"github.com/asgardeo/thunder/internal/entityprovider"
-	"github.com/asgardeo/thunder/internal/flow/common"
+	authncm "github.com/senthalan/thunder/backend/internal/authn/common"
+	"github.com/senthalan/thunder/backend/internal/entityprovider"
+	"github.com/senthalan/thunder/backend/internal/flow/common"
 )
 
 // getAuthnServiceName returns the authn service name for an executor.

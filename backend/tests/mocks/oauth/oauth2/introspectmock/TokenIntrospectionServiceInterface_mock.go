@@ -7,7 +7,7 @@ package introspectmock
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/introspect"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/introspect"
 	mock "github.com/stretchr/testify/mock"
 )
 

@@ -25,17 +25,17 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/internal/application"
-	"github.com/asgardeo/thunder/pkg/application/model"
-	"github.com/asgardeo/thunder/internal/cert"
-	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
-	oauth2const "github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	i18ncore "github.com/asgardeo/thunder/internal/system/i18n/core"
-	i18nmgt "github.com/asgardeo/thunder/internal/system/i18n/mgt"
-	"github.com/asgardeo/thunder/tests/mocks/applicationmock"
-	i18nmock "github.com/asgardeo/thunder/tests/mocks/i18n/mgtmock"
-	"github.com/asgardeo/thunder/tests/mocks/oumock"
+	"github.com/senthalan/thunder/backend/internal/application"
+	"github.com/senthalan/thunder/backend/pkg/application/model"
+	"github.com/senthalan/thunder/backend/internal/cert"
+	inboundmodel "github.com/senthalan/thunder/backend/internal/inboundclient/model"
+	oauth2const "github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	i18ncore "github.com/senthalan/thunder/backend/internal/system/i18n/core"
+	i18nmgt "github.com/senthalan/thunder/backend/internal/system/i18n/mgt"
+	"github.com/senthalan/thunder/backend/tests/mocks/applicationmock"
+	i18nmock "github.com/senthalan/thunder/backend/tests/mocks/i18n/mgtmock"
+	"github.com/senthalan/thunder/backend/tests/mocks/oumock"
 )
 
 // DCRServiceTestSuite is the test suite for DCR service

@@ -22,8 +22,8 @@ package granthandlers
 import (
 	"context"
 
-	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/model"
+	inboundmodel "github.com/senthalan/thunder/backend/internal/inboundclient/model"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/model"
 )
 
 // GrantHandlerInterface defines the interface for handling OAuth 2.0 grants.

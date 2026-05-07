@@ -5,7 +5,7 @@
 package executor
 
 import (
-	"github.com/asgardeo/thunder/internal/flow/core"
+	"github.com/senthalan/thunder/backend/internal/flow/core"
 	mock "github.com/stretchr/testify/mock"
 )
 

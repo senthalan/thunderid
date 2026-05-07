@@ -21,9 +21,9 @@ package user
 import (
 	"encoding/json"
 
-	"github.com/asgardeo/thunder/internal/entity"
-	"github.com/asgardeo/thunder/internal/system/crypto/hash"
-	"github.com/asgardeo/thunder/internal/system/utils"
+	"github.com/senthalan/thunder/backend/internal/entity"
+	"github.com/senthalan/thunder/backend/internal/system/crypto/hash"
+	"github.com/senthalan/thunder/backend/internal/system/utils"
 )
 
 // User represents a user in the system.

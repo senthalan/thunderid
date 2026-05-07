@@ -7,7 +7,7 @@ package cachemock
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/system/cache"
+	"github.com/senthalan/thunder/backend/internal/system/cache"
 	mock "github.com/stretchr/testify/mock"
 )
 

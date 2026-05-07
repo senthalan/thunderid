@@ -27,8 +27,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/asgardeo/thunder/internal/system/constants"
-	sysContext "github.com/asgardeo/thunder/internal/system/context"
+	"github.com/senthalan/thunder/backend/internal/system/constants"
+	sysContext "github.com/senthalan/thunder/backend/internal/system/context"
 )
 
 var (

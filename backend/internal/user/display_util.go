@@ -21,9 +21,9 @@ package user
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/entitytype"
-	"github.com/asgardeo/thunder/internal/system/log"
-	"github.com/asgardeo/thunder/internal/system/utils"
+	"github.com/senthalan/thunder/backend/internal/entitytype"
+	"github.com/senthalan/thunder/backend/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/utils"
 )
 
 // ResolveDisplayAttributePaths collects unique user types and resolves their display

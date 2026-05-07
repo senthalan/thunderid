@@ -23,7 +23,7 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/internal/flow/common"
+	"github.com/senthalan/thunder/backend/internal/flow/common"
 )
 
 const testEmailAttr = "email"

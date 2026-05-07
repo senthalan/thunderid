@@ -21,9 +21,9 @@ package thememgt
 import (
 	"net/http"
 
-	serverconst "github.com/asgardeo/thunder/internal/system/constants"
-	declarativeresource "github.com/asgardeo/thunder/internal/system/declarative_resource"
-	"github.com/asgardeo/thunder/internal/system/middleware"
+	serverconst "github.com/senthalan/thunder/backend/internal/system/constants"
+	declarativeresource "github.com/senthalan/thunder/backend/internal/system/declarative_resource"
+	"github.com/senthalan/thunder/backend/internal/system/middleware"
 )
 
 // Initialize initializes the theme management service and registers its routes.

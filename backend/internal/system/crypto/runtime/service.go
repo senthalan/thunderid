@@ -30,10 +30,10 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/asgardeo/thunder/internal/system/crypto"
-	"github.com/asgardeo/thunder/internal/system/crypto/config"
-	"github.com/asgardeo/thunder/internal/system/crypto/pki"
-	"github.com/asgardeo/thunder/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/crypto"
+	"github.com/senthalan/thunder/backend/internal/system/crypto/config"
+	"github.com/senthalan/thunder/backend/internal/system/crypto/pki"
+	"github.com/senthalan/thunder/backend/internal/system/log"
 )
 
 // runtimeCryptoService implements RuntimeCryptoProvider backed by PKI key material.

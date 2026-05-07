@@ -5,7 +5,7 @@
 package emailmock
 
 import (
-	"github.com/asgardeo/thunder/internal/system/email"
+	"github.com/senthalan/thunder/backend/internal/system/email"
 	mock "github.com/stretchr/testify/mock"
 )
 

@@ -24,10 +24,10 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
-	sysconfig "github.com/asgardeo/thunder/internal/system/config"
-	declarativeresource "github.com/asgardeo/thunder/internal/system/declarative_resource"
-	"github.com/asgardeo/thunder/internal/system/declarative_resource/entity"
+	inboundmodel "github.com/senthalan/thunder/backend/internal/inboundclient/model"
+	sysconfig "github.com/senthalan/thunder/backend/internal/system/config"
+	declarativeresource "github.com/senthalan/thunder/backend/internal/system/declarative_resource"
+	"github.com/senthalan/thunder/backend/internal/system/declarative_resource/entity"
 )
 
 type FileBasedStoreTestSuite struct {

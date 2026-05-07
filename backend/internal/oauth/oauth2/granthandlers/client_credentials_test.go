@@ -19,7 +19,7 @@
 package granthandlers
 
 import (
-	"github.com/asgardeo/thunder/internal/system/i18n/core"
+	"github.com/senthalan/thunder/backend/internal/system/i18n/core"
 
 	"context"
 	"errors"
@@ -30,22 +30,22 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/internal/authz"
-	"github.com/asgardeo/thunder/internal/entityprovider"
-	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/model"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/tokenservice"
-	"github.com/asgardeo/thunder/internal/ou"
-	"github.com/asgardeo/thunder/internal/resource"
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/tests/mocks/authzmock"
-	"github.com/asgardeo/thunder/tests/mocks/entityprovidermock"
-	"github.com/asgardeo/thunder/tests/mocks/jose/jwtmock"
-	"github.com/asgardeo/thunder/tests/mocks/oauth/oauth2/tokenservicemock"
-	"github.com/asgardeo/thunder/tests/mocks/oumock"
-	"github.com/asgardeo/thunder/tests/mocks/resourcemock"
+	"github.com/senthalan/thunder/backend/internal/authz"
+	"github.com/senthalan/thunder/backend/internal/entityprovider"
+	inboundmodel "github.com/senthalan/thunder/backend/internal/inboundclient/model"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/model"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/tokenservice"
+	"github.com/senthalan/thunder/backend/internal/ou"
+	"github.com/senthalan/thunder/backend/internal/resource"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/tests/mocks/authzmock"
+	"github.com/senthalan/thunder/backend/tests/mocks/entityprovidermock"
+	"github.com/senthalan/thunder/backend/tests/mocks/jose/jwtmock"
+	"github.com/senthalan/thunder/backend/tests/mocks/oauth/oauth2/tokenservicemock"
+	"github.com/senthalan/thunder/backend/tests/mocks/oumock"
+	"github.com/senthalan/thunder/backend/tests/mocks/resourcemock"
 )
 
 // nolint:gosec // Test token, not a real credential

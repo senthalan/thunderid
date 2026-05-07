@@ -23,8 +23,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/database/provider"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/database/provider"
 )
 
 // i18nStoreInterface defines the interface for i18n store operations.

@@ -7,7 +7,7 @@ package entitytypemock
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/entitytype"
+	"github.com/senthalan/thunder/backend/internal/entitytype"
 	mock "github.com/stretchr/testify/mock"
 )
 

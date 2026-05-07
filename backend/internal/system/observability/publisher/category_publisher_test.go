@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/asgardeo/thunder/internal/system/observability/event"
+	"github.com/senthalan/thunder/backend/internal/system/observability/event"
 )
 
 // mockSubscriberV2 is a mock subscriber for testing with category support

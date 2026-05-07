@@ -22,11 +22,11 @@ package service
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/system/config"
-	dbmodel "github.com/asgardeo/thunder/internal/system/database/model"
-	"github.com/asgardeo/thunder/internal/system/database/provider"
-	"github.com/asgardeo/thunder/internal/system/healthcheck/model"
-	"github.com/asgardeo/thunder/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	dbmodel "github.com/senthalan/thunder/backend/internal/system/database/model"
+	"github.com/senthalan/thunder/backend/internal/system/database/provider"
+	"github.com/senthalan/thunder/backend/internal/system/healthcheck/model"
+	"github.com/senthalan/thunder/backend/internal/system/log"
 )
 
 // HealthCheckServiceInterface defines the interface for the health check service.

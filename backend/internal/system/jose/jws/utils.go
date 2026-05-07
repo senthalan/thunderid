@@ -31,7 +31,7 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/asgardeo/thunder/internal/system/crypto/sign"
+	"github.com/senthalan/thunder/backend/internal/system/crypto/sign"
 )
 
 // DecodeHeader decodes the header of a JWS token and returns it as a map.

@@ -26,16 +26,16 @@ import (
 	"strings"
 	"time"
 
-	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/granthandlers"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/model"
-	"github.com/asgardeo/thunder/internal/oauth/scope"
-	sysContext "github.com/asgardeo/thunder/internal/system/context"
-	"github.com/asgardeo/thunder/internal/system/log"
-	"github.com/asgardeo/thunder/internal/system/observability"
-	"github.com/asgardeo/thunder/internal/system/observability/event"
-	"github.com/asgardeo/thunder/internal/system/transaction"
+	inboundmodel "github.com/senthalan/thunder/backend/internal/inboundclient/model"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/granthandlers"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/model"
+	"github.com/senthalan/thunder/backend/internal/oauth/scope"
+	sysContext "github.com/senthalan/thunder/backend/internal/system/context"
+	"github.com/senthalan/thunder/backend/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/observability"
+	"github.com/senthalan/thunder/backend/internal/system/observability/event"
+	"github.com/senthalan/thunder/backend/internal/system/transaction"
 )
 
 // TokenServiceInterface defines the interface for OAuth 2.0 token processing.

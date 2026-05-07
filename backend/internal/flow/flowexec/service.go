@@ -23,20 +23,20 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/asgardeo/thunder/internal/application"
-	"github.com/asgardeo/thunder/internal/flow/common"
-	appkg "github.com/asgardeo/thunder/pkg/application"
-	flowmgt "github.com/asgardeo/thunder/internal/flow/mgt"
+	"github.com/senthalan/thunder/backend/internal/application"
+	"github.com/senthalan/thunder/backend/internal/flow/common"
+	appkg "github.com/senthalan/thunder/backend/pkg/application"
+	flowmgt "github.com/senthalan/thunder/backend/internal/flow/mgt"
 
-	"github.com/asgardeo/thunder/internal/system/config"
-	sysContext "github.com/asgardeo/thunder/internal/system/context"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/internal/system/i18n/core"
-	"github.com/asgardeo/thunder/internal/system/log"
-	"github.com/asgardeo/thunder/internal/system/observability"
-	"github.com/asgardeo/thunder/internal/system/observability/event"
-	"github.com/asgardeo/thunder/internal/system/transaction"
-	sysutils "github.com/asgardeo/thunder/internal/system/utils"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	sysContext "github.com/senthalan/thunder/backend/internal/system/context"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/system/i18n/core"
+	"github.com/senthalan/thunder/backend/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/observability"
+	"github.com/senthalan/thunder/backend/internal/system/observability/event"
+	"github.com/senthalan/thunder/backend/internal/system/transaction"
+	sysutils "github.com/senthalan/thunder/backend/internal/system/utils"
 )
 
 // FlowExecServiceInterface defines the interface for flow orchestration and acts as the

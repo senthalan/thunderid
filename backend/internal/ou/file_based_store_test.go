@@ -24,8 +24,8 @@ import (
 	"strconv"
 	"testing"
 
-	declarativeresource "github.com/asgardeo/thunder/internal/system/declarative_resource"
-	"github.com/asgardeo/thunder/internal/system/declarative_resource/entity"
+	declarativeresource "github.com/senthalan/thunder/backend/internal/system/declarative_resource"
+	"github.com/senthalan/thunder/backend/internal/system/declarative_resource/entity"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"

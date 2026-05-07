@@ -7,7 +7,7 @@ package attributecachemock
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/attributecache"
+	"github.com/senthalan/thunder/backend/internal/attributecache"
 	mock "github.com/stretchr/testify/mock"
 )
 

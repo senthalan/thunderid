@@ -26,7 +26,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/asgardeo/thunder/tests/integration/testutils"
+	"github.com/senthalan/thunder/tests/integration/testutils"
 )
 
 const (

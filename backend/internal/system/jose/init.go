@@ -21,9 +21,9 @@
 package jose
 
 import (
-	"github.com/asgardeo/thunder/internal/system/crypto/pki"
-	"github.com/asgardeo/thunder/internal/system/jose/jwe"
-	"github.com/asgardeo/thunder/internal/system/jose/jwt"
+	"github.com/senthalan/thunder/backend/internal/system/crypto/pki"
+	"github.com/senthalan/thunder/backend/internal/system/jose/jwe"
+	"github.com/senthalan/thunder/backend/internal/system/jose/jwt"
 )
 
 // Initialize initializes the JOSE services (JWT and JWE).

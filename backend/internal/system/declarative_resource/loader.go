@@ -21,7 +21,7 @@ package declarativeresource
 import (
 	"fmt"
 
-	"github.com/asgardeo/thunder/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/log"
 )
 
 // Storer defines the interface for storing resources.

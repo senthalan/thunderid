@@ -23,14 +23,14 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/asgardeo/thunder/internal/application"
-	"github.com/asgardeo/thunder/internal/design/common"
-	appkg "github.com/asgardeo/thunder/pkg/application"
-	"github.com/asgardeo/thunder/internal/design/resolve"
-	"github.com/asgardeo/thunder/internal/ou"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	i18nmgt "github.com/asgardeo/thunder/internal/system/i18n/mgt"
-	"github.com/asgardeo/thunder/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/application"
+	"github.com/senthalan/thunder/backend/internal/design/common"
+	appkg "github.com/senthalan/thunder/backend/pkg/application"
+	"github.com/senthalan/thunder/backend/internal/design/resolve"
+	"github.com/senthalan/thunder/backend/internal/ou"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	i18nmgt "github.com/senthalan/thunder/backend/internal/system/i18n/mgt"
+	"github.com/senthalan/thunder/backend/internal/system/log"
 )
 
 // MetaType represents the type of metadata being requested.

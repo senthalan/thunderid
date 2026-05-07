@@ -23,8 +23,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/asgardeo/thunder/internal/system/database/model"
-	"github.com/asgardeo/thunder/internal/system/database/utils"
+	"github.com/senthalan/thunder/backend/internal/system/database/model"
+	"github.com/senthalan/thunder/backend/internal/system/database/utils"
 )
 
 const (

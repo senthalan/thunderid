@@ -23,19 +23,19 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/asgardeo/thunder/internal/authn/assert"
-	"github.com/asgardeo/thunder/internal/authn/common"
-	"github.com/asgardeo/thunder/internal/authn/github"
-	"github.com/asgardeo/thunder/internal/authn/google"
-	"github.com/asgardeo/thunder/internal/authn/oauth"
-	"github.com/asgardeo/thunder/internal/authn/oidc"
-	"github.com/asgardeo/thunder/internal/authn/otp"
-	"github.com/asgardeo/thunder/internal/authn/passkey"
-	"github.com/asgardeo/thunder/internal/authn/reactsdk"
-	authnprovidermgr "github.com/asgardeo/thunder/internal/authnprovider/manager"
-	"github.com/asgardeo/thunder/internal/idp"
-	"github.com/asgardeo/thunder/internal/system/jose/jwt"
-	"github.com/asgardeo/thunder/internal/system/middleware"
+	"github.com/senthalan/thunder/backend/internal/authn/assert"
+	"github.com/senthalan/thunder/backend/internal/authn/common"
+	"github.com/senthalan/thunder/backend/internal/authn/github"
+	"github.com/senthalan/thunder/backend/internal/authn/google"
+	"github.com/senthalan/thunder/backend/internal/authn/oauth"
+	"github.com/senthalan/thunder/backend/internal/authn/oidc"
+	"github.com/senthalan/thunder/backend/internal/authn/otp"
+	"github.com/senthalan/thunder/backend/internal/authn/passkey"
+	"github.com/senthalan/thunder/backend/internal/authn/reactsdk"
+	authnprovidermgr "github.com/senthalan/thunder/backend/internal/authnprovider/manager"
+	"github.com/senthalan/thunder/backend/internal/idp"
+	"github.com/senthalan/thunder/backend/internal/system/jose/jwt"
+	"github.com/senthalan/thunder/backend/internal/system/middleware"
 )
 
 // Initialize initializes the authentication service and registers its routes.

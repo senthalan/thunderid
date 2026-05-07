@@ -19,16 +19,16 @@
 package manager
 
 import (
-	"github.com/asgardeo/thunder/internal/system/i18n/core"
+	"github.com/senthalan/thunder/backend/internal/system/i18n/core"
 
 	"context"
 	"testing"
 
 	"github.com/stretchr/testify/suite"
 
-	authnprovidercm "github.com/asgardeo/thunder/internal/authnprovider/common"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/tests/mocks/authnprovider/providermock"
+	authnprovidercm "github.com/senthalan/thunder/backend/internal/authnprovider/common"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/tests/mocks/authnprovider/providermock"
 )
 
 type ManagerTestSuite struct {

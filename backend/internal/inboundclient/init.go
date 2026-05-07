@@ -19,15 +19,15 @@
 package inboundclient
 
 import (
-	"github.com/asgardeo/thunder/internal/cert"
-	"github.com/asgardeo/thunder/internal/consent"
-	layoutmgt "github.com/asgardeo/thunder/internal/design/layout/mgt"
-	thememgt "github.com/asgardeo/thunder/internal/design/theme/mgt"
-	"github.com/asgardeo/thunder/internal/entityprovider"
-	"github.com/asgardeo/thunder/internal/entitytype"
-	flowmgt "github.com/asgardeo/thunder/internal/flow/mgt"
-	dre "github.com/asgardeo/thunder/internal/system/declarative_resource/entity"
-	"github.com/asgardeo/thunder/internal/system/transaction"
+	"github.com/senthalan/thunder/backend/internal/cert"
+	"github.com/senthalan/thunder/backend/internal/consent"
+	layoutmgt "github.com/senthalan/thunder/backend/internal/design/layout/mgt"
+	thememgt "github.com/senthalan/thunder/backend/internal/design/theme/mgt"
+	"github.com/senthalan/thunder/backend/internal/entityprovider"
+	"github.com/senthalan/thunder/backend/internal/entitytype"
+	flowmgt "github.com/senthalan/thunder/backend/internal/flow/mgt"
+	dre "github.com/senthalan/thunder/backend/internal/system/declarative_resource/entity"
+	"github.com/senthalan/thunder/backend/internal/system/transaction"
 )
 
 // Initialize initializes the inbound client service.

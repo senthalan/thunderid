@@ -7,7 +7,7 @@ package mgtmock
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/system/i18n/mgt"
+	"github.com/senthalan/thunder/backend/internal/system/i18n/mgt"
 	mock "github.com/stretchr/testify/mock"
 )
 

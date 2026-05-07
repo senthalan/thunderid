@@ -23,9 +23,9 @@ import (
 	"errors"
 	"fmt"
 
-	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
-	declarativeresource "github.com/asgardeo/thunder/internal/system/declarative_resource"
-	"github.com/asgardeo/thunder/internal/system/declarative_resource/entity"
+	inboundmodel "github.com/senthalan/thunder/backend/internal/inboundclient/model"
+	declarativeresource "github.com/senthalan/thunder/backend/internal/system/declarative_resource"
+	"github.com/senthalan/thunder/backend/internal/system/declarative_resource/entity"
 )
 
 // PropOAuthProfile is the key under InboundClient.Properties used by the file store to embed

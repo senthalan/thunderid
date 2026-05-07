@@ -27,8 +27,8 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/internal/system/cache"
-	"github.com/asgardeo/thunder/tests/mocks/cachemock"
+	"github.com/senthalan/thunder/backend/internal/system/cache"
+	"github.com/senthalan/thunder/backend/tests/mocks/cachemock"
 )
 
 type CacheBackedStoreTestSuite struct {

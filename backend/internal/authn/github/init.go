@@ -19,8 +19,8 @@
 package github
 
 import (
-	authnoauth "github.com/asgardeo/thunder/internal/authn/oauth"
-	syshttp "github.com/asgardeo/thunder/internal/system/http"
+	authnoauth "github.com/senthalan/thunder/backend/internal/authn/oauth"
+	syshttp "github.com/senthalan/thunder/backend/internal/system/http"
 )
 
 // Initialize initializes the GitHub OAuth authentication service.

@@ -25,7 +25,7 @@
 package model
 
 import (
-	"github.com/asgardeo/thunder/internal/cert"
+	"github.com/senthalan/thunder/backend/internal/cert"
 )
 
 // InboundClient is the protocol-agnostic inbound client record for a principal entity.

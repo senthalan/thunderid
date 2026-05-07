@@ -26,11 +26,11 @@ import (
 	mcpsdk "github.com/modelcontextprotocol/go-sdk/mcp"
 	"github.com/modelcontextprotocol/go-sdk/oauthex"
 
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/jose/jwt"
-	"github.com/asgardeo/thunder/internal/system/log"
-	mcpauth "github.com/asgardeo/thunder/internal/system/mcp/auth"
-	"github.com/asgardeo/thunder/internal/system/security"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/jose/jwt"
+	"github.com/senthalan/thunder/backend/internal/system/log"
+	mcpauth "github.com/senthalan/thunder/backend/internal/system/mcp/auth"
+	"github.com/senthalan/thunder/backend/internal/system/security"
 )
 
 // Initialize initializes the MCP server and registers its routes with the provided mux.

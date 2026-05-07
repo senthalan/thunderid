@@ -5,10 +5,10 @@
 package observabilitymock
 
 import (
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/observability/event"
-	"github.com/asgardeo/thunder/internal/system/observability/publisher"
-	"github.com/asgardeo/thunder/internal/system/observability/subscriber"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/observability/event"
+	"github.com/senthalan/thunder/backend/internal/system/observability/publisher"
+	"github.com/senthalan/thunder/backend/internal/system/observability/subscriber"
 	mock "github.com/stretchr/testify/mock"
 )
 

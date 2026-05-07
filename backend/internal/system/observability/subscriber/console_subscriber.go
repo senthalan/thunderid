@@ -19,12 +19,12 @@
 package subscriber
 
 import (
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/log"
-	"github.com/asgardeo/thunder/internal/system/observability/adapter"
-	"github.com/asgardeo/thunder/internal/system/observability/event"
-	"github.com/asgardeo/thunder/internal/system/observability/formatter"
-	"github.com/asgardeo/thunder/internal/system/utils"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/observability/adapter"
+	"github.com/senthalan/thunder/backend/internal/system/observability/event"
+	"github.com/senthalan/thunder/backend/internal/system/observability/formatter"
+	"github.com/senthalan/thunder/backend/internal/system/utils"
 )
 
 const consoleSubscriberComponentName = "ConsoleSubscriber"

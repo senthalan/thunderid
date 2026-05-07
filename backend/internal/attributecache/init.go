@@ -19,8 +19,8 @@
 package attributecache
 
 import (
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/database/provider"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/database/provider"
 )
 
 // Initialize initializes the attribute cache service and returns an instance of AttributeCacheServiceInterface.

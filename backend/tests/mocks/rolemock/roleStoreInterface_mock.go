@@ -7,7 +7,7 @@ package rolemock
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/role"
+	"github.com/senthalan/thunder/backend/internal/role"
 	mock "github.com/stretchr/testify/mock"
 )
 

@@ -18,7 +18,7 @@
 
 package idp
 
-import "github.com/asgardeo/thunder/internal/system/cmodels"
+import "github.com/senthalan/thunder/backend/internal/system/cmodels"
 
 // IDPDTO represents the data transfer object for an identity provider.
 type IDPDTO struct {

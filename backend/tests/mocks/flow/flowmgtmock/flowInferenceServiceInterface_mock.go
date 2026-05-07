@@ -5,7 +5,7 @@
 package flowmgtmock
 
 import (
-	"github.com/asgardeo/thunder/internal/flow/mgt"
+	"github.com/senthalan/thunder/backend/internal/flow/mgt"
 	mock "github.com/stretchr/testify/mock"
 )
 

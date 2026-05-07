@@ -29,7 +29,7 @@ import (
 	"github.com/stretchr/testify/suite"
 	"gopkg.in/yaml.v3"
 
-	"github.com/asgardeo/thunder/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/config"
 )
 
 // Mock Storer implementation for testing

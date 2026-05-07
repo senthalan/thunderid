@@ -22,7 +22,7 @@
 package model
 
 import (
-	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
+	inboundmodel "github.com/senthalan/thunder/backend/internal/inboundclient/model"
 )
 
 // ApplicationDTO represents the data transfer object for application service operations.

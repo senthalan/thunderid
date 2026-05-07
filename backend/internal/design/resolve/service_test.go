@@ -19,7 +19,7 @@
 package resolve
 
 import (
-	"github.com/asgardeo/thunder/internal/system/i18n/core"
+	"github.com/senthalan/thunder/backend/internal/system/i18n/core"
 
 	"context"
 	"encoding/json"
@@ -29,15 +29,15 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/internal/application"
-	appmodel "github.com/asgardeo/thunder/pkg/application/model"
-	"github.com/asgardeo/thunder/internal/design/common"
-	layoutmgt "github.com/asgardeo/thunder/internal/design/layout/mgt"
-	thememgt "github.com/asgardeo/thunder/internal/design/theme/mgt"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/tests/mocks/applicationmock"
-	"github.com/asgardeo/thunder/tests/mocks/design/layoutmock"
-	"github.com/asgardeo/thunder/tests/mocks/design/thememock"
+	"github.com/senthalan/thunder/backend/internal/application"
+	appmodel "github.com/senthalan/thunder/backend/pkg/application/model"
+	"github.com/senthalan/thunder/backend/internal/design/common"
+	layoutmgt "github.com/senthalan/thunder/backend/internal/design/layout/mgt"
+	thememgt "github.com/senthalan/thunder/backend/internal/design/theme/mgt"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/tests/mocks/applicationmock"
+	"github.com/senthalan/thunder/backend/tests/mocks/design/layoutmock"
+	"github.com/senthalan/thunder/backend/tests/mocks/design/thememock"
 )
 
 // Test Suite

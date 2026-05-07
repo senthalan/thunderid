@@ -28,17 +28,17 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/internal/entity"
-	oupkg "github.com/asgardeo/thunder/internal/ou"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/internal/system/log"
-	"github.com/asgardeo/thunder/internal/system/security"
-	"github.com/asgardeo/thunder/internal/system/sysauthz"
-	"github.com/asgardeo/thunder/internal/system/utils"
-	"github.com/asgardeo/thunder/tests/mocks/entitymock"
-	"github.com/asgardeo/thunder/tests/mocks/entitytypemock"
-	"github.com/asgardeo/thunder/tests/mocks/oumock"
-	"github.com/asgardeo/thunder/tests/mocks/sysauthzmock"
+	"github.com/senthalan/thunder/backend/internal/entity"
+	oupkg "github.com/senthalan/thunder/backend/internal/ou"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/security"
+	"github.com/senthalan/thunder/backend/internal/system/sysauthz"
+	"github.com/senthalan/thunder/backend/internal/system/utils"
+	"github.com/senthalan/thunder/backend/tests/mocks/entitymock"
+	"github.com/senthalan/thunder/backend/tests/mocks/entitytypemock"
+	"github.com/senthalan/thunder/backend/tests/mocks/oumock"
+	"github.com/senthalan/thunder/backend/tests/mocks/sysauthzmock"
 )
 
 // stubTransactioner is a stub implementation of Transactioner for testing.

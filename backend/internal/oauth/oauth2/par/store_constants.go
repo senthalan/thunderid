@@ -18,7 +18,7 @@
 
 package par
 
-import dbmodel "github.com/asgardeo/thunder/internal/system/database/model"
+import dbmodel "github.com/senthalan/thunder/backend/internal/system/database/model"
 
 // Database column names for PAR request storage.
 const (

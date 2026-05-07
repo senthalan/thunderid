@@ -19,8 +19,8 @@
 package authz
 
 import (
-	"github.com/asgardeo/thunder/internal/authz/engine"
-	"github.com/asgardeo/thunder/internal/role"
+	"github.com/senthalan/thunder/backend/internal/authz/engine"
+	"github.com/senthalan/thunder/backend/internal/role"
 )
 
 // Initialize creates and initializes the authorization service with the RBAC engine.

@@ -18,7 +18,7 @@
 
 package thememgt
 
-import dbmodel "github.com/asgardeo/thunder/internal/system/database/model"
+import dbmodel "github.com/senthalan/thunder/backend/internal/system/database/model"
 
 var (
 	// queryCreateTheme creates a new theme configuration.

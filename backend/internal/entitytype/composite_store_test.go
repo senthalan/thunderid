@@ -25,7 +25,7 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/internal/system/declarative_resource/entity"
+	"github.com/senthalan/thunder/backend/internal/system/declarative_resource/entity"
 )
 
 // CompositeStoreTestSuite tests the composite entity type store functionality.

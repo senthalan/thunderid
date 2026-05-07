@@ -24,8 +24,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/database/provider"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/database/provider"
 )
 
 var errThemeNotFound = errors.New("theme not found")

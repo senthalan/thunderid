@@ -22,15 +22,15 @@ import (
 	"context"
 	"strings"
 
-	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/authz/requestvalidator"
-	oauth2const "github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
-	oauth2model "github.com/asgardeo/thunder/internal/oauth/oauth2/model"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/resourceindicators"
-	oauth2utils "github.com/asgardeo/thunder/internal/oauth/oauth2/utils"
-	"github.com/asgardeo/thunder/internal/resource"
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/log"
+	inboundmodel "github.com/senthalan/thunder/backend/internal/inboundclient/model"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/authz/requestvalidator"
+	oauth2const "github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
+	oauth2model "github.com/senthalan/thunder/backend/internal/oauth/oauth2/model"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/resourceindicators"
+	oauth2utils "github.com/senthalan/thunder/backend/internal/oauth/oauth2/utils"
+	"github.com/senthalan/thunder/backend/internal/resource"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/log"
 )
 
 // requestURIPrefix is the URN prefix used for PAR request URIs per RFC 9126.

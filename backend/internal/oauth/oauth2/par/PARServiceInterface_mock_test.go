@@ -7,8 +7,8 @@ package par
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/inboundclient/model"
-	model0 "github.com/asgardeo/thunder/internal/oauth/oauth2/model"
+	"github.com/senthalan/thunder/backend/internal/inboundclient/model"
+	model0 "github.com/senthalan/thunder/backend/internal/oauth/oauth2/model"
 	mock "github.com/stretchr/testify/mock"
 )
 

@@ -26,10 +26,10 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 
-	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
-	"github.com/asgardeo/thunder/internal/system/cache"
-	sysconfig "github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/tests/mocks/cachemock"
+	inboundmodel "github.com/senthalan/thunder/backend/internal/inboundclient/model"
+	"github.com/senthalan/thunder/backend/internal/system/cache"
+	sysconfig "github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/tests/mocks/cachemock"
 )
 
 type CacheBackedStoreTestSuite struct {

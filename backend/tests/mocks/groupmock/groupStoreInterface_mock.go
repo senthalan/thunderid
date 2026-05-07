@@ -7,7 +7,7 @@ package groupmock
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/group"
+	"github.com/senthalan/thunder/backend/internal/group"
 	mock "github.com/stretchr/testify/mock"
 )
 

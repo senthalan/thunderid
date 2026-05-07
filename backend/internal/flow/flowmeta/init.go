@@ -21,11 +21,11 @@ package flowmeta
 import (
 	"net/http"
 
-	"github.com/asgardeo/thunder/internal/design/resolve"
-	appkg "github.com/asgardeo/thunder/pkg/application"
-	"github.com/asgardeo/thunder/internal/ou"
-	i18nmgt "github.com/asgardeo/thunder/internal/system/i18n/mgt"
-	"github.com/asgardeo/thunder/internal/system/middleware"
+	"github.com/senthalan/thunder/backend/internal/design/resolve"
+	appkg "github.com/senthalan/thunder/backend/pkg/application"
+	"github.com/senthalan/thunder/backend/internal/ou"
+	i18nmgt "github.com/senthalan/thunder/backend/internal/system/i18n/mgt"
+	"github.com/senthalan/thunder/backend/internal/system/middleware"
 )
 
 // Initialize creates and configures the flow metadata service components.

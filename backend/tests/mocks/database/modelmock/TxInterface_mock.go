@@ -7,7 +7,7 @@ package modelmock
 import (
 	"database/sql"
 
-	"github.com/asgardeo/thunder/internal/system/database/model"
+	"github.com/senthalan/thunder/backend/internal/system/database/model"
 	mock "github.com/stretchr/testify/mock"
 )
 

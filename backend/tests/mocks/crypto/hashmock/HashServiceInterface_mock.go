@@ -5,7 +5,7 @@
 package hashmock
 
 import (
-	"github.com/asgardeo/thunder/internal/system/crypto/hash"
+	"github.com/senthalan/thunder/backend/internal/system/crypto/hash"
 	mock "github.com/stretchr/testify/mock"
 )
 

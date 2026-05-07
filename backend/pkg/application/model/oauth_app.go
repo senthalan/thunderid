@@ -22,8 +22,8 @@
 package model
 
 import (
-	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
-	oauth2const "github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
+	inboundmodel "github.com/senthalan/thunder/backend/internal/inboundclient/model"
+	oauth2const "github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
 )
 
 // OAuthAppConfig represents the structure for OAuth application configuration.

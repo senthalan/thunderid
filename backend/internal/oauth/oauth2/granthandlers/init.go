@@ -21,17 +21,17 @@ package granthandlers
 import (
 	"net/http"
 
-	"github.com/asgardeo/thunder/internal/attributecache"
-	"github.com/asgardeo/thunder/internal/authz"
-	"github.com/asgardeo/thunder/internal/entityprovider"
-	"github.com/asgardeo/thunder/internal/flow/flowexec"
-	"github.com/asgardeo/thunder/internal/inboundclient"
-	oauth2authz "github.com/asgardeo/thunder/internal/oauth/oauth2/authz"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/par"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/tokenservice"
-	"github.com/asgardeo/thunder/internal/ou"
-	"github.com/asgardeo/thunder/internal/resource"
-	"github.com/asgardeo/thunder/internal/system/jose/jwt"
+	"github.com/senthalan/thunder/backend/internal/attributecache"
+	"github.com/senthalan/thunder/backend/internal/authz"
+	"github.com/senthalan/thunder/backend/internal/entityprovider"
+	"github.com/senthalan/thunder/backend/internal/flow/flowexec"
+	"github.com/senthalan/thunder/backend/internal/inboundclient"
+	oauth2authz "github.com/senthalan/thunder/backend/internal/oauth/oauth2/authz"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/par"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/tokenservice"
+	"github.com/senthalan/thunder/backend/internal/ou"
+	"github.com/senthalan/thunder/backend/internal/resource"
+	"github.com/senthalan/thunder/backend/internal/system/jose/jwt"
 )
 
 // Initialize initializes the grant handler provider with the given services.

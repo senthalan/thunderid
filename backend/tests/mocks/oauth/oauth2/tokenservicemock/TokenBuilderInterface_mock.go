@@ -5,8 +5,8 @@
 package tokenservicemock
 
 import (
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/model"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/tokenservice"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/model"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/tokenservice"
 	mock "github.com/stretchr/testify/mock"
 )
 

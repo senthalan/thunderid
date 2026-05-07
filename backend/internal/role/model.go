@@ -18,7 +18,7 @@
 
 package role
 
-import "github.com/asgardeo/thunder/internal/system/utils"
+import "github.com/senthalan/thunder/backend/internal/system/utils"
 
 // AssigneeType represents the type of assignee principal.
 type AssigneeType string

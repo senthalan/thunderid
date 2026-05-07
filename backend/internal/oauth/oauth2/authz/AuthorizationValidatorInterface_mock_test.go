@@ -5,7 +5,7 @@
 package authz
 
 import (
-	"github.com/asgardeo/thunder/internal/inboundclient/model"
+	"github.com/senthalan/thunder/backend/internal/inboundclient/model"
 	mock "github.com/stretchr/testify/mock"
 )
 

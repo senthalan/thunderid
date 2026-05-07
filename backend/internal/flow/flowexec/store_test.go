@@ -27,16 +27,16 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 
-	authncm "github.com/asgardeo/thunder/internal/authn/common"
-	authnprovidercm "github.com/asgardeo/thunder/internal/authnprovider/common"
-	managerpkg "github.com/asgardeo/thunder/internal/authnprovider/manager"
-	"github.com/asgardeo/thunder/internal/flow/common"
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/crypto"
-	cryptoruntime "github.com/asgardeo/thunder/internal/system/crypto/runtime"
+	authncm "github.com/senthalan/thunder/backend/internal/authn/common"
+	authnprovidercm "github.com/senthalan/thunder/backend/internal/authnprovider/common"
+	managerpkg "github.com/senthalan/thunder/backend/internal/authnprovider/manager"
+	"github.com/senthalan/thunder/backend/internal/flow/common"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/crypto"
+	cryptoruntime "github.com/senthalan/thunder/backend/internal/system/crypto/runtime"
 
-	"github.com/asgardeo/thunder/tests/mocks/database/providermock"
-	"github.com/asgardeo/thunder/tests/mocks/flow/coremock"
+	"github.com/senthalan/thunder/backend/tests/mocks/database/providermock"
+	"github.com/senthalan/thunder/backend/tests/mocks/flow/coremock"
 )
 
 type StoreTestSuite struct {

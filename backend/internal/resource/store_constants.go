@@ -19,7 +19,7 @@
 package resource
 
 import (
-	dbmodel "github.com/asgardeo/thunder/internal/system/database/model"
+	dbmodel "github.com/senthalan/thunder/backend/internal/system/database/model"
 )
 
 // Resource Server Queries

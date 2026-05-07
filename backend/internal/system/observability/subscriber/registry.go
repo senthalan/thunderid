@@ -21,7 +21,7 @@ package subscriber
 import (
 	"sync"
 
-	"github.com/asgardeo/thunder/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/log"
 )
 
 // SubscriberFactory is a function that creates a new subscriber instance.

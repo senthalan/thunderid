@@ -5,8 +5,8 @@
 package layoutmock
 
 import (
-	"github.com/asgardeo/thunder/internal/design/layout/mgt"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/design/layout/mgt"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
 	mock "github.com/stretchr/testify/mock"
 )
 

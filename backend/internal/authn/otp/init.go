@@ -19,8 +19,8 @@
 package otp
 
 import (
-	"github.com/asgardeo/thunder/internal/entityprovider"
-	"github.com/asgardeo/thunder/internal/notification"
+	"github.com/senthalan/thunder/backend/internal/entityprovider"
+	"github.com/senthalan/thunder/backend/internal/notification"
 )
 
 // Initialize initializes the OTP authentication service.

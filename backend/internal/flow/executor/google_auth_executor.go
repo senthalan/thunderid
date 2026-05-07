@@ -19,13 +19,13 @@
 package executor
 
 import (
-	authngoogle "github.com/asgardeo/thunder/internal/authn/google"
-	authnoidc "github.com/asgardeo/thunder/internal/authn/oidc"
-	authnprovidermgr "github.com/asgardeo/thunder/internal/authnprovider/manager"
-	"github.com/asgardeo/thunder/internal/entitytype"
-	"github.com/asgardeo/thunder/internal/flow/common"
-	"github.com/asgardeo/thunder/internal/flow/core"
-	"github.com/asgardeo/thunder/internal/idp"
+	authngoogle "github.com/senthalan/thunder/backend/internal/authn/google"
+	authnoidc "github.com/senthalan/thunder/backend/internal/authn/oidc"
+	authnprovidermgr "github.com/senthalan/thunder/backend/internal/authnprovider/manager"
+	"github.com/senthalan/thunder/backend/internal/entitytype"
+	"github.com/senthalan/thunder/backend/internal/flow/common"
+	"github.com/senthalan/thunder/backend/internal/flow/core"
+	"github.com/senthalan/thunder/backend/internal/idp"
 )
 
 // googleOIDCAuthExecutor implements the OIDC authentication executor for Google.

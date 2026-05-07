@@ -22,10 +22,10 @@ import (
 	"context"
 	"errors"
 
-	"github.com/asgardeo/thunder/internal/system/log"
-	"github.com/asgardeo/thunder/internal/system/sysauthz"
+	"github.com/senthalan/thunder/backend/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/sysauthz"
 
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
 )
 
 const loggerComponentNameHierarchyResolver = "OUHierarchyResolver"

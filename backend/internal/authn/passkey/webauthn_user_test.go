@@ -24,7 +24,7 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/internal/entity"
+	"github.com/senthalan/thunder/backend/internal/entity"
 )
 
 type WebAuthnUserTestSuite struct {

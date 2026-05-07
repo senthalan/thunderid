@@ -7,10 +7,10 @@ package consentenforcermock
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/authn/consent"
-	"github.com/asgardeo/thunder/internal/authnprovider/common"
-	consent0 "github.com/asgardeo/thunder/internal/consent"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/authn/consent"
+	"github.com/senthalan/thunder/backend/internal/authnprovider/common"
+	consent0 "github.com/senthalan/thunder/backend/internal/consent"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
 	mock "github.com/stretchr/testify/mock"
 )
 

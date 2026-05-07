@@ -22,10 +22,10 @@ package handler
 import (
 	"net/http"
 
-	"github.com/asgardeo/thunder/internal/system/healthcheck/model"
-	"github.com/asgardeo/thunder/internal/system/healthcheck/service"
-	"github.com/asgardeo/thunder/internal/system/log"
-	sysutils "github.com/asgardeo/thunder/internal/system/utils"
+	"github.com/senthalan/thunder/backend/internal/system/healthcheck/model"
+	"github.com/senthalan/thunder/backend/internal/system/healthcheck/service"
+	"github.com/senthalan/thunder/backend/internal/system/log"
+	sysutils "github.com/senthalan/thunder/backend/internal/system/utils"
 )
 
 // HealthCheckHandler defines the handler for managing health check API requests.

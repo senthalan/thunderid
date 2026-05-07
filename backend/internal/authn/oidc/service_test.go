@@ -19,7 +19,7 @@
 package oidc
 
 import (
-	"github.com/asgardeo/thunder/internal/system/i18n/core"
+	"github.com/senthalan/thunder/backend/internal/system/i18n/core"
 
 	"context"
 	"testing"
@@ -28,11 +28,11 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/internal/authn/oauth"
-	"github.com/asgardeo/thunder/internal/entityprovider"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/tests/mocks/authn/oauthmock"
-	"github.com/asgardeo/thunder/tests/mocks/jose/jwtmock"
+	"github.com/senthalan/thunder/backend/internal/authn/oauth"
+	"github.com/senthalan/thunder/backend/internal/entityprovider"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/tests/mocks/authn/oauthmock"
+	"github.com/senthalan/thunder/backend/tests/mocks/jose/jwtmock"
 )
 
 const (

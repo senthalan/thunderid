@@ -27,8 +27,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/asgardeo/thunder/internal/system/crypto"
-	cryptohash "github.com/asgardeo/thunder/internal/system/crypto/hash"
+	"github.com/senthalan/thunder/backend/internal/system/crypto"
+	cryptohash "github.com/senthalan/thunder/backend/internal/system/crypto/hash"
 )
 
 const (

@@ -7,7 +7,7 @@ package templatemock
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/system/template"
+	"github.com/senthalan/thunder/backend/internal/system/template"
 	mock "github.com/stretchr/testify/mock"
 )
 

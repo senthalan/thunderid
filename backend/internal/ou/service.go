@@ -25,13 +25,13 @@ import (
 	"fmt"
 	"strings"
 
-	serverconst "github.com/asgardeo/thunder/internal/system/constants"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/internal/system/log"
-	"github.com/asgardeo/thunder/internal/system/security"
-	"github.com/asgardeo/thunder/internal/system/sysauthz"
-	"github.com/asgardeo/thunder/internal/system/transaction"
-	"github.com/asgardeo/thunder/internal/system/utils"
+	serverconst "github.com/senthalan/thunder/backend/internal/system/constants"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/security"
+	"github.com/senthalan/thunder/backend/internal/system/sysauthz"
+	"github.com/senthalan/thunder/backend/internal/system/transaction"
+	"github.com/senthalan/thunder/backend/internal/system/utils"
 )
 
 const loggerComponentNameService = "OrganizationUnitService"

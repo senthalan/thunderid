@@ -25,7 +25,7 @@ import (
 	"fmt"
 	"runtime/debug"
 
-	"github.com/asgardeo/thunder/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/log"
 )
 
 // Transactioner provides transaction management with automatic nesting detection.

@@ -7,7 +7,7 @@ package scopemock
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/oauth/scope"
+	"github.com/senthalan/thunder/backend/internal/oauth/scope"
 	mock "github.com/stretchr/testify/mock"
 )
 

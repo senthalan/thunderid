@@ -19,12 +19,12 @@
 package manager
 
 import (
-	authncommon "github.com/asgardeo/thunder/internal/authn/common"
-	"github.com/asgardeo/thunder/internal/authn/otp"
-	"github.com/asgardeo/thunder/internal/authn/passkey"
-	"github.com/asgardeo/thunder/internal/authnprovider/provider"
-	"github.com/asgardeo/thunder/internal/entity"
-	"github.com/asgardeo/thunder/internal/idp"
+	authncommon "github.com/senthalan/thunder/backend/internal/authn/common"
+	"github.com/senthalan/thunder/backend/internal/authn/otp"
+	"github.com/senthalan/thunder/backend/internal/authn/passkey"
+	"github.com/senthalan/thunder/backend/internal/authnprovider/provider"
+	"github.com/senthalan/thunder/backend/internal/entity"
+	"github.com/senthalan/thunder/backend/internal/idp"
 )
 
 // InitializeAuthnProviderManager initializes and returns an AuthnProviderManagerInterface.

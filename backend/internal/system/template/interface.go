@@ -22,7 +22,7 @@ package template
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
 )
 
 // TemplateServiceInterface defines the interface for template operations.

@@ -25,7 +25,7 @@ import (
 	"encoding/hex"
 	"fmt"
 
-	"github.com/asgardeo/thunder/internal/system/crypto/hash"
+	"github.com/senthalan/thunder/backend/internal/system/crypto/hash"
 )
 
 // GenerateSecureToken generates a cryptographically random 32-byte token, hex-encoded (64 chars).

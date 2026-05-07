@@ -20,8 +20,8 @@
 package tokenservice
 
 import (
-	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
-	oauth2model "github.com/asgardeo/thunder/internal/oauth/oauth2/model"
+	inboundmodel "github.com/senthalan/thunder/backend/internal/inboundclient/model"
+	oauth2model "github.com/senthalan/thunder/backend/internal/oauth/oauth2/model"
 )
 
 // TokenType represents the type of token being processed.

@@ -27,7 +27,7 @@ import (
 
 	"github.com/google/jsonschema-go/jsonschema"
 
-	"github.com/asgardeo/thunder/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/log"
 )
 
 // GenerateSchema creates a JSON schema for a given type T and applies the provided modifiers.

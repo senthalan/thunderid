@@ -19,7 +19,7 @@
 package tokenservice
 
 import (
-	"github.com/asgardeo/thunder/internal/system/jose/jwt"
+	"github.com/senthalan/thunder/backend/internal/system/jose/jwt"
 )
 
 // Initialize initializes the token service components (builder and validator).

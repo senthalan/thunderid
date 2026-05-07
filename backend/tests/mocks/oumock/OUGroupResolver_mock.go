@@ -7,7 +7,7 @@ package oumock
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/ou"
+	"github.com/senthalan/thunder/backend/internal/ou"
 	mock "github.com/stretchr/testify/mock"
 )
 

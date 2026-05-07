@@ -28,10 +28,10 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/crypto/hash"
-	"github.com/asgardeo/thunder/internal/system/transaction"
-	"github.com/asgardeo/thunder/tests/mocks/crypto/hashmock"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/crypto/hash"
+	"github.com/senthalan/thunder/backend/internal/system/transaction"
+	"github.com/senthalan/thunder/backend/tests/mocks/crypto/hashmock"
 )
 
 type DeclarativeResourceTestSuite struct {

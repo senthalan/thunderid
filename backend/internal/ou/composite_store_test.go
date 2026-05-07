@@ -24,7 +24,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/asgardeo/thunder/internal/system/declarative_resource/entity"
+	"github.com/senthalan/thunder/backend/internal/system/declarative_resource/entity"
 
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"

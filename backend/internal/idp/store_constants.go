@@ -18,7 +18,7 @@
 
 package idp
 
-import "github.com/asgardeo/thunder/internal/system/database/model"
+import "github.com/senthalan/thunder/backend/internal/system/database/model"
 
 var (
 	// queryCreateIdentityProvider is the query to create a new IdP.

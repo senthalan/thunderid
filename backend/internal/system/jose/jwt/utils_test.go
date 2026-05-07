@@ -30,9 +30,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/crypto/sign"
-	"github.com/asgardeo/thunder/internal/system/jose/jws"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/crypto/sign"
+	"github.com/senthalan/thunder/backend/internal/system/jose/jws"
 )
 
 type JWTUtilsTestSuite struct {

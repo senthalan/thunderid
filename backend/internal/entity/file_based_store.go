@@ -24,8 +24,8 @@ import (
 	"errors"
 	"strings"
 
-	declarativeresource "github.com/asgardeo/thunder/internal/system/declarative_resource"
-	entitystore "github.com/asgardeo/thunder/internal/system/declarative_resource/entity"
+	declarativeresource "github.com/senthalan/thunder/backend/internal/system/declarative_resource"
+	entitystore "github.com/senthalan/thunder/backend/internal/system/declarative_resource/entity"
 )
 
 // entityFileBasedStore implements entityStoreInterface using an in-memory file-based store.

@@ -22,8 +22,8 @@ import (
 	"context"
 	"fmt"
 
-	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
-	declarativeresource "github.com/asgardeo/thunder/internal/system/declarative_resource"
+	inboundmodel "github.com/senthalan/thunder/backend/internal/inboundclient/model"
+	declarativeresource "github.com/senthalan/thunder/backend/internal/system/declarative_resource"
 )
 
 // loadDeclarativeResources loads inbound clients from the consumer's YAML directory into the

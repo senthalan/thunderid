@@ -8,7 +8,7 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/asgardeo/thunder/internal/entity"
+	"github.com/senthalan/thunder/backend/internal/entity"
 	mock "github.com/stretchr/testify/mock"
 )
 

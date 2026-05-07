@@ -7,7 +7,7 @@ package certmock
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/cert"
+	"github.com/senthalan/thunder/backend/internal/cert"
 	mock "github.com/stretchr/testify/mock"
 )
 

@@ -7,7 +7,7 @@ package resourcemock
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/resource"
+	"github.com/senthalan/thunder/backend/internal/resource"
 	mock "github.com/stretchr/testify/mock"
 )
 

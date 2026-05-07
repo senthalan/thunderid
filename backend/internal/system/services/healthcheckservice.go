@@ -21,9 +21,9 @@ package services
 import (
 	"net/http"
 
-	"github.com/asgardeo/thunder/internal/system/healthcheck/handler"
-	"github.com/asgardeo/thunder/internal/system/healthcheck/service"
-	"github.com/asgardeo/thunder/internal/system/middleware"
+	"github.com/senthalan/thunder/backend/internal/system/healthcheck/handler"
+	"github.com/senthalan/thunder/backend/internal/system/healthcheck/service"
+	"github.com/senthalan/thunder/backend/internal/system/middleware"
 )
 
 // HealthCheckService defines the service for handling readiness and liveness checks.

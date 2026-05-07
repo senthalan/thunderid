@@ -23,12 +23,12 @@ import (
 	"context"
 	"errors"
 
-	"github.com/asgardeo/thunder/internal/notification/common"
-	declarativeresource "github.com/asgardeo/thunder/internal/system/declarative_resource"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/internal/system/log"
-	"github.com/asgardeo/thunder/internal/system/transaction"
-	sysutils "github.com/asgardeo/thunder/internal/system/utils"
+	"github.com/senthalan/thunder/backend/internal/notification/common"
+	declarativeresource "github.com/senthalan/thunder/backend/internal/system/declarative_resource"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/transaction"
+	sysutils "github.com/senthalan/thunder/backend/internal/system/utils"
 )
 
 // NotificationSenderMgtSvcInterface defines the interface for managing notification senders.

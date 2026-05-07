@@ -7,9 +7,9 @@ package sysauthzmock
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/internal/system/security"
-	"github.com/asgardeo/thunder/internal/system/sysauthz"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/system/security"
+	"github.com/senthalan/thunder/backend/internal/system/sysauthz"
 	mock "github.com/stretchr/testify/mock"
 )
 

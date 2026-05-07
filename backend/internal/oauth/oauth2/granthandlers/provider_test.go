@@ -24,15 +24,15 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
-	"github.com/asgardeo/thunder/tests/mocks/attributecachemock"
-	rbacauthzmock "github.com/asgardeo/thunder/tests/mocks/authzmock"
-	"github.com/asgardeo/thunder/tests/mocks/entityprovidermock"
-	"github.com/asgardeo/thunder/tests/mocks/jose/jwtmock"
-	"github.com/asgardeo/thunder/tests/mocks/oauth/oauth2/authzmock"
-	"github.com/asgardeo/thunder/tests/mocks/oauth/oauth2/tokenservicemock"
-	"github.com/asgardeo/thunder/tests/mocks/oumock"
-	"github.com/asgardeo/thunder/tests/mocks/resourcemock"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
+	"github.com/senthalan/thunder/backend/tests/mocks/attributecachemock"
+	rbacauthzmock "github.com/senthalan/thunder/backend/tests/mocks/authzmock"
+	"github.com/senthalan/thunder/backend/tests/mocks/entityprovidermock"
+	"github.com/senthalan/thunder/backend/tests/mocks/jose/jwtmock"
+	"github.com/senthalan/thunder/backend/tests/mocks/oauth/oauth2/authzmock"
+	"github.com/senthalan/thunder/backend/tests/mocks/oauth/oauth2/tokenservicemock"
+	"github.com/senthalan/thunder/backend/tests/mocks/oumock"
+	"github.com/senthalan/thunder/backend/tests/mocks/resourcemock"
 )
 
 type GrantHandlerProviderTestSuite struct {

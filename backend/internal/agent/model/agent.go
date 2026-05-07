@@ -22,8 +22,8 @@ package model
 import (
 	"encoding/json"
 
-	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
-	"github.com/asgardeo/thunder/internal/system/utils"
+	inboundmodel "github.com/senthalan/thunder/backend/internal/inboundclient/model"
+	"github.com/senthalan/thunder/backend/internal/system/utils"
 )
 
 // CreateAgentRequest is the HTTP request body for creating an agent.

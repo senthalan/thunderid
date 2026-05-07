@@ -25,10 +25,10 @@ import (
 	"github.com/google/jsonschema-go/jsonschema"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	oauth2const "github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
-	"github.com/asgardeo/thunder/internal/system/mcp/tool"
-	appkg "github.com/asgardeo/thunder/pkg/application"
-	appmodel "github.com/asgardeo/thunder/pkg/application/model"
+	oauth2const "github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
+	"github.com/senthalan/thunder/backend/internal/system/mcp/tool"
+	appkg "github.com/senthalan/thunder/backend/pkg/application"
+	appmodel "github.com/senthalan/thunder/backend/pkg/application/model"
 )
 
 // applicationTools provides MCP tools for managing  applications.

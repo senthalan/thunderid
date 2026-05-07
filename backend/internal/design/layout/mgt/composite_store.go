@@ -19,8 +19,8 @@
 package layoutmgt
 
 import (
-	serverconst "github.com/asgardeo/thunder/internal/system/constants"
-	declarativeresource "github.com/asgardeo/thunder/internal/system/declarative_resource"
+	serverconst "github.com/senthalan/thunder/backend/internal/system/constants"
+	declarativeresource "github.com/senthalan/thunder/backend/internal/system/declarative_resource"
 )
 
 // compositeLayoutStore implements a composite store that combines file-based (immutable) and

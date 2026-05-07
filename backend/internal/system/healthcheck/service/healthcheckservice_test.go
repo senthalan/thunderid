@@ -22,10 +22,10 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/asgardeo/thunder/internal/system/config"
-	"github.com/asgardeo/thunder/internal/system/healthcheck/model"
+	"github.com/senthalan/thunder/backend/internal/system/config"
+	"github.com/senthalan/thunder/backend/internal/system/healthcheck/model"
 
-	dbprovidermock "github.com/asgardeo/thunder/tests/mocks/database/providermock"
+	dbprovidermock "github.com/senthalan/thunder/backend/tests/mocks/database/providermock"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"

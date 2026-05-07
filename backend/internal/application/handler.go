@@ -21,13 +21,13 @@ package application
 import (
 	"net/http"
 
-	oauth2const "github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
-	appmodel "github.com/asgardeo/thunder/pkg/application/model"
-	appkg "github.com/asgardeo/thunder/pkg/application"
-	"github.com/asgardeo/thunder/internal/system/error/apierror"
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/internal/system/log"
-	sysutils "github.com/asgardeo/thunder/internal/system/utils"
+	oauth2const "github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
+	appmodel "github.com/senthalan/thunder/backend/pkg/application/model"
+	appkg "github.com/senthalan/thunder/backend/pkg/application"
+	"github.com/senthalan/thunder/backend/internal/system/error/apierror"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/system/log"
+	sysutils "github.com/senthalan/thunder/backend/internal/system/utils"
 )
 
 // ApplicationHandler defines the handler for managing application API requests.

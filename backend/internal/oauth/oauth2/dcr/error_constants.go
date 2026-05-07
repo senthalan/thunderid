@@ -21,8 +21,8 @@ package dcr
 import (
 	"strconv"
 
-	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
-	"github.com/asgardeo/thunder/internal/system/i18n/core"
+	"github.com/senthalan/thunder/backend/internal/system/error/serviceerror"
+	"github.com/senthalan/thunder/backend/internal/system/i18n/core"
 )
 
 // errInvalidBCP47Tag is returned when a language tag in a DCR request field is not valid BCP 47.

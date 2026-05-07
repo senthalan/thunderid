@@ -27,13 +27,13 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 
-	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
-	"github.com/asgardeo/thunder/internal/oauth/oauth2/model"
-	"github.com/asgardeo/thunder/internal/oauth/scope"
-	"github.com/asgardeo/thunder/tests/mocks/oauth/oauth2/granthandlersmock"
-	"github.com/asgardeo/thunder/tests/mocks/oauth/scopemock"
-	"github.com/asgardeo/thunder/tests/mocks/observability/observabilitymock"
+	inboundmodel "github.com/senthalan/thunder/backend/internal/inboundclient/model"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/constants"
+	"github.com/senthalan/thunder/backend/internal/oauth/oauth2/model"
+	"github.com/senthalan/thunder/backend/internal/oauth/scope"
+	"github.com/senthalan/thunder/backend/tests/mocks/oauth/oauth2/granthandlersmock"
+	"github.com/senthalan/thunder/backend/tests/mocks/oauth/scopemock"
+	"github.com/senthalan/thunder/backend/tests/mocks/observability/observabilitymock"
 )
 
 type TokenServiceTestSuite struct {

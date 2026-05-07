@@ -24,8 +24,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/asgardeo/thunder/internal/system/cors"
-	"github.com/asgardeo/thunder/internal/system/log"
+	"github.com/senthalan/thunder/backend/internal/system/cors"
+	"github.com/senthalan/thunder/backend/internal/system/log"
 )
 
 // DefaultAllowedHeaders is the default Access-Control-Allow-Headers list used
