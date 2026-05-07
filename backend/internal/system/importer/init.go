@@ -21,8 +21,8 @@ package importer
 import (
 	"net/http"
 
-	"github.com/asgardeo/thunder/internal/application"
 	layoutmgt "github.com/asgardeo/thunder/internal/design/layout/mgt"
+	appkg "github.com/asgardeo/thunder/pkg/application"
 	thememgt "github.com/asgardeo/thunder/internal/design/theme/mgt"
 	"github.com/asgardeo/thunder/internal/entitytype"
 	flowmgt "github.com/asgardeo/thunder/internal/flow/mgt"
@@ -38,7 +38,7 @@ import (
 // Initialize wires the importer service and registers its HTTP routes.
 func Initialize(
 	mux *http.ServeMux,
-	applicationService application.ApplicationServiceInterface,
+	applicationService appkg.ApplicationServiceInterface,
 	idpService idp.IDPServiceInterface,
 	flowService flowmgt.FlowMgtServiceInterface,
 	ouService ou.OrganizationUnitServiceInterface,

@@ -7,7 +7,7 @@ package applicationmock
 import (
 	"context"
 
-	"github.com/asgardeo/thunder/internal/application/model"
+	"github.com/asgardeo/thunder/pkg/application/model"
 	model0 "github.com/asgardeo/thunder/internal/inboundclient/model"
 	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
 	mock "github.com/stretchr/testify/mock"

@@ -25,6 +25,7 @@ import (
 
 	"github.com/asgardeo/thunder/internal/application"
 	"github.com/asgardeo/thunder/internal/flow/common"
+	appkg "github.com/asgardeo/thunder/pkg/application"
 	flowmgt "github.com/asgardeo/thunder/internal/flow/mgt"
 
 	"github.com/asgardeo/thunder/internal/system/config"
@@ -57,14 +58,14 @@ type flowExecService struct {
 	flowEngine       flowEngineInterface
 	flowMgtService   flowmgt.FlowMgtServiceInterface
 	flowStore        flowStoreInterface
-	appService       application.ApplicationServiceInterface
+	appService       appkg.ApplicationServiceInterface
 	observabilitySvc observability.ObservabilityServiceInterface
 	transactioner    transaction.Transactioner
 }
 
 func newFlowExecService(flowMgtService flowmgt.FlowMgtServiceInterface,
 	flowStore flowStoreInterface, flowEngine flowEngineInterface,
-	applicationService application.ApplicationServiceInterface,
+	applicationService appkg.ApplicationServiceInterface,
 	observabilitySvc observability.ObservabilityServiceInterface,
 	transactioner transaction.Transactioner) FlowExecServiceInterface {
 	return &flowExecService{

@@ -33,6 +33,7 @@ import (
 	declarativeresource "github.com/asgardeo/thunder/internal/system/declarative_resource"
 	i18nmgt "github.com/asgardeo/thunder/internal/system/i18n/mgt"
 	"github.com/asgardeo/thunder/internal/system/middleware"
+	appkg "github.com/asgardeo/thunder/pkg/application"
 )
 
 // Initialize initializes the application service and registers its routes.
@@ -44,7 +45,7 @@ func Initialize(
 	inboundClient inboundclient.InboundClientServiceInterface,
 	ouService oupkg.OrganizationUnitServiceInterface,
 	i18nService i18nmgt.I18nServiceInterface,
-) (ApplicationServiceInterface, declarativeresource.ResourceExporter, error) {
+) (appkg.ApplicationServiceInterface, declarativeresource.ResourceExporter, error) {
 	appService := newApplicationService(
 		inboundClient, entityProvider, ouService, i18nService,
 	)

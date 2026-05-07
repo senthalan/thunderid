@@ -26,8 +26,9 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/asgardeo/thunder/internal/application/model"
 	"github.com/asgardeo/thunder/internal/cert"
+	appkg "github.com/asgardeo/thunder/pkg/application"
+	"github.com/asgardeo/thunder/pkg/application/model"
 	oauth2const "github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
 	"github.com/asgardeo/thunder/internal/system/config"
 	dbmodel "github.com/asgardeo/thunder/internal/system/database/model"
@@ -164,7 +165,7 @@ func (suite *InitTestSuite) TestInitialize_WithDeclarativeResourcesDisabled() {
 	// Assert
 	assert.NoError(suite.T(), err)
 	assert.NotNil(suite.T(), service)
-	assert.Implements(suite.T(), (*ApplicationServiceInterface)(nil), service)
+	assert.Implements(suite.T(), (*appkg.ApplicationServiceInterface)(nil), service)
 }
 
 // TestInitialize_WithMCPServer tests the Initialize function with an MCP server
@@ -206,7 +207,7 @@ func (suite *InitTestSuite) TestInitialize_WithMCPServer() {
 	// Assert
 	assert.NoError(suite.T(), err)
 	assert.NotNil(suite.T(), service)
-	assert.Implements(suite.T(), (*ApplicationServiceInterface)(nil), service)
+	assert.Implements(suite.T(), (*appkg.ApplicationServiceInterface)(nil), service)
 	assert.NotNil(suite.T(), mcpServer)
 }
 
@@ -602,7 +603,7 @@ func TestInitialize_Standalone(t *testing.T) {
 	// Assert
 	assert.NoError(t, err)
 	assert.NotNil(t, service)
-	assert.Implements(t, (*ApplicationServiceInterface)(nil), service)
+	assert.Implements(t, (*appkg.ApplicationServiceInterface)(nil), service)
 }
 
 // TestInitialize_WithDeclarativeResources_Standalone tests Initialize function with declarative resources
@@ -652,7 +653,7 @@ func TestInitialize_WithDeclarativeResources_Standalone(t *testing.T) {
 	// Assert
 	assert.NoError(t, err)
 	assert.NotNil(t, service)
-	assert.Implements(t, (*ApplicationServiceInterface)(nil), service)
+	assert.Implements(t, (*appkg.ApplicationServiceInterface)(nil), service)
 }
 
 // TestParseToApplicationDTO_WithScopeClaims tests parsing with scope claims including custom claims

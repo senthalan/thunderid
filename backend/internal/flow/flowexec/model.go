@@ -25,7 +25,7 @@ import (
 	"strings"
 	"time"
 
-	appmodel "github.com/asgardeo/thunder/internal/application/model"
+	appmodel "github.com/asgardeo/thunder/pkg/application/model"
 	authncm "github.com/asgardeo/thunder/internal/authn/common"
 	authnprovidercm "github.com/asgardeo/thunder/internal/authnprovider/common"
 	managerpkg "github.com/asgardeo/thunder/internal/authnprovider/manager"

@@ -21,8 +21,8 @@ package flowmeta
 import (
 	"net/http"
 
-	"github.com/asgardeo/thunder/internal/application"
 	"github.com/asgardeo/thunder/internal/design/resolve"
+	appkg "github.com/asgardeo/thunder/pkg/application"
 	"github.com/asgardeo/thunder/internal/ou"
 	i18nmgt "github.com/asgardeo/thunder/internal/system/i18n/mgt"
 	"github.com/asgardeo/thunder/internal/system/middleware"
@@ -31,7 +31,7 @@ import (
 // Initialize creates and configures the flow metadata service components.
 func Initialize(
 	mux *http.ServeMux,
-	applicationService application.ApplicationServiceInterface,
+	applicationService appkg.ApplicationServiceInterface,
 	ouService ou.OrganizationUnitServiceInterface,
 	designResolve resolve.DesignResolveServiceInterface,
 	i18nService i18nmgt.I18nServiceInterface,

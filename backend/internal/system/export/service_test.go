@@ -25,7 +25,7 @@ import (
 	"testing"
 
 	"github.com/asgardeo/thunder/internal/application"
-	appmodel "github.com/asgardeo/thunder/internal/application/model"
+	appmodel "github.com/asgardeo/thunder/pkg/application/model"
 	"github.com/asgardeo/thunder/internal/entitytype"
 	flowcommon "github.com/asgardeo/thunder/internal/flow/common"
 	flowmgt "github.com/asgardeo/thunder/internal/flow/mgt"

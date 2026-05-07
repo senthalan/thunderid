@@ -21,8 +21,8 @@ package flowexec
 import (
 	"net/http"
 
-	"github.com/asgardeo/thunder/internal/application"
 	"github.com/asgardeo/thunder/internal/flow/executor"
+	appkg "github.com/asgardeo/thunder/pkg/application"
 	flowmgt "github.com/asgardeo/thunder/internal/flow/mgt"
 	"github.com/asgardeo/thunder/internal/system/config"
 	dbprovider "github.com/asgardeo/thunder/internal/system/database/provider"
@@ -36,7 +36,7 @@ import (
 func Initialize(
 	mux *http.ServeMux,
 	flowMgtService flowmgt.FlowMgtServiceInterface,
-	applicationService application.ApplicationServiceInterface,
+	applicationService appkg.ApplicationServiceInterface,
 	executorRegistry executor.ExecutorRegistryInterface,
 	observabilitySvc observability.ObservabilityServiceInterface,
 ) (FlowExecServiceInterface, error) {

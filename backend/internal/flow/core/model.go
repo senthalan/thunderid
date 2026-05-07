@@ -21,7 +21,7 @@ package core
 import (
 	"context"
 
-	appmodel "github.com/asgardeo/thunder/internal/application/model"
+	appmodel "github.com/asgardeo/thunder/pkg/application/model"
 	authncm "github.com/asgardeo/thunder/internal/authn/common"
 	"github.com/asgardeo/thunder/internal/authnprovider/manager"
 	"github.com/asgardeo/thunder/internal/flow/common"

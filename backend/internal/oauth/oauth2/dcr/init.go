@@ -22,8 +22,8 @@ package dcr
 import (
 	"net/http"
 
-	"github.com/asgardeo/thunder/internal/application"
 	"github.com/asgardeo/thunder/internal/ou"
+	appkg "github.com/asgardeo/thunder/pkg/application"
 	i18nmgt "github.com/asgardeo/thunder/internal/system/i18n/mgt"
 	"github.com/asgardeo/thunder/internal/system/middleware"
 	"github.com/asgardeo/thunder/internal/system/transaction"
@@ -32,7 +32,7 @@ import (
 // Initialize initializes the DCR service and registers its routes.
 func Initialize(
 	mux *http.ServeMux,
-	appService application.ApplicationServiceInterface,
+	appService appkg.ApplicationServiceInterface,
 	ouService ou.OrganizationUnitServiceInterface,
 	i18nService i18nmgt.I18nServiceInterface,
 	transactioner transaction.Transactioner,

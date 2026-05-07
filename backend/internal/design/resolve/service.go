@@ -24,6 +24,7 @@ import (
 
 	"github.com/asgardeo/thunder/internal/application"
 	"github.com/asgardeo/thunder/internal/design/common"
+	appkg "github.com/asgardeo/thunder/pkg/application"
 	layoutmgt "github.com/asgardeo/thunder/internal/design/layout/mgt"
 	thememgt "github.com/asgardeo/thunder/internal/design/theme/mgt"
 	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
@@ -43,7 +44,7 @@ type DesignResolveServiceInterface interface {
 type designResolveService struct {
 	themeMgtService    thememgt.ThemeMgtServiceInterface
 	layoutMgtService   layoutmgt.LayoutMgtServiceInterface
-	applicationService application.ApplicationServiceInterface
+	applicationService appkg.ApplicationServiceInterface
 	logger             *log.Logger
 }
 
@@ -51,7 +52,7 @@ type designResolveService struct {
 func newDesignResolveService(
 	themeMgtService thememgt.ThemeMgtServiceInterface,
 	layoutMgtService layoutmgt.LayoutMgtServiceInterface,
-	applicationService application.ApplicationServiceInterface,
+	applicationService appkg.ApplicationServiceInterface,
 ) DesignResolveServiceInterface {
 	logger := log.GetLogger().With(log.String(log.LoggerKeyComponentName, serviceLogger))
 	return &designResolveService{

@@ -26,8 +26,9 @@ import (
 	"time"
 
 	"github.com/asgardeo/thunder/internal/application"
-	"github.com/asgardeo/thunder/internal/application/model"
 	"github.com/asgardeo/thunder/internal/cert"
+	appkg "github.com/asgardeo/thunder/pkg/application"
+	appmodel "github.com/asgardeo/thunder/pkg/application/model"
 	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
 	oauth2const "github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
 	oauthutils "github.com/asgardeo/thunder/internal/oauth/oauth2/utils"
@@ -48,7 +49,7 @@ type DCRServiceInterface interface {
 
 // dcrService is the default implementation of DCRServiceInterface.
 type dcrService struct {
-	appService    application.ApplicationServiceInterface
+	appService    appkg.ApplicationServiceInterface
 	ouService     ou.OrganizationUnitServiceInterface
 	i18nService   i18nmgt.I18nServiceInterface
 	transactioner transaction.Transactioner
@@ -56,7 +57,7 @@ type dcrService struct {
 
 // newDCRService creates a new instance of dcrService.
 func newDCRService(
-	appService application.ApplicationServiceInterface,
+	appService appkg.ApplicationServiceInterface,
 	ouService ou.OrganizationUnitServiceInterface,
 	i18nService i18nmgt.I18nServiceInterface,
 	transactioner transaction.Transactioner,
@@ -180,7 +181,7 @@ func (ds *dcrService) RegisterClient(ctx context.Context, request *DCRRegistrati
 
 // convertDCRToApplication converts DCR registration request to Application DTO.
 func (ds *dcrService) convertDCRToApplication(request *DCRRegistrationRequest) (
-	*model.ApplicationDTO, *serviceerror.ServiceError) {
+	*appmodel.ApplicationDTO, *serviceerror.ServiceError) {
 	isPublicClient := request.TokenEndpointAuthMethod == oauth2const.TokenEndpointAuthMethodNone
 
 	// Map JWKS/JWKS_URI to application-level certificate
@@ -233,7 +234,7 @@ func (ds *dcrService) convertDCRToApplication(request *DCRRegistrationRequest) (
 		appName = application.AppI18nRef(appID, "name")
 	}
 
-	oauthAppConfig := &model.OAuthAppConfigDTO{
+	oauthAppConfig := &appmodel.OAuthAppConfigDTO{
 		ClientID:                           clientID,
 		RedirectURIs:                       request.RedirectURIs,
 		GrantTypes:                         request.GrantTypes,
@@ -246,14 +247,14 @@ func (ds *dcrService) convertDCRToApplication(request *DCRRegistrationRequest) (
 		UserInfo:                           buildUserInfoConfig(request),
 	}
 
-	inboundAuthConfig := []model.InboundAuthConfigDTO{
+	inboundAuthConfig := []appmodel.InboundAuthConfigDTO{
 		{
-			Type:           model.OAuthInboundAuthType,
+			Type:           appmodel.OAuthInboundAuthType,
 			OAuthAppConfig: oauthAppConfig,
 		},
 	}
 
-	appDTO := &model.ApplicationDTO{
+	appDTO := &appmodel.ApplicationDTO{
 		ID:                appID,
 		OUID:              request.OUID,
 		Name:              appName,
@@ -298,7 +299,7 @@ func buildUserInfoConfig(request *DCRRegistrationRequest) *inboundmodel.UserInfo
 }
 
 // convertApplicationToDCRResponse converts Application DTO to DCR registration response.
-func (ds *dcrService) convertApplicationToDCRResponse(appDTO *model.ApplicationDTO, originalClientName string) (
+func (ds *dcrService) convertApplicationToDCRResponse(appDTO *appmodel.ApplicationDTO, originalClientName string) (
 	*DCRRegistrationResponse, *serviceerror.ServiceError) {
 	if len(appDTO.InboundAuthConfig) == 0 || appDTO.InboundAuthConfig[0].OAuthAppConfig == nil {
 		return &DCRRegistrationResponse{}, nil

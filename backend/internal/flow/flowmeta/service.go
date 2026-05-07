@@ -25,6 +25,7 @@ import (
 
 	"github.com/asgardeo/thunder/internal/application"
 	"github.com/asgardeo/thunder/internal/design/common"
+	appkg "github.com/asgardeo/thunder/pkg/application"
 	"github.com/asgardeo/thunder/internal/design/resolve"
 	"github.com/asgardeo/thunder/internal/ou"
 	"github.com/asgardeo/thunder/internal/system/error/serviceerror"
@@ -61,7 +62,7 @@ type FlowMetaServiceInterface interface {
 
 // flowMetaService is the implementation of FlowMetaServiceInterface.
 type flowMetaService struct {
-	applicationService application.ApplicationServiceInterface
+	applicationService appkg.ApplicationServiceInterface
 	ouService          ou.OrganizationUnitServiceInterface
 	designResolve      resolve.DesignResolveServiceInterface
 	i18nService        i18nmgt.I18nServiceInterface
@@ -70,7 +71,7 @@ type flowMetaService struct {
 
 // newFlowMetaService creates a new instance of flowMetaService with injected dependencies.
 func newFlowMetaService(
-	applicationService application.ApplicationServiceInterface,
+	applicationService appkg.ApplicationServiceInterface,
 	ouService ou.OrganizationUnitServiceInterface,
 	designResolve resolve.DesignResolveServiceInterface,
 	i18nService i18nmgt.I18nServiceInterface,

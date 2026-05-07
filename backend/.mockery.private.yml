@@ -229,7 +229,7 @@ packages:
       pkgname: dcr
       filename: "{{.InterfaceName}}_mock_test.go"
 
-  github.com/asgardeo/thunder/internal/application:
+  github.com/asgardeo/thunder/pkg/application:
     config:
       all: true
       dir: internal/application

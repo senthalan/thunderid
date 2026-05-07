@@ -25,8 +25,9 @@ import (
 
 	"encoding/json"
 
-	"github.com/asgardeo/thunder/internal/application/model"
 	"github.com/asgardeo/thunder/internal/entity"
+	appkg "github.com/asgardeo/thunder/pkg/application"
+	appmodel "github.com/asgardeo/thunder/pkg/application/model"
 	"github.com/asgardeo/thunder/internal/inboundclient"
 	inboundmodel "github.com/asgardeo/thunder/internal/inboundclient/model"
 	declarativeresource "github.com/asgardeo/thunder/internal/system/declarative_resource"
@@ -43,16 +44,16 @@ const (
 
 // applicationExporter implements declarativeresource.ResourceExporter for applications.
 type applicationExporter struct {
-	service ApplicationServiceInterface
+	service appkg.ApplicationServiceInterface
 }
 
 // newApplicationExporter creates a new application exporter.
-func newApplicationExporter(service ApplicationServiceInterface) *applicationExporter {
+func newApplicationExporter(service appkg.ApplicationServiceInterface) *applicationExporter {
 	return &applicationExporter{service: service}
 }
 
 // NewApplicationExporterForTest creates a new application exporter for testing purposes.
-func NewApplicationExporterForTest(service ApplicationServiceInterface) *applicationExporter {
+func NewApplicationExporterForTest(service appkg.ApplicationServiceInterface) *applicationExporter {
 	if !testing.Testing() {
 		panic("only for tests!")
 	}
@@ -101,7 +102,7 @@ func (e *applicationExporter) GetResourceByID(ctx context.Context, id string) (
 func (e *applicationExporter) ValidateResource(
 	resource interface{}, id string, logger *log.Logger,
 ) (string, *declarativeresource.ExportError) {
-	app, ok := resource.(*model.Application)
+	app, ok := resource.(*appmodel.Application)
 	if !ok {
 		return "", declarativeresource.CreateTypeError(resourceTypeApplication, id)
 	}
@@ -115,7 +116,7 @@ func (e *applicationExporter) ValidateResource(
 }
 
 // makeAppInboundConfig creates the inbound client declarative loader config for applications.
-func makeAppInboundConfig(appService ApplicationServiceInterface) inboundmodel.DeclarativeLoaderConfig {
+func makeAppInboundConfig(appService appkg.ApplicationServiceInterface) inboundmodel.DeclarativeLoaderConfig {
 	return inboundmodel.DeclarativeLoaderConfig{
 		ResourceType:  "Application",
 		DirectoryName: "applications",
@@ -130,7 +131,7 @@ func makeAppInboundConfig(appService ApplicationServiceInterface) inboundmodel.D
 }
 
 // makeAppInboundParser returns a parser that converts application YAML bytes into an InboundClient.
-func makeAppInboundParser(appService ApplicationServiceInterface) func([]byte) (*inboundmodel.InboundClient, error) {
+func makeAppInboundParser(appService appkg.ApplicationServiceInterface) func([]byte) (*inboundmodel.InboundClient, error) {
 	return func(data []byte) (*inboundmodel.InboundClient, error) {
 		appDTO, err := parseToApplicationDTO(data)
 		if err != nil {
@@ -157,14 +158,14 @@ func makeAppInboundParser(appService ApplicationServiceInterface) func([]byte) (
 }
 
 // parseToApplicationDTO unmarshals YAML bytes into an ApplicationDTO.
-func parseToApplicationDTO(data []byte) (*model.ApplicationDTO, error) {
-	var appRequest model.ApplicationRequestWithID
+func parseToApplicationDTO(data []byte) (*appmodel.ApplicationDTO, error) {
+	var appRequest appmodel.ApplicationRequestWithID
 	err := yaml.Unmarshal(data, &appRequest)
 	if err != nil {
 		return nil, err
 	}
 
-	appDTO := model.ApplicationDTO{
+	appDTO := appmodel.ApplicationDTO{
 		ID:                        appRequest.ID,
 		OUID:                      appRequest.OUID,
 		Name:                      appRequest.Name,
@@ -187,15 +188,15 @@ func parseToApplicationDTO(data []byte) (*model.ApplicationDTO, error) {
 		Metadata:                  appRequest.Metadata,
 	}
 	if len(appRequest.InboundAuthConfig) > 0 {
-		inboundAuthConfigDTOs := make([]model.InboundAuthConfigDTO, 0)
+		inboundAuthConfigDTOs := make([]appmodel.InboundAuthConfigDTO, 0)
 		for _, config := range appRequest.InboundAuthConfig {
-			if config.Type != model.OAuthInboundAuthType || config.OAuthAppConfig == nil {
+			if config.Type != appmodel.OAuthInboundAuthType || config.OAuthAppConfig == nil {
 				continue
 			}
 
-			inboundAuthConfigDTO := model.InboundAuthConfigDTO{
+			inboundAuthConfigDTO := appmodel.InboundAuthConfigDTO{
 				Type: config.Type,
-				OAuthAppConfig: &model.OAuthAppConfigDTO{
+				OAuthAppConfig: &appmodel.OAuthAppConfigDTO{
 					ClientID:                           config.OAuthAppConfig.ClientID,
 					ClientSecret:                       config.OAuthAppConfig.ClientSecret,
 					RedirectURIs:                       config.OAuthAppConfig.RedirectURIs,
@@ -236,7 +237,7 @@ func (e *applicationExporter) GetResourceRules() *declarativeresource.ResourceRu
 // instance. Public clients do not have a client secret, so the ClientSecret variable is excluded
 // from their export to avoid injecting an empty or invalid placeholder into the YAML template.
 func (e *applicationExporter) GetResourceRulesForResource(resource interface{}) *declarativeresource.ResourceRules {
-	app, ok := resource.(*model.Application)
+	app, ok := resource.(*appmodel.Application)
 	if !ok {
 		return e.GetResourceRules()
 	}
@@ -259,7 +260,7 @@ func (e *applicationExporter) GetResourceRulesForResource(resource interface{}) 
 
 // makeAppDeclarativeConfig creates the declarative loader config for loading application
 // identity data into the entity file store.
-func makeAppDeclarativeConfig(appService ApplicationServiceInterface) entity.DeclarativeLoaderConfig {
+func makeAppDeclarativeConfig(appService appkg.ApplicationServiceInterface) entity.DeclarativeLoaderConfig {
 	return entity.DeclarativeLoaderConfig{
 		Directory: "applications",
 		Category:  entity.EntityCategoryApp,
@@ -269,7 +270,7 @@ func makeAppDeclarativeConfig(appService ApplicationServiceInterface) entity.Dec
 
 // makeAppEntityParser creates a parser that converts application YAML into an entity.
 func makeAppEntityParser(
-	appService ApplicationServiceInterface,
+	appService appkg.ApplicationServiceInterface,
 ) func(data []byte) (*entity.Entity, json.RawMessage, json.RawMessage, error) {
 	return func(data []byte) (*entity.Entity, json.RawMessage, json.RawMessage, error) {
 		if appService == nil {

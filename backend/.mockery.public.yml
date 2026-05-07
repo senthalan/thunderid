@@ -271,7 +271,7 @@ packages:
       pkgname: httpmock
       filename: "{{.InterfaceName}}_mock.go"
 
-  github.com/asgardeo/thunder/internal/application:
+  github.com/asgardeo/thunder/pkg/application:
     config:
       dir: tests/mocks/applicationmock
       structname: '{{.InterfaceName}}Mock'

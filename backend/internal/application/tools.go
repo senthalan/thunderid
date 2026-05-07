@@ -25,18 +25,19 @@ import (
 	"github.com/google/jsonschema-go/jsonschema"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/asgardeo/thunder/internal/application/model"
 	oauth2const "github.com/asgardeo/thunder/internal/oauth/oauth2/constants"
 	"github.com/asgardeo/thunder/internal/system/mcp/tool"
+	appkg "github.com/asgardeo/thunder/pkg/application"
+	appmodel "github.com/asgardeo/thunder/pkg/application/model"
 )
 
 // applicationTools provides MCP tools for managing  applications.
 type applicationTools struct {
-	appService ApplicationServiceInterface
+	appService appkg.ApplicationServiceInterface
 }
 
 // registerMCPTools registers all application MCP tools with the server.
-func registerMCPTools(server *mcp.Server, appService ApplicationServiceInterface) {
+func registerMCPTools(server *mcp.Server, appService appkg.ApplicationServiceInterface) {
 	tools := &applicationTools{
 		appService: appService,
 	}
@@ -127,14 +128,14 @@ func (t *applicationTools) listApplications(
 	ctx context.Context,
 	req *mcp.CallToolRequest,
 	_ any,
-) (*mcp.CallToolResult, model.ApplicationListOutput, error) {
+) (*mcp.CallToolResult, appmodel.ApplicationListOutput, error) {
 	listResponse, svcErr := t.appService.GetApplicationList(ctx)
 	if svcErr != nil {
-		return nil, model.ApplicationListOutput{},
+		return nil, appmodel.ApplicationListOutput{},
 			fmt.Errorf("failed to list applications: %s", svcErr.ErrorDescription)
 	}
 
-	return nil, model.ApplicationListOutput{
+	return nil, appmodel.ApplicationListOutput{
 		TotalCount:   listResponse.TotalResults,
 		Applications: listResponse.Applications,
 	}, nil
@@ -145,7 +146,7 @@ func (t *applicationTools) getApplicationByID(
 	ctx context.Context,
 	req *mcp.CallToolRequest,
 	input tool.IDInput,
-) (*mcp.CallToolResult, *model.Application, error) {
+) (*mcp.CallToolResult, *appmodel.Application, error) {
 	app, svcErr := t.appService.GetApplication(ctx, input.ID)
 	if svcErr != nil {
 		return nil, nil, fmt.Errorf("failed to get application: %s", svcErr.ErrorDescription)
@@ -158,8 +159,8 @@ func (t *applicationTools) getApplicationByID(
 func (t *applicationTools) getApplicationByClientID(
 	ctx context.Context,
 	req *mcp.CallToolRequest,
-	input model.ClientIDInput,
-) (*mcp.CallToolResult, *model.Application, error) {
+	input appmodel.ClientIDInput,
+) (*mcp.CallToolResult, *appmodel.Application, error) {
 	// Get OAuth application to find app ID
 	oauthApp, svcErr := t.appService.GetOAuthApplication(ctx, input.ClientID)
 	if svcErr != nil {
@@ -179,8 +180,8 @@ func (t *applicationTools) getApplicationByClientID(
 func (t *applicationTools) createApplication(
 	ctx context.Context,
 	req *mcp.CallToolRequest,
-	input model.ApplicationDTO,
-) (*mcp.CallToolResult, *model.ApplicationDTO, error) {
+	input appmodel.ApplicationDTO,
+) (*mcp.CallToolResult, *appmodel.ApplicationDTO, error) {
 	createdApp, svcErr := t.appService.CreateApplication(ctx, &input)
 	if svcErr != nil {
 		return nil, nil, fmt.Errorf("failed to create application: %s", svcErr.ErrorDescription)
@@ -193,8 +194,8 @@ func (t *applicationTools) createApplication(
 func (t *applicationTools) updateApplication(
 	ctx context.Context,
 	req *mcp.CallToolRequest,
-	input model.ApplicationDTO,
-) (*mcp.CallToolResult, *model.ApplicationDTO, error) {
+	input appmodel.ApplicationDTO,
+) (*mcp.CallToolResult, *appmodel.ApplicationDTO, error) {
 	updatedApp, svcErr := t.appService.UpdateApplication(ctx, input.ID, &input)
 	if svcErr != nil {
 		return nil, nil, fmt.Errorf("failed to update application: %s", svcErr.ErrorDescription)
@@ -214,7 +215,7 @@ func (t *applicationTools) getApplicationTemplates(
 		"spa": map[string]interface{}{
 			"name": "<APP_NAME>",
 			"token": map[string]interface{}{
-				"user_attributes": model.DefaultUserAttributes,
+				"user_attributes": appmodel.DefaultUserAttributes,
 			},
 			"inbound_auth_config": []map[string]interface{}{
 				{
@@ -225,13 +226,13 @@ func (t *applicationTools) getApplicationTemplates(
 						"token_endpoint_auth_method": "none",
 						"pkce_required":              true,
 						"public_client":              true,
-						"scopes":                     model.DefaultScopes,
+						"scopes":                     appmodel.DefaultScopes,
 						"token": map[string]interface{}{
 							"access_token": map[string]interface{}{
-								"user_attributes": model.DefaultUserAttributes,
+								"user_attributes": appmodel.DefaultUserAttributes,
 							},
 							"id_token": map[string]interface{}{
-								"user_attributes": model.DefaultUserAttributes,
+								"user_attributes": appmodel.DefaultUserAttributes,
 							},
 						},
 					},
@@ -241,7 +242,7 @@ func (t *applicationTools) getApplicationTemplates(
 		"mobile": map[string]interface{}{
 			"name": "<APP_NAME>",
 			"token": map[string]interface{}{
-				"user_attributes": model.DefaultUserAttributes,
+				"user_attributes": appmodel.DefaultUserAttributes,
 			},
 			"inbound_auth_config": []map[string]interface{}{
 				{
@@ -252,13 +253,13 @@ func (t *applicationTools) getApplicationTemplates(
 						"token_endpoint_auth_method": "none",
 						"pkce_required":              true,
 						"public_client":              true,
-						"scopes":                     model.DefaultScopes,
+						"scopes":                     appmodel.DefaultScopes,
 						"token": map[string]interface{}{
 							"access_token": map[string]interface{}{
-								"user_attributes": model.DefaultUserAttributes,
+								"user_attributes": appmodel.DefaultUserAttributes,
 							},
 							"id_token": map[string]interface{}{
-								"user_attributes": model.DefaultUserAttributes,
+								"user_attributes": appmodel.DefaultUserAttributes,
 							},
 						},
 					},
@@ -268,7 +269,7 @@ func (t *applicationTools) getApplicationTemplates(
 		"server": map[string]interface{}{
 			"name": "<APP_NAME>",
 			"token": map[string]interface{}{
-				"user_attributes": model.DefaultUserAttributes,
+				"user_attributes": appmodel.DefaultUserAttributes,
 			},
 			"inbound_auth_config": []map[string]interface{}{
 				{
@@ -277,13 +278,13 @@ func (t *applicationTools) getApplicationTemplates(
 						"redirect_uris": []string{"<REDIRECT_URI>"},
 						"grant_types":   []string{"authorization_code", "refresh_token"},
 						"pkce_required": true,
-						"scopes":        model.DefaultScopes,
+						"scopes":        appmodel.DefaultScopes,
 						"token": map[string]interface{}{
 							"access_token": map[string]interface{}{
-								"user_attributes": model.DefaultUserAttributes,
+								"user_attributes": appmodel.DefaultUserAttributes,
 							},
 							"id_token": map[string]interface{}{
-								"user_attributes": model.DefaultUserAttributes,
+								"user_attributes": appmodel.DefaultUserAttributes,
 							},
 						},
 					},
@@ -313,7 +314,7 @@ func getCommonSchemaModifiers() []func(*jsonschema.Schema) {
 		tool.WithEnum("inbound_auth_config.config", "response_types", oauth2const.GetSupportedResponseTypes()),
 		tool.WithEnum("inbound_auth_config.config", "token_endpoint_auth_method",
 			oauth2const.GetSupportedTokenEndpointAuthMethods()),
-		tool.WithEnum("inbound_auth_config", "type", []string{string(model.OAuthInboundAuthType)}),
+		tool.WithEnum("inbound_auth_config", "type", []string{string(appmodel.OAuthInboundAuthType)}),
 	}
 }
 
@@ -321,12 +322,12 @@ func getCommonSchemaModifiers() []func(*jsonschema.Schema) {
 func getCreateAppSchema() *jsonschema.Schema {
 	modifiers := getCommonSchemaModifiers()
 	modifiers = append(modifiers, tool.WithRemove("", "id"))
-	return tool.GenerateSchema[model.ApplicationDTO](modifiers...)
+	return tool.GenerateSchema[appmodel.ApplicationDTO](modifiers...)
 }
 
 // getUpdateAppSchema generates the schema for update_application tool.
 func getUpdateAppSchema() *jsonschema.Schema {
 	modifiers := getCommonSchemaModifiers()
 	modifiers = append(modifiers, tool.WithRequired("", "id"))
-	return tool.GenerateSchema[model.ApplicationDTO](modifiers...)
+	return tool.GenerateSchema[appmodel.ApplicationDTO](modifiers...)
 }

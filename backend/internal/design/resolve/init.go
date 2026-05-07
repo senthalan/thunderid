@@ -21,8 +21,8 @@ package resolve
 import (
 	"net/http"
 
-	"github.com/asgardeo/thunder/internal/application"
 	layoutmgt "github.com/asgardeo/thunder/internal/design/layout/mgt"
+	appkg "github.com/asgardeo/thunder/pkg/application"
 	thememgt "github.com/asgardeo/thunder/internal/design/theme/mgt"
 	"github.com/asgardeo/thunder/internal/system/middleware"
 )
@@ -32,7 +32,7 @@ func Initialize(
 	mux *http.ServeMux,
 	themeMgtService thememgt.ThemeMgtServiceInterface,
 	layoutMgtService layoutmgt.LayoutMgtServiceInterface,
-	applicationService application.ApplicationServiceInterface,
+	applicationService appkg.ApplicationServiceInterface,
 ) DesignResolveServiceInterface {
 	designResolveService := newDesignResolveService(themeMgtService, layoutMgtService, applicationService)
 	designResolveHandler := newDesignResolveHandler(designResolveService)
