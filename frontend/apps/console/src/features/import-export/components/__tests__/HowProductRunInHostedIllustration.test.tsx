@@ -92,7 +92,7 @@ describe('HowProductRunInHostedIllustration', () => {
 
     expect(screen.getByText('howSolutionWorksIllustration:run')).toBeInTheDocument();
     expect(screen.getByText('howSolutionWorksIllustration:projectEnvConfigs')).toBeInTheDocument();
-    expect(screen.getByText('howSolutionWorksIllustration:import')).toBeInTheDocument();
+    expect(screen.getByText('howSolutionWorksIllustration:attach')).toBeInTheDocument();
     expect(screen.getByText('howSolutionWorksIllustration:runtimeComponentsOnly')).toBeInTheDocument();
     expect(screen.getByText('howSolutionWorksIllustration:adminApp')).toBeInTheDocument();
     expect(screen.getByText('howSolutionWorksIllustration:loginApp')).toBeInTheDocument();

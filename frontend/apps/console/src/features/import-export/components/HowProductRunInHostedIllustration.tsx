@@ -76,7 +76,7 @@ const HowProductRunInHostedIllustration: React.FC = () => {
         />
         <text fill="currentColor" xmlSpace="preserve" fontSize="14" letterSpacing="0em">
           <tspan x="160.234" y="166.591">
-            {t('howSolutionWorksIllustration:import')}
+            {t('howSolutionWorksIllustration:attach')}
           </tspan>
         </text>
         <text

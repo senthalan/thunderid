@@ -205,11 +205,7 @@ export default function WelcomePage(): JSX.Element {
                 flex: 1,
               }}
             >
-              <Typography variant="h2" sx={{mb: 3}}>
-                {t('common:welcome.sections.start')}
-              </Typography>
-
-              <Stack spacing={2}>
+              <Stack spacing={2} sx={{mt: 7}}>
                 {startActions.map((action, index) => (
                   <MotionBox
                     key={action.id}
@@ -279,7 +275,7 @@ export default function WelcomePage(): JSX.Element {
                 animate={{opacity: 1, y: 0}}
                 transition={{duration: 0.3, delay: 0.3}}
               >
-                <Typography variant="h5" color="secondary" sx={{mb: 3}}>
+                <Typography variant="h4" sx={{mb: 3}}>
                   {t('common:welcome.sections.tryoutProduct', {productName})}
                 </Typography>
                 <Box

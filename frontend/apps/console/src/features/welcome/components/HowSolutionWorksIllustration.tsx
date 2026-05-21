@@ -135,7 +135,7 @@ const HowSolutionWorksIllustration: React.FC = () => {
         </text>
         <text fill="currentColor" xmlSpace="preserve" fontSize="14" letterSpacing="0em">
           <tspan x="806.234" y="166.591">
-            {t('howSolutionWorksIllustration:import')}
+            {t('howSolutionWorksIllustration:attach')}
           </tspan>
         </text>
         <text

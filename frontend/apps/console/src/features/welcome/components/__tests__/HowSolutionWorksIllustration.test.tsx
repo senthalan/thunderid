@@ -118,7 +118,7 @@ describe('HowSolutionWorksIllustration', () => {
       expect(screen.getByText('howSolutionWorksIllustration:saveExport')).toBeInTheDocument();
 
       // Step 4: Import
-      expect(screen.getByText('howSolutionWorksIllustration:import')).toBeInTheDocument();
+      expect(screen.getByText('howSolutionWorksIllustration:attach')).toBeInTheDocument();
 
       // Step 5: Run
       expect(screen.getByText('howSolutionWorksIllustration:run')).toBeInTheDocument();
@@ -300,7 +300,7 @@ describe('HowSolutionWorksIllustration', () => {
       render(<HowSolutionWorksIllustration />);
 
       expect(screen.getByText('howSolutionWorksIllustration:saveExport')).toBeInTheDocument();
-      expect(screen.getByText('howSolutionWorksIllustration:import')).toBeInTheDocument();
+      expect(screen.getByText('howSolutionWorksIllustration:attach')).toBeInTheDocument();
     });
 
     it('renders runtime sections', () => {
